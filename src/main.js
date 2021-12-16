@@ -122,13 +122,26 @@ const compoundInterest = () => {
   updateText();
 }
 
+const num_shorts = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qu'];
+const format_num = (num, i=0, past_thresh=false)=>{
+    const div = num / 1000;
+    const thresh = (i >= num_shorts.length);
+    if (div < 1 || thresh) { 
+      // return (thresh) ? (num.toFixed(1) + num_shorts[num_shorts.length-1]) : (num.toFixed(1) + num_shorts[i]);
+      if (thresh) return (num.toFixed(1) + num_shorts[num_shorts.length-1]);
+      else {
+        return (i == 0) ? (num.toFixed(0) + num_shorts[i]) : (num.toFixed(1) + num_shorts[i]);
+      }
+    }
+    return format_num(div, i+1, thresh);
+}
+
 const updateText = () => {
-  gid("points").innerText           = ("Points: " + points);
+  gid("points").innerText           = ("Points: " + format_num(points));
   gid("main-click").innerText       = ("Click This: +" + gain);
   gid("upgrade-main").innerText     = ("+" + mainUpAmt + "/Click [-" + mainUpAmtCost + " Points]");
   gid("upgrade-upgrade").innerText  = ("+2/Upgrade [-" + upgradeUpAmtCost + " Points]");
   gid("interest-lbl").innerText     = ("Interest: +" + (interest * 100).toFixed(1) + "%");
-  if (interestUnlocked == true) {
-    gid("interest-btn").innerText   = ("Upgrade Interest(+0.1%/Second) [-" + upgradeInterestCost + " Points]");
-  }
+  if (interestUnlocked == true) gid("interest-btn").innerText   = ("Upgrade Interest(+0.1%/Second) [-" + upgradeInterestCost + " Points]");
+  
 }

@@ -68,17 +68,21 @@ html, body {
   transform: translate(-50%,-50%);
   left: 50%;
   top: 50%;
+  clip-path: circle(2 at 50% 50%);
 }
 
 #upgrade-panel {
   display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding: 1rem;
+  padding-top: 5rem;
   gap: 1rem;
 
   background-color: rgb(60, 165, 60);
   color: gold;
   border-radius: 7px;
-  width: 20%;
+  width: 50%;
   height: 80%;
   position: absolute;
   right: 0%;
@@ -88,6 +92,14 @@ html, body {
   transition-duration: .5s;
   transform: translateX(110%);
 }
+#shop-label {
+  position: absolute;
+  top: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 2rem;
+}
 
 #hover-menu-upgrades {
   position: absolute;
@@ -95,7 +107,7 @@ html, body {
   top: 0;
   height: 100%;
   width: 10%;
-  background: green;
+  background: rgba(0, 128, 0, 0.4);
 }
 
 #hover-menu-upgrades:hover ~ #upgrade-panel, #upgrade-panel:hover {
