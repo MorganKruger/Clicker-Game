@@ -1,0 +1,102 @@
+Hacker shows(mr.Robot and The It Crowd)
+
+make sure buttons on the prestige shop check "if (shopOpen == false) { return }"
+
+make box-shadows shrink during press down and rise again after release
+
+Make all the buttons more sensible to read so first-time users know what's going on
+
+texturize buttons + background
+
+confirmation button on prestige
+
+organize label updates in a big list to choose from for whatever actually needs update
+
+%5/second will double after (200 = 100*1.05^n)
+
+prestige theme shop. Maybe through crates for random theme. 
+Theme rarity(common[gray], uncommon[green], rare[blue], epic[violet], legendary[yellow]
+theme crates could also role for SFX, 
+
+players collect parts of themes through opening crates and gain permenant bonuses
+for completed theme sets.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||SETTINGS|||||
+toggle number displays (scientific notation/standard notation(commas/periods)/lettered)
+toggle sound effects(maybe a slide bar instead)
+toggle music(if there is music)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||NEWS BAR|||||(Theme Dependent)
+~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||ACHIEVEMENTS|||||	
+	reach x points(x = 100^n (until 21 digits) then x = 1000^n, googleplex(END))
+	click x times(x = 10^n(achievement level),1mil(~40hrs:7cps)(END)			
+	complete x themes(1, 3, 5, 10, 15, 20, 30, 50, all(END))
+	prestige x times({x += n} (1,3,6,10,15,21,28,36,45,55,66,78,91,105(END)))
+	reach level x on minigame ~~~
+	reach x interest(5%,13%,25%,45%,70%,100%,200%(END))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||STAT MENU|||||
+	interest	total time	prestige bonus		completed-theme bonus
+	points/second	prestiges	click bonus chances	prestige points
+	current theme	highest cps	highest points		fastest prestige
+*scores default to "N/A"*	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||THEME IDEAS|||||
+	goopy/slime	retro(70s)	circuit board		old black and white
+	vampires	birthday	holidays(all of them)	money/gold
+	good		evil		future			Medievil
+	nature		prehistoric	winter			summer
+	fall		spring		breast cancer awareness ~~~~~
+	Pirate		royal		disco			zombie
+	electric	chicken		pets			candy
+	fire		junk food	America			ocean
+	steampunk	rennaisance	floral			blocky/modern art
+	picasso		toxic 		military		mystery
+	old/weathered/broken/cracked	magical			corrupted file
+	bubbly		sharp/spikey	Red, Orange, Yellow, Green, Blue, Purple
+	Rainbow/unicorn/sparkles	light 			dark 
+	basic		China(meme)(pres shop disabled)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||THINGS THAT CHANGE WITH THEMES|||||
+	TEXT(ie. currency, main-click text prompt, interest unlock/upgrade, prestige)
+	COLOR(ie. background, text, and borders)
+	SFX(ie. main click, prestige, main upgrade, upgrade upgrade, upgrade interest)
+	MUSIC(!this is a lot of work!)
+	PARTICLES(if any)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||PERK SHOP IDEAS|||||
+	increase starting points(100*10^n Points,[-(4+n) Super Points] n=times upgraded
+	Bonus click effects(chance for crit then super crit + double then quad click
+ + combo bonus(fast clicks=multiplier) They all stack on eachother)
+	
+	reduce cost-increase(main upgrade, upgrade upgrade, and interest upgrade)
+	Unlock cps counter?
+	
+	upgrade upgrade rate
+
+	Interest upgrade rate
+	
+	unlock 1-time clickables. 1% spawn chance each second? (random/set 
+	location? Click value*100*prestige amt?). 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|||||PRESTIGE IDEAS|||||
+	increase effectiveness of the upgradeUpgrade and maybe of the interest upgrade
+	2 new tabs(prestige shop, themes)
+	each prestige gives 5 prestige points(second currency for permenant upgrades)
+	flat permenant bonus(+5% income)
+	unlocks minigame
+		aim trainer**
+		rythm game***
+		simple platformer(perhaps with moving objects to dodge)'
+	unlocks a new gamemode
+		other clicker(like one with passive income)
+		slime eat:grow thingy
+		top-down stationary shooter
+
+	unlocks themes
+	collect different colored prestige trophies(0/6)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+do a "let totalTime = 0;" and add the current time to it whenever the player prestiges
+	

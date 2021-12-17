@@ -1,4 +1,7 @@
-## Jacoby (1) : v0.2.1
+## Jacoby (3) : v0.2.2
+- Added morgan's notes
+
+## Jacoby (2) : v0.2.1
 - Fixed HTML parsing error
 - Modernized code
 - Fixed number formatting
