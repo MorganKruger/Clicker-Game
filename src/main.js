@@ -1,7 +1,17 @@
 const gid = (id)=> document.getElementById(id);
 
-let points = 0;
+let points = 50000000;
 let gain = 1;
+let tempGain = 1;
+let buyStartingPointsCost = 2;
+let buyCritCost = 3;
+let buySupCritCost = 8;
+let buyDoubCost = 12;
+let critUnlocked = false;
+let supCritUnlocked = false;
+let doubUnlocked = false;
+let startingPointsUnlocked = false;
+let startingPoints = 100;
 let mainUpAmt = 1;
 let mainUpAmtCost = 10;
 let upgradeUpAmt = 2;
@@ -13,6 +23,7 @@ let upgradeInterestCost = 500000;
 let clicks = 0;
 let shopOpen = false;
 let statsOpen = false;
+let prestigePoints = 25;
 
 const interestUnlockCost = 100000;
 const prestigeCost = 50000000; //50 mil
@@ -28,7 +39,7 @@ setInterval(() => {
 }, 1000);
 
 const upgradeMain = () => {
-  if (points < mainUpAmtCost) return; 
+  if (points < mainUpAmtCost) { return }
   points -= mainUpAmtCost;
   gain += mainUpAmt;
   mainUpAmtCost = Math.round(mainUpAmtCost * 1.1);
@@ -36,10 +47,31 @@ const upgradeMain = () => {
 }
 
 const gainPoints = () => {
-  points += gain;
   clicks ++;
+  tempGain = gain;
+  ///////CLICK MODIFIERS\\\\\\\
+  if (critUnlocked == true){
+    if (critClick() == true) { 
+      tempGain *= 2
+      if (supCritUnlocked == true) {
+        if (supCritClick() == true) { tempGain *= 10 }
+      }
+    }
+  }
+  if (doubUnlocked == true) {
+    if (doubClick() == true) { tempGain *= 2 }
+  }
+  points += tempGain;
+  tempGain = gain;
+  console.log(tempGain)
   updateText();
 }
+
+const critClick = () => (Math.round(Math.random()*5) == 5) ? true : false; //1:5 chance
+
+const supCritClick = () => (Math.ceil(Math.random()*4) == 4) ? true : false; //1:4 chance
+
+const doubClick = () => (Math.ceil(Math.random()*3) == 3) ? true : false; //1:3 chance
 
 const upgradeUpgrade = () => {
   if (points < upgradeUpAmtCost) { return }
@@ -96,10 +128,47 @@ const togglePrestigeShop = () => {
   }
 }
 
+const buyStartingPoints = () => {
+  if (startingPointsUnlocked == true) { return }
+  if (prestigePoints < buyStartingPointsCost) { return }
+  prestigePoints -= buyStartingPointsCost;
+  startingPointsUnlocked = true;
+  startingPoints *= 10;
+  gid("unlock-starting-points").innerText = ("Starting Points Unlocked");
+  gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
+}
+
+const buyCrit = () => {
+ if (critUnlocked == true) { return }
+  if (prestigePoints < buyCritCost) { return }
+  prestigePoints -= buyCritCost;
+  critUnlocked = true;
+  gid("unlock-crit").innerText = ("Critical Clicks Unlocked");
+  gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
+}
+
+const buySupCrit = () => {
+  if (supCritUnlocked == true) { return }
+  if (prestigePoints < buySupCritCost) { return }
+  prestigePoints -= buySupCritCost;
+  supCritUnlocked = true;
+  gid("unlock-super-crit").innerText = ("Super Critical Clicks Unlocked");
+  gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
+}
+
+const buyDoub = () => {
+  if (doubUnlocked == true) { return }
+  if (prestigePoints < buyDoubCost) { return }
+  prestigePoints -= buyDoubCost;
+  doubUnlocked = true;
+  gid("unlock-double").innerText = ("Double Clicks Unlocked");
+  gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
+}
+
+
 const prestige = () => {
   if (points < prestigeCost) { return }
   // are you sure? This will reset all of your stats(besides prestige points and theme bonuses)
-  
   points = 0;
   gain = 1;
   mainUpAmt = 1;
@@ -111,9 +180,14 @@ const prestige = () => {
   interest = 0;
   upgradeInterestCost = 500000;
   clicks = 0;
-  gid("interest-btn").innerText = ("Unlock The Bank \r\n (+0.5% Points/Second) \r\n [-100000 Points]") // the \r\n things start new lines 
+  prestigePoints += 5;
+  if (startingPointsUnlocked == true) {
+    points += startingPoints;
+  }
+  gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
+  gid("interest-btn").innerText = ("Unlock The Bank \r\n (+0.5% Points/Second) \r\n [-100000 Points]"); // the \r\n things start new lines 
   gid("show-prestige-shop").style.display = ("grid");
-  gid("prestige-shop").style.display = ("grid")
+  gid("prestige-shop").style.display = ("grid");
   updateText();
 }
 
@@ -122,15 +196,15 @@ const compoundInterest = () => {
   updateText();
 }
 
-const num_shorts = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qu'];
+const num_shorts = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'D', 'UD', 'DD', 'TD', 'QuD', 'QiD', 'SxD', 'SpD', 'OD', 'ND', 'V', 'UV', 'DV', 'TV', 'QaV', 'QiV', 'SxV', 'SpV', 'OV', 'NV', 'T', 'UT', 'DT', 'TT', 'QaT', 'QiT', 'SxT', 'SpT', 'OT', 'NT',];
 const format_num = (num, i=0, past_thresh=false)=>{
     const div = num / 1000;
     const thresh = (i >= num_shorts.length);
     if (div < 1 || thresh) { 
       // return (thresh) ? (num.toFixed(1) + num_shorts[num_shorts.length-1]) : (num.toFixed(1) + num_shorts[i]);
-      if (thresh) return (num.toFixed(1) + num_shorts[num_shorts.length-1]);
+      if (thresh) return (num.toFixed(2) + num_shorts[num_shorts.length-1]);
       else {
-        return (i == 0) ? (num.toFixed(0) + num_shorts[i]) : (num.toFixed(1) + num_shorts[i]);
+        return (i == 0) ? (num.toFixed(0) + num_shorts[i]) : (num.toFixed(2) + num_shorts[i]);
       }
     }
     return format_num(div, i+1, thresh);

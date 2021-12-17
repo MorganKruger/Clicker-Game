@@ -2,42 +2,60 @@
 <html lang="en">
 <head>
   <script defer src="./src/main.js"></script>
-
   <link rel="stylesheet" href="./style.css">
   <title>Literally My College Final</title>
 </head>
 
 <body>
   <div class="stat" id="points">Points: 0</div>
-  <div class="stat" id="interest-lbl">Interest: +0%</div>
+  <div class="stat" id="interest-lbl">Interest: +0.0%</div>
   <div class="stat" id="cps">Clicks/Second: 0</div>
   
   <div id="clock">Seconds: 0</div>
   
   <div id="main-click" onclick="gainPoints()">Click This: +1</div>
 
-  <div id="hover-menu-upgrades"></div>
+  <div id="hover-menu-upgrades">
+    <h1><b><<br><<br><</b></h1>
+  </div>
 
   <div id="stats">Other Statistics
     <div class="stat">item 1</div>
     <div class="stat">item 2</div>
     <div class="stat">item 3</div>
     <div class="stat">item 4</div>
+    <div class="stat">item 5</div>
+    <div class="stat">item 6</div>
+    <div class="stat">item 7</div>
+    <div class="stat">item 8</div>
+    <div class="stat">item 9</div>
+    <div class="stat">item 10</div>
+    <div class="stat">item 11</div>
+    <div class="stat">item 12</div>
   </div>
 
   <div id="show-stats" onclick="toggleStats()">Other Stats</div>
 
-  <div id="prestige-shop">Shop
-    <div class="btn">item 1</div>
-    <div class="btn">item 2</div>
-    <div class="btn">item 3</div>
-    <div class="btn">item 4</div>
+  <div id="prestige-shop">
+    <div id="prestige-points">Power Points: 0</div>
+    <h3 id="shop-label">-- Prestige Shop --</h3>
+    <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints()">Starting Points [-2 Super Points]</div>
+    <div class="btn" id="unlock-crit" onclick="buyCrit()">Unlock Critical Cilcks<br>[-3 Super Points]</div>
+    <div class="btn" id="unlock-super-crit" onclick="buySupCrit()">Unlock Super Critical Clicks<br>[-8 Super Points]</div>
+    <div class="btn" id="unlock-double" onclick="buyDoub()">Unlock Double Clicks<br>[-12 Super Points]</div>
+    <div class="btn">item 5</div>
+    <div class="btn">item 6</div>
+    <div class="btn">item 7</div>
+    <div class="btn">item 8</div>
+    <div class="btn">item 9</div>
+    <div class="btn">item 10</div>
+    <div class="btn">item 11</div>
+    <div class="btn">item 12</div>
   </div>
 
   <div id="show-prestige-shop" onclick="togglePrestigeShop()">Prestige Shop</div>
 
   <div id="upgrade-panel">
-    <h3 id="shop-label">-- Shop --</h3>
     <div class="btn" id="upgrade-main" onclick="upgradeMain()">+1/Click [-10 Points]</div>
     <div class="btn" id="upgrade-upgrade" onclick="upgradeUpgrade()">+2/Upgrade [-1000 Points]</div>
     <div class="btn" id="interest-btn" onclick="interestBtnClick()">Unlock The Bank <br> (+0.5% Points/Second) <br> [-100000 Points]</div>
