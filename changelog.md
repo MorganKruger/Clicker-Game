@@ -1,3 +1,8 @@
+## Jacoby (1) : v0.2.1
+- Fixed HTML parsing error
+- Modernized code
+- Fixed number formatting
+
 ## Morgan (1) : v0.2
 - Reverted the shop styling and set it on the Pretige Shop
 - Added button shadows on hover

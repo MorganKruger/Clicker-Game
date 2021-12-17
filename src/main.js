@@ -33,13 +33,13 @@ setInterval(() => {
   gid("clock").innerText = ("Seconds: " + time);
   gid("cps").innerText = ("Clicks/Second: " + clicks);
   clicks = 0;
-  if (interestUnlocked == true) {
+  if (interestUnlocked) {
     compoundInterest(); 
   }
 }, 1000);
 
 const upgradeMain = () => {
-  if (points < mainUpAmtCost) { return }
+  if (points < mainUpAmtCost) return;
   points -= mainUpAmtCost;
   gain += mainUpAmt;
   mainUpAmtCost = Math.round(mainUpAmtCost * 1.1);
@@ -50,31 +50,26 @@ const gainPoints = () => {
   clicks ++;
   tempGain = gain;
   ///////CLICK MODIFIERS\\\\\\\
-  if (critUnlocked == true){
-    if (critClick() == true) { 
-      tempGain *= 2
-      if (supCritUnlocked == true) {
-        if (supCritClick() == true) { tempGain *= 10 }
-      }
-    }
+  if (critUnlocked && critClick()){
+    tempGain *= 2
+    if (supCritUnlocked && supCritClick()) tempGain *= 10
   }
-  if (doubUnlocked == true) {
-    if (doubClick() == true) { tempGain *= 2 }
-  }
+  if (doubUnlocked && doubClick()) tempGain *= 2;
+
   points += tempGain;
   tempGain = gain;
   console.log(tempGain)
   updateText();
 }
 
-const critClick = () => (Math.round(Math.random()*5) == 5) ? true : false; //1:5 chance
+const critClick = () => (Math.random() < (1/5)) ? true : false; //1:5 chance
 
-const supCritClick = () => (Math.ceil(Math.random()*4) == 4) ? true : false; //1:4 chance
+const supCritClick = () => (Math.random() < (1/4)) ? true : false; //1:4 chance
 
-const doubClick = () => (Math.ceil(Math.random()*3) == 3) ? true : false; //1:3 chance
+const doubClick = () => (Math.random() < (1/3)) ? true : false; //1:3 chance
 
 const upgradeUpgrade = () => {
-  if (points < upgradeUpAmtCost) { return }
+  if (points < upgradeUpAmtCost) return;
   points -= upgradeUpAmtCost;
   mainUpAmt += upgradeUpAmt;
   upgradeUpAmtCost = Math.round(upgradeUpAmtCost * 1.05);
@@ -82,15 +77,15 @@ const upgradeUpgrade = () => {
 }
 
 const interestBtnClick = () => {
-  if (points < interestUnlockCost) { return }
+  if (points < interestUnlockCost) return;
   if (interestUnlocked == false) {
     points -= interestUnlockCost;
     interest = .005;
     interestUnlocked = true;
     updateText();
-    return
+    return;
   }
-  if (points < upgradeInterestCost) { return } //they already bought the bank so UPGRADE INTEREST
+  if (points < upgradeInterestCost) return; //they already bought the bank so UPGRADE INTEREST
   points -= upgradeInterestCost;
   upgradeInterestCost += Math.round(upgradeInterestCost * .25);
   interest = Math.round((interest + .001)*1000)/1000;
@@ -98,39 +93,39 @@ const interestBtnClick = () => {
 }
 
 const toggleStats = () => {
-  if (statsOpen == true) {
-    gid("show-stats").style.backgroundColor = ("green")
-    gid("stats").style.transform = ("translate(-50%,-200%)")
+  if (statsOpen) {
+    gid("show-stats").style.backgroundColor = ("green");
+    gid("stats").style.transform = ("translate(-50%,-200%)");
     // gid("stats").style.display = ("none");
-    statsOpen = false
+    statsOpen = false;
   }
   else{
-    if (shopOpen == true) { togglePrestigeShop() } //close shop before opening stats
-    gid("show-stats").style.backgroundColor = ("rgb(235, 101, 92)")
-    gid("stats").style.transform = ("translate(-50%,-50%)")
+    if (shopOpen) togglePrestigeShop(); // close shop before opening stats
+    gid("show-stats").style.backgroundColor = ("rgb(235, 101, 92)");
+    gid("stats").style.transform = ("translate(-50%,-50%)");
     // gid("stats").style.display = ("grid");
-    statsOpen = true
+    statsOpen = true;
   }
 }
 
 const togglePrestigeShop = () => {
-  if (shopOpen == true) {
-    gid("show-prestige-shop").style.backgroundColor = ("green")
-    gid("prestige-shop").style.transform = ("translate(-200%,-50%)")
-    shopOpen = false
+  if (shopOpen) {
+    gid("show-prestige-shop").style.backgroundColor = ("green");
+    gid("prestige-shop").style.transform = ("translate(-200%,-50%)");
+    shopOpen = false;
   }
   else{
-    if (statsOpen == true) { toggleStats() } //close stats before opening shop
-    gid("show-prestige-shop").style.backgroundColor = ("rgb(235, 101, 92)")
-    gid("prestige-shop").style.transform = ("translate(-50%,-50%)")
+    if (statsOpen) toggleStats(); //close stats before opening shop
+    gid("show-prestige-shop").style.backgroundColor = ("rgb(235, 101, 92)");
+    gid("prestige-shop").style.transform = ("translate(-50%,-50%)");
     // gid("prestige-shop").style.display = ("grid");
-    shopOpen = true
+    shopOpen = true;
   }
 }
 
 const buyStartingPoints = () => {
-  if (startingPointsUnlocked == true) { return }
-  if (prestigePoints < buyStartingPointsCost) { return }
+  if (startingPointsUnlocked) return;
+  if (prestigePoints < buyStartingPointsCost) return;
   prestigePoints -= buyStartingPointsCost;
   startingPointsUnlocked = true;
   startingPoints *= 10;
@@ -139,8 +134,8 @@ const buyStartingPoints = () => {
 }
 
 const buyCrit = () => {
- if (critUnlocked == true) { return }
-  if (prestigePoints < buyCritCost) { return }
+ if (critUnlocked) return;
+  if (prestigePoints < buyCritCost) return;
   prestigePoints -= buyCritCost;
   critUnlocked = true;
   gid("unlock-crit").innerText = ("Critical Clicks Unlocked");
@@ -148,8 +143,8 @@ const buyCrit = () => {
 }
 
 const buySupCrit = () => {
-  if (supCritUnlocked == true) { return }
-  if (prestigePoints < buySupCritCost) { return }
+  if (supCritUnlocked) return;
+  if (prestigePoints < buySupCritCost) return;
   prestigePoints -= buySupCritCost;
   supCritUnlocked = true;
   gid("unlock-super-crit").innerText = ("Super Critical Clicks Unlocked");
@@ -157,8 +152,8 @@ const buySupCrit = () => {
 }
 
 const buyDoub = () => {
-  if (doubUnlocked == true) { return }
-  if (prestigePoints < buyDoubCost) { return }
+  if (doubUnlocked) return;
+  if (prestigePoints < buyDoubCost) return;
   prestigePoints -= buyDoubCost;
   doubUnlocked = true;
   gid("unlock-double").innerText = ("Double Clicks Unlocked");
@@ -167,7 +162,7 @@ const buyDoub = () => {
 
 
 const prestige = () => {
-  if (points < prestigeCost) { return }
+  if (points < prestigeCost) return;
   // are you sure? This will reset all of your stats(besides prestige points and theme bonuses)
   points = 0;
   gain = 1;
@@ -181,9 +176,7 @@ const prestige = () => {
   upgradeInterestCost = 500000;
   clicks = 0;
   prestigePoints += 5;
-  if (startingPointsUnlocked == true) {
-    points += startingPoints;
-  }
+  if (startingPointsUnlocked) points += startingPoints;
   gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
   gid("interest-btn").innerText = ("Unlock The Bank \r\n (+0.5% Points/Second) \r\n [-100000 Points]"); // the \r\n things start new lines 
   gid("show-prestige-shop").style.display = ("grid");
@@ -196,16 +189,17 @@ const compoundInterest = () => {
   updateText();
 }
 
+const floor_round = (num, place)=>{
+  const pow = (Math.pow(10, place));
+  return Math.floor(num * pow) / pow;
+}
 const num_shorts = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'D', 'UD', 'DD', 'TD', 'QuD', 'QiD', 'SxD', 'SpD', 'OD', 'ND', 'V', 'UV', 'DV', 'TV', 'QaV', 'QiV', 'SxV', 'SpV', 'OV', 'NV', 'T', 'UT', 'DT', 'TT', 'QaT', 'QiT', 'SxT', 'SpT', 'OT', 'NT',];
 const format_num = (num, i=0, past_thresh=false)=>{
     const div = num / 1000;
     const thresh = (i >= num_shorts.length);
     if (div < 1 || thresh) { 
-      // return (thresh) ? (num.toFixed(1) + num_shorts[num_shorts.length-1]) : (num.toFixed(1) + num_shorts[i]);
-      if (thresh) return (num.toFixed(2) + num_shorts[num_shorts.length-1]);
-      else {
-        return (i == 0) ? (num.toFixed(0) + num_shorts[i]) : (num.toFixed(2) + num_shorts[i]);
-      }
+      if (thresh) return (floor_round(num, 2) + num_shorts[num_shorts.length-1]);
+      else return (i == 0) ? (num.toFixed(0) + num_shorts[i]) : (floor_round(num, 2) + num_shorts[i]);
     }
     return format_num(div, i+1, thresh);
 }
@@ -216,6 +210,5 @@ const updateText = () => {
   gid("upgrade-main").innerText     = ("+" + mainUpAmt + "/Click [-" + mainUpAmtCost + " Points]");
   gid("upgrade-upgrade").innerText  = ("+2/Upgrade [-" + upgradeUpAmtCost + " Points]");
   gid("interest-lbl").innerText     = ("Interest: +" + (interest * 100).toFixed(1) + "%");
-  if (interestUnlocked == true) gid("interest-btn").innerText   = ("Upgrade Interest(+0.1%/Second) [-" + upgradeInterestCost + " Points]");
-  
+  if (interestUnlocked) gid("interest-btn").innerText   = ("Upgrade Interest(+0.1%/Second) [-" + upgradeInterestCost + " Points]");
 }
