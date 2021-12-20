@@ -1,3 +1,12 @@
+## Morgan (2) : v0.2.3
+- Changed styling of hover menus
+- Added prestige shop items
+- Rescaled prestige shop items
+- Added stat menu items
+- Added prestige-shop description box(WIP)
+- Moved interest label to stat menu
+- Changed main shop texts
+
 ## Jacoby (3) : v0.2.2
 - Added morgan's notes
 

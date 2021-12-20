@@ -1,8 +1,18 @@
 Hacker shows(mr.Robot and The It Crowd)
 
-make sure buttons on the prestige shop check "if (shopOpen == false) { return }"
+Large Numbers: illion, decillion, vigintillion, trigintillion, quadrigintillion, 
+quinquagintillion, sexagintillion, septuagintillion, octogintillion, nonagintillion,
+centillion(303)
 
-make box-shadows shrink during press down and rise again after release
+make theme double do something
+
+pres shop info panel:label,description,values(ttlBonus,addedBonus,level(n/x))not cost
+
+balance prestige shop cost
+
+other stats scroll bar
+
+make number notations work for all number labels
 
 Make all the buttons more sensible to read so first-time users know what's going on
 
@@ -10,13 +20,9 @@ texturize buttons + background
 
 confirmation button on prestige
 
-organize label updates in a big list to choose from for whatever actually needs update
-
-%5/second will double after (200 = 100*1.05^n)
-
 prestige theme shop. Maybe through crates for random theme. 
-Theme rarity(common[gray], uncommon[green], rare[blue], epic[violet], legendary[yellow]
-theme crates could also role for SFX, 
+Theme rarity(common[gray], uncommon[green], rare[indigo], epic[royal-purple], 
+legendary[gold], mythic[rainbow]) ~ (50%,25%,15%,7.5%,2%,.5%)
 
 players collect parts of themes through opening crates and gain permenant bonuses
 for completed theme sets.
@@ -26,7 +32,7 @@ toggle number displays (scientific notation/standard notation(commas/periods)/le
 toggle sound effects(maybe a slide bar instead)
 toggle music(if there is music)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||NEWS BAR|||||(Theme Dependent)
+|||||NEWS BAR|||||(Theme Dependent(lots of thinking))
 ~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||ACHIEVEMENTS|||||	
@@ -38,65 +44,75 @@ toggle music(if there is music)
 	reach x interest(5%,13%,25%,45%,70%,100%,200%(END))
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||STAT MENU|||||
-	interest	total time	prestige bonus		completed-theme bonus
-	points/second	prestiges	click bonus chances	prestige points
-	current theme	highest cps	highest points		fastest prestige
-*scores default to "N/A"*	
+	prestige bonus		completed-theme	bonus	points/second	
+	click bonus chances	current theme		total clicks
+	chance for theme 	rythm game highscore	
+	total progression((x/12PresShop)+(x/(~60)Themes)+(x/(~30)missions)~~x/115Items)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||THEME IDEAS|||||
 	goopy/slime	retro(70s)	circuit board		old black and white
-	vampires	birthday	holidays(all of them)	money/gold
-	good		evil		future			Medievil
+	vampires	birthday	holidays(every one)	money/gold
+	good		evil		future(future points)	Medievil
 	nature		prehistoric	winter			summer
 	fall		spring		breast cancer awareness ~~~~~
 	Pirate		royal		disco			zombie
-	electric	chicken		pets			candy
+	electric	chicken		pets(feline/kanine)	candy
 	fire		junk food	America			ocean
 	steampunk	rennaisance	floral			blocky/modern art
 	picasso		toxic 		military		mystery
 	old/weathered/broken/cracked	magical			corrupted file
-	bubbly		sharp/spikey	Red, Orange, Yellow, Green, Blue, Purple
+	bubbly		sharp/spikey	R,O,Y,G,B,I,V		gamer(rgb)
 	Rainbow/unicorn/sparkles	light 			dark 
-	basic		China(meme)(pres shop disabled)
+	basic		highrise	fruity			space
+	wet		dry		musical			classical
+	cotton candy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||THINGS THAT CHANGE WITH THEMES|||||
-	TEXT(ie. currency, main-click text prompt, interest unlock/upgrade, prestige)
-	COLOR(ie. background, text, and borders)
+	parts of themes
+	TEXT(ie. currency, main-click text prompt, interest unlock/upgrade, 
+	COLOR SCHEME(ie. background, text, and borders)
 	SFX(ie. main click, prestige, main upgrade, upgrade upgrade, upgrade interest)
-	MUSIC(!this is a lot of work!)
-	PARTICLES(if any)
+	MUSIC(!this is a lot of work!)(Deprecated)
+	PARTICLES(if any)(Deprecated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||PERK SHOP IDEAS|||||
-	increase starting points(100*10^n Points,[-(4+n) Super Points] n=times upgraded
-	Bonus click effects(chance for crit then super crit + double then quad click
- + combo bonus(fast clicks=multiplier) They all stack on eachother)
+	Bonus click effects(quad click + combo bonus(fast clicks=multiplier(this 
+	incentivises AC so maybe not)) They all stack on eachother)
+
+	increase power points gain(prestigePointsGain += 1) [-5 power points] 
+	x/10 levels, price += 5
 	
 	reduce cost-increase(main upgrade, upgrade upgrade, and interest upgrade)
-	Unlock cps counter?
-	
-	upgrade upgrade rate
+	Unlock cps counter?(ABSOLUTELY NOT)
 
-	Interest upgrade rate
-	
 	unlock 1-time clickables. 1% spawn chance each second? (random/set 
 	location? Click value*100*prestige amt?). 
+
+	double theme items from boxes
+
+	theme bonus becomes compounding instead of linear
+
+	upgradeable chance for "theme points" 0/5 to open a box
+
+	further the crit and super crit by allowing to upgrade them individually
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||PRESTIGE IDEAS|||||
-	increase effectiveness of the upgradeUpgrade and maybe of the interest upgrade
+	increase effectiveness of the mainUpgrade, upgradeUpgrade, and maybe of the interest upgrade
 	2 new tabs(prestige shop, themes)
 	each prestige gives 5 prestige points(second currency for permenant upgrades)
 	flat permenant bonus(+5% income)
 	unlocks minigame
 		aim trainer**
-		rythm game***
-		simple platformer(perhaps with moving objects to dodge)'
+		rythm game*** (this is a good idea)
+		simple platformer(perhaps with moving objects to dodge)-(on like a 
+	pop-up gameboy or something)
+
 	unlocks a new gamemode
-		other clicker(like one with passive income)
+		other clicker game(like one with passive income)
 		slime eat:grow thingy
 		top-down stationary shooter
 
 	unlocks themes
 	collect different colored prestige trophies(0/6)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-do a "let totalTime = 0;" and add the current time to it whenever the player prestiges
 	
