@@ -1,3 +1,6 @@
+## Morgan (3) : v0.3
+- Remastered the prestige shop
+
 ## Morgan (2) : v0.2.3
 - Changed styling of hover menus
 - Added prestige shop items

@@ -1,25 +1,28 @@
 const gid = (id)=> document.getElementById(id);
 
-let points = 50000000;
+let points = 50000000; // 0
 let gain = 1;
 let tempGain = 1;
 let highestTempGain = 0;
 let highestPoints = 0;
 let buyStartingPointsCost = 2;
 let buyCritCost = 3;
-let buySupCritCost = 8;
 let buyDoubCost = 12;
 let buyCostReduceCost = 13;
 let buyThemeDoubleCost = 20;
+let buyMorePrestigePointsCost = 5;
 let critUnlocked = false;
 let supCritUnlocked = false;
 let doubUnlocked = false;
 let quadUnlocked = false;
-let startingPointsUnlocked = false;
-let costReduceMaxed = false;
+let startingPointsMaxed = false;
 let themeDoubleUnlocked = false; 
+let costReduceMaxed = false;
+let morePrestigePointsMaxed = false;
+let startingPointsLvl = 0;
+let morePrestigePointsLvl = 0;
 let costReduceLvl = 0;
-let startingPoints = 100;
+let startingPoints = 0;
 let mainUpAmt = 1;
 let mainUpAmtCost = 10;
 let upgradeUpAmt = 2;
@@ -35,7 +38,8 @@ let shopOpen = false;
 let statsOpen = false;
 let ttlPrestiges = 0;
 let fastestPrestige = 999999999999; //this is like 4000 years of seconds
-let prestigePoints = 530;
+let prestigePoints = 550; // 0
+let prestigePointsGain = 5;
 let costReduceRate = 1;
 let prestigeCost = 50000000; //50 mil
 
@@ -136,43 +140,46 @@ const togglePrestigeShop = () => {
     if (statsOpen) toggleStats(); //close stats before opening shop
     gid("show-prestige-shop").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("prestige-shop").style.transform = ("translate(-50%,-50%)");
-    gid("prestige-shop-info").style.transform = ("translate(0%, 0%)")
+    gid("prestige-shop-info").style.transform = ("translate(0%, 0%)");
     shopOpen = true;
   }
 }
 
 const buyStartingPoints = () => {
-  if (startingPointsUnlocked || prestigePoints < buyStartingPointsCost || !shopOpen) return;
-  gid("unlock-starting-points").style.backgroundColor = "gold";
-  gid("unlock-starting-points").style.color = "green";
+  if (startingPointsMaxed || prestigePoints < buyStartingPointsCost || !shopOpen) return;
+  startingPointsLvl += 1;
   prestigePoints -= buyStartingPointsCost;
-  startingPointsUnlocked = true;
-  startingPoints *= 10;
-  textUpdate("unlock-starting-points", "prestige-points")
+  startingPoints = 500 * 2 ** startingPointsLvl; // scales 1k, 2k, 4k, etc.
+  buyStartingPointsCost += 2;
+  if (startingPointsLvl >= 8) {
+    startingPointsMaxed = true;
+    gid("unlock-starting-points").style.backgroundColor = "gold";
+    gid("unlock-starting-points").style.color = "green";
+  } 
+  textUpdate("unlock-starting-points", "prestige-points");
 }
 
 const buyCrit = () => {
- if (critUnlocked || prestigePoints < buyCritCost || !shopOpen) return;
- gid("unlock-crit").style.backgroundColor = "gold";
-  gid("unlock-crit").style.color = "green";
+  if (supCritUnlocked || prestigePoints < buyCritCost || !shopOpen) return;
+  if (critUnlocked) {
+      supCritUnlocked = true;
+      prestigePoints -= buyCritCost;
+      gid("unlock-crit").style.backgroundColor = "gold";
+      gid("unlock-crit").style.color = "green";
+      textUpdate("unlock-crit", "prestige-points")
+      return;
+    }
   prestigePoints -= buyCritCost;
   critUnlocked = true;
+  buyCritCost += 5; // this next used to buy supCrit
   textUpdate("unlock-crit", "prestige-points")
-}
-
-const buySupCrit = () => {
-  if (supCritUnlocked || prestigePoints < buySupCritCost || !shopOpen) return;
-  gid("unlock-super-crit").style.backgroundColor = "gold";
-  gid("unlock-super-crit").style.color = "green";
-  prestigePoints -= buySupCritCost;
-  supCritUnlocked = true;
-  textUpdate("unlock-super-crit", "prestige-points")
 }
 
 const buyDoub = () => {
   if (quadUnlocked || prestigePoints < buyDoubCost || !shopOpen) return;
   if (doubUnlocked) {
     quadUnlocked = true;
+    prestigePoints -= buyDoubCost;
     gid("unlock-double").style.backgroundColor = "gold";
     gid("unlock-double").style.color = "green";
     textUpdate("unlock-double", "prestige-points");
@@ -180,7 +187,7 @@ const buyDoub = () => {
   }
   prestigePoints -= buyDoubCost;
   doubUnlocked = true;
-  buyDoubCost += 10//this is then used to buy quad.
+  buyDoubCost += 10; //this is next used to buy quad.
   textUpdate("unlock-double", "prestige-points");
 }
 
@@ -195,7 +202,20 @@ const buyCostReduce = () => {
     gid("unlock-cost-reduce").style.backgroundColor = "gold";
     gid("unlock-cost-reduce").style.color = "green";
   }
-  textUpdate("unlock-cost-reduce", "prestige-points")
+  textUpdate("unlock-cost-reduce", "prestige-points");
+}
+
+const buyMorePrestigePoints = () => {
+  if (morePrestigePointsMaxed || prestigePoints < buyMorePrestigePointsCost || !shopOpen) return;
+  morePrestigePointsLvl += 1;
+  prestigePoints -= buyMorePrestigePointsCost;
+  prestigePointsGain += 1;
+  if (morePrestigePointsLvl >= 15) {
+    morePrestigePointsMaxed = true;
+    gid("unlock-more-prestige-points").style.backgroundColor = "gold";
+    gid("unlock-more-prestige-points").style.color = "green";
+  }
+  textUpdate("unlock-more-prestige-points", "prestige-points");
 }
 
 const buyThemeDouble = () => {
@@ -204,7 +224,7 @@ const buyThemeDouble = () => {
   gid("unlock-theme-double").style.color = "green";
   prestigePoints -= buyThemeDoubleCost;
   themeDoubleUnlocked = true;
-  textUpdate("unlock-theme-double", "prestige-points")
+  textUpdate("unlock-theme-double", "prestige-points");
 }
 // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////
 const prestige = () => {
@@ -223,9 +243,9 @@ const prestige = () => {
   upgradeInterestCost = 500000;
   clicks = 0;
   ttlPrestiges += 1;
-  prestigePoints += 5;
+  prestigePoints += prestigePointsGain;
   prestigeCost += Math.ceil(prestigeCost * costReduceRate);
-  if (startingPointsUnlocked) points += startingPoints;
+  points += startingPoints;
   textUpdate("prestige-points", "interest-btn", "main-click", "upgrade-main", "upgrade-upgrade", "interest-rate-stat", "points", "interest-btn", "ttl-prestige-stat", "fastest-prestige-stat", "prestige-btn");
   gid("show-prestige-shop").style.display = ("grid");
   gid("prestige-shop").style.display = ("grid");
@@ -267,14 +287,19 @@ const textUpdate = (...keys) => {
     else if (run || k == "prestige-points") gid("prestige-points").innerText = ("Super Points: " + prestigePoints);
     else if (run || k == "clock") gid("clock").innerText = ("Seconds: " + time);
     else if (run || k == "cps") gid("cps").innerText = ("Clicks/Second: " + clicks);
-    else if (run || k == "unlock-starting-points") gid("unlock-starting-points").innerText = ("Starting Points Unlocked");
-    else if (run || k == "unlock-crit") gid("unlock-crit").innerText = ("Critcal Clicks Unlocked");
-    else if (run || k == "unlock-super-crit") gid("unlock-super-crit").innerText = ("Super Critical Clicks Unlocked");
-    else if (run || k == "unlock-double" && quadUnlocked) gid("unlock-double").innerText = ("Quadruple Clicks Unlocked"); //they just got quad
-    else if (run || k == "unlock-double") gid("unlock-double").innerText = ("Unlock Quadruple Clicks: [-" + buyDoubCost + " Super Points]"); // they just got doub
-    else if (run || k == "unlock-theme-double") gid("unlock-theme-double").innerText = ("Theme Double Unlocked");
-    else if (run || k == "unlock-cost-reduce" && costReduceMaxed) gid("unlock-cost-reduce").innerText = ("Cost Reduce Unlocked");
-    else if (run || k == "unlock-cost-reduce") gid("unlock-cost-reduce").innerText = ("Upgrade Cost Reduction: [-" + buyCostReduceCost + " Super Points]");   
+
+    else if (run || k == "unlock-starting-points" && startingPointsMaxed) gid("unlock-starting-points").innerText = ("Starting Points Maximized\r\n[" + startingPointsLvl + "/8 Complete]");
+    else if (run || k == "unlock-starting-points") gid("unlock-starting-points").innerText = ("Double Starting Points\r\n[" + startingPointsLvl + "/8 Complete]\r\n[-" + buyStartingPointsCost + " Starting Points]");
+    else if (run || k == "unlock-crit" && supCritUnlocked) gid("unlock-crit").innerText = ("Super Critcal Clicks Maximized\r\n[2/2 Complete]");
+    else if (run || k == "unlock-crit") gid("unlock-crit").innerText = ("Unlock Super Critical Clicks:\r\n[1/2 Complete]\r\n[-" + buyCritCost + " Super Points]");
+    else if (run || k == "unlock-double" && quadUnlocked) gid("unlock-double").innerText = ("Quadruple Clicks Maximized\r\n[2/2 Complete]"); //they just got quad
+    else if (run || k == "unlock-double") gid("unlock-double").innerText = ("Unlock Quadruple Clicks:\r\n[1/2 Complete]\r\n[-" + buyDoubCost + " Super Points]"); // they just got doub
+    else if (run || k == "unlock-theme-double") gid("unlock-theme-double").innerText = ("Theme Double Maximized\r\n[1/1 Complete]");
+    else if (run || k == "unlock-cost-reduce" && costReduceMaxed) gid("unlock-cost-reduce").innerText = ("Cost Reduce Maximized\r\n[" + costReduceLvl + "/10 Complete]");
+    else if (run || k == "unlock-cost-reduce") gid("unlock-cost-reduce").innerText = ("Upgrade Cost Reduction:\r\n[" + costReduceLvl + "/10 Complete]\r\n[-" + buyCostReduceCost + " Super Points]");   
+    else if (run || k == "unlock-more-prestige-points" && morePrestigePointsMaxed) gid("unlock-more-prestige-points").innerText = ("More Super Points Maximized\r\n[" + morePrestigePointsLvl + "/15 Complete]");
+    else if (run || k == "unlock-more-prestige-points") gid("unlock-more-prestige-points").innerText = ("Upgrade More Super Points:\r\n[" + morePrestigePointsLvl + "/15 Complete]\r\n[-" + buyMorePrestigePointsCost + " Super Points]");
+
     else if (run || k == "ttl-prestige-stat") gid("ttl-prestige-stat").innerText = ("Total Prestiges: " + ttlPrestiges);
     else if (run || k == "fastest-prestige-stat") gid("fastest-prestige-stat").innerText = ("Fastest Prestige: " + fastestPrestige + " Seconds");
     else if (run || k == "ttl-time-stat") gid("ttl-time-stat").innerText = ("Total Time: " + ttlTime + " Seconds");

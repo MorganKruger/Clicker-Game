@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script defer src="./src/gui.js"></script>
+    <script defer src="./src/prestige.js"></script>
     <script defer src="./src/main.js"></script>
+
     <link rel="stylesheet" href="./style.css">
     <title>Literally My College Final</title>
   </head>
@@ -42,12 +45,12 @@
   <div id="prestige-shop">
     <div id="prestige-points">Power Points: 0</div>
     <h3 id="shop-label"><u>Prestige Shop</u></h3>
-    <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints()">Starting Points [-2 Super Points]</div>
-    <div class="btn" id="unlock-crit" onclick="buyCrit()">Unlock Critical Cilcks<br>[-3 Super Points]</div>
-    <div class="btn" id="unlock-super-crit" onclick="buySupCrit()">Unlock Super Critical Clicks<br>[-8 Super Points]</div>
-    <div class="btn" id="unlock-double" onclick="buyDoub()">Unlock Double Clicks<br>[-12 Super Points]</div> 
-    <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce()">Unlock Cost Reduction [-13 Super Points]</div>
-    <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble()">Unlock Double Theme Rewards [-20 Super Points]</div>
+    <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints()">Unlock Starting Points<br>[0/8 Complete]<br>[-2 Super Points]</div>
+    <div class="btn" id="unlock-crit" onclick="buyCrit()">Unlock Critical Clicks<br>[0/2 Complete]<br>[-3 Super Points]</div>
+    <div class="btn" id="unlock-double" onclick="buyDoub()">Unlock Double Clicks<br>[0/2 Complete]<br>[-12 Super Points]</div> 
+    <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce()">Unlock Cost Reduction<br>[0/10 Complete]<br>[-13 Super Points]</div>
+    <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[-20 Super Points]</div>
+    <div class="btn" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints()">Unlock More Super Points<br>[0/15 Complete]<br>[-5 Super Points]</div>
     <div class="btn">Unlock Upgrade Upgrade Upgrade [-5]</div>
     <div class="btn">item 8</div>
     <div class="btn">item 9</div>
