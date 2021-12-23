@@ -1,3 +1,13 @@
+## Morgan (4) : v0.3.1
+- Reorganized JS files
+- Applied number-formating to everywhere it was needed
+- Changed much of the px/rem scaling to percents
+- Added settings menu
+- Created function to close all GUIs
+- Added transition time on buttons for box shadow
+- Added click sound effects
+- Populated prestige-shop description box
+
 ## Morgan (3) : v0.3
 - Remastered the prestige shop
 

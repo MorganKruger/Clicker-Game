@@ -1,0 +1,138 @@
+const buyStartingPoints = () => {
+  if (startingPointsMaxed || prestigePoints < buyStartingPointsCost || !shopOpen) return;
+  startingPointsLvl += 1;
+  prestigePoints -= buyStartingPointsCost;
+  startingPoints = 500 * 2 ** startingPointsLvl; // scales 1k, 2k, 4k, etc.
+  buyStartingPointsCost += 2;
+  if (startingPointsLvl >= 8) {
+    startingPointsMaxed = true;
+    gid("unlock-starting-points").style.backgroundColor = "gold";
+    gid("unlock-starting-points").style.color = "green";
+  } 
+  textUpdate("unlock-starting-points", "prestige-points");
+}
+
+const buyCrit = () => {
+  if (supCritUnlocked || prestigePoints < buyCritCost || !shopOpen) return;
+  if (critUnlocked) {
+      supCritUnlocked = true;
+      prestigePoints -= buyCritCost;
+      gid("unlock-crit").style.backgroundColor = "gold";
+      gid("unlock-crit").style.color = "green";
+      textUpdate("unlock-crit", "prestige-points")
+      return;
+    }
+  prestigePoints -= buyCritCost;
+  critUnlocked = true;
+  buyCritCost += 5; // this next used to buy supCrit
+  textUpdate("unlock-crit", "prestige-points")
+}
+
+const buyDoub = () => {
+  if (quadUnlocked || prestigePoints < buyDoubCost || !shopOpen) return;
+  if (doubUnlocked) {
+    quadUnlocked = true;
+    prestigePoints -= buyDoubCost;
+    gid("unlock-double").style.backgroundColor = "gold";
+    gid("unlock-double").style.color = "green";
+    textUpdate("unlock-double", "prestige-points");
+    return;
+  }
+  prestigePoints -= buyDoubCost;
+  doubUnlocked = true;
+  buyDoubCost += 10; //this is next used to buy quad.
+  textUpdate("unlock-double", "prestige-points");
+}
+
+const buyCostReduce = () => {
+  if (costReduceMaxed || prestigePoints < buyCostReduceCost || !shopOpen) return;
+  costReduceLvl += 1;
+  prestigePoints -= buyCostReduceCost;
+  costReduceRate = .95 ** costReduceLvl;  
+  buyCostReduceCost += 2;
+  if (costReduceLvl >= 10) {
+    costReduceMaxed = true;
+    gid("unlock-cost-reduce").style.backgroundColor = "gold";
+    gid("unlock-cost-reduce").style.color = "green";
+  }
+  textUpdate("unlock-cost-reduce", "prestige-points");
+}
+
+const buyMorePrestigePoints = () => {
+  if (morePrestigePointsMaxed || prestigePoints < buyMorePrestigePointsCost || !shopOpen) return;
+  morePrestigePointsLvl += 1;
+  prestigePoints -= buyMorePrestigePointsCost;
+  prestigePointsGain += 1;
+  if (morePrestigePointsLvl >= 15) {
+    morePrestigePointsMaxed = true;
+    gid("unlock-more-prestige-points").style.backgroundColor = "gold";
+    gid("unlock-more-prestige-points").style.color = "green";
+  }
+  textUpdate("unlock-more-prestige-points", "prestige-points");
+}
+
+const buyThemeDouble = () => {
+  if (themeDoubleUnlocked || prestigePoints < buyThemeDoubleCost || !shopOpen) return;
+  gid("unlock-theme-double").style.backgroundColor = "gold";
+  gid("unlock-theme-double").style.color = "green";
+  prestigePoints -= buyThemeDoubleCost;
+  themeDoubleUnlocked = true;
+  textUpdate("unlock-theme-double", "prestige-points");
+}
+
+const prestige = () => {
+  if (points < prestigeCost) return;
+  // are you sure? This will reset your score and non-permemant upgrades
+  if (time <= fastestPrestige) fastestPrestige = time;
+  points = 0;
+  gain = 1;
+  mainUpAmt = 1;
+  mainUpAmtCost = 10;
+  upgradeUpAmt = 2;
+  upgradeUpAmtCost = 1000;
+  time = 0;
+  interestUnlocked = false;
+  interest = 0;
+  upgradeInterestCost = 500000;
+  clicks = 0;
+  ttlPrestiges += 1;
+  prestigePoints += prestigePointsGain;
+  prestigeCost += Math.ceil(prestigeCost * costReduceRate);
+  points += startingPoints;
+  textUpdate("prestige-points", "interest-btn", "main-click", "upgrade-main", "upgrade-upgrade", "interest-rate-stat", "points", "interest-btn", "ttl-prestige-stat", "fastest-prestige-stat", "prestige-btn");
+  gid("show-prestige-shop").style.display = ("grid");
+  gid("prestige-shop").style.display = ("grid");
+}
+
+const tool_tips = [
+  "Information: restart after each prestige with points to spend\r\n\r\nEquation: starting points = 500 * 2 ^ level of completion",
+  "Information: each click rolls for a chance to critical click. Successful critical clicks will then roll for super critical if it is unlocked\r\n\r\nCritical Equation: 1/5 chance to recieve X2 points from a click\r\n\r\nSuper Critical Equation: 1/4 chance to recieve X10 points from a click\r\n\r\n*click effects stack*",
+  "Information: each click rolls for a chance to double click. Successful double clicks will then roll for a quad click if it is unlocked\r\n\r\nDouble Equation: 1/3 chance to recieve X2 points from a click\r\n\r\nQuadruple Equation: 1/3 chance to recieve X2 points from a click\r\n\r\n*click effects stack*",
+  "Information: reduce the cost for regular upgrades(including prestige and interest)\r\n\r\nEquation: new cost = original cost * 0.95 ^ level of completion\r\n\r\n*peaks at about 40% reduction*",
+  "Information: receive 2 items from theme boxes instead of 1\r\n\r\n*you may receive duplicates*",
+  "Information: receive more super points from each prestige\r\n\r\nEquation: Super points gain = 5 + level of completion\r\n\r\n*this upgrade's cost doesn't increase*"
+];
+
+const prest_tip_txt = document.querySelector("#description-box p");
+const set_hover_tip = (i)=>{
+  if (i < 0) {
+    prest_tip_txt.innerText = "Hover over a shop item for more details here.";
+    return;
+  }
+  let txt = tool_tips[i];
+  if (txt == undefined) txt = "No information.";
+  prest_tip_txt.innerText = txt;
+}
+
+(()=>{
+  const prest_btns = document.querySelectorAll("#prestige-shop .btn");
+  for (let i = 0; i < prest_btns.length; i++) {
+    const btn = prest_btns[i];
+    btn.onmouseenter = ()=>{
+      set_hover_tip(i);
+    }
+    btn.onmouseleave = ()=>{
+      set_hover_tip(-1);
+    }
+  }
+})();

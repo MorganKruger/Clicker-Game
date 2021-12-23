@@ -5,76 +5,81 @@
     <script defer src="./src/prestige.js"></script>
     <script defer src="./src/main.js"></script>
 
+    <audio src="./Assets/sound effects/clickSound.wav" preload="metadata" id="click-sound"></audio>
     <link rel="stylesheet" href="./style.css">
     <title>Literally My College Final</title>
   </head>
   
   <body>
-    <!-- <audio src="./SoloSomethingSFX/plastic-bubble-click.wav" preload="auto" class="sound" id="click-sound">HOwdy</audio> -->
+    <!-- <img src="./Assets/sound effects/ " alt="Settings" id="settings"> -->
     <div class="stat" id="points">Points: 0</div>
     <div class="stat" id="cps">Clicks/Second: 0</div> 
     
-  <div id="clock">Seconds: 0</div>
-  
-  <div id="main-click" onclick="gainPoints()">Click This: +1</div>
-  
-  <div id="hover-menu-upgrades">
-    <!-- <h1><b>&lt;<br>&lt;<br>&lt;</b></h1> -->
-    <h1>H<br>O<br>V<br>E<br>R</h1>
-  </div>
-
-  <div id="stats">
-    <h2><u>Statistics</u></h2>
-    <!-- add scroll bar -->
-    <div class="stat" id="interest-rate-stat">Interest Rate: +0.0%</div>
-    <div class="stat" id="ttl-time-stat">Total Time: 0 Seconds</div>
-    <div class="stat" id="highest-cps-stat">Highest Clicks/Second: 0</div>
-    <div class="stat" id="ttl-prestige-stat">Times Prestiged: 0</div>
-    <div class="stat" id="fastest-prestige-stat">Fastest Prestige: N/A</div>
-    <div class="stat" id="highest-points-stat">Highest Points: 0</div>
-    <div class="stat" id="highest-single-click-points-stat">Highest Points In One Click: 0</div>
-    <div class="stat">item 8</div>
-    <div class="stat">item 9</div>
-    <div class="stat">item 10</div>
-    <div class="stat">item 11</div>
-    <div class="stat">item 12</div>
-  </div>
-  
-  <div id="show-stats" onclick="toggleStats()">Other Stats</div>
-  
-  <div id="prestige-shop">
-    <div id="prestige-points">Power Points: 0</div>
-    <h3 id="shop-label"><u>Prestige Shop</u></h3>
-    <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints()">Unlock Starting Points<br>[0/8 Complete]<br>[-2 Super Points]</div>
-    <div class="btn" id="unlock-crit" onclick="buyCrit()">Unlock Critical Clicks<br>[0/2 Complete]<br>[-3 Super Points]</div>
-    <div class="btn" id="unlock-double" onclick="buyDoub()">Unlock Double Clicks<br>[0/2 Complete]<br>[-12 Super Points]</div> 
-    <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce()">Unlock Cost Reduction<br>[0/10 Complete]<br>[-13 Super Points]</div>
-    <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[-20 Super Points]</div>
-    <div class="btn" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints()">Unlock More Super Points<br>[0/15 Complete]<br>[-5 Super Points]</div>
-    <div class="btn">Unlock Upgrade Upgrade Upgrade [-5]</div>
-    <div class="btn">item 8</div>
-    <div class="btn">item 9</div>
-    <div class="btn">item 10</div>
-    <div class="btn">item 11</div>
-    <div class="btn">item 12</div>
-  </div>
-  
-  <div id="prestige-shop-info">
-    <div id="prestige-info-label"><u>Prestige Info</u></div>
-    <div id="description-box">
-      <p>Hover over a shop item to see more details here.</p>
+    <div id="clock">Seconds: 0</div>
+    
+    <div id="main-click" onclick="gainPoints()">Click This: +1</div>
+    
+    <div id="hover-menu-upgrades">
+      <h1>H<br>O<br>V<br>E<br>R</h1>
     </div>
-  </div>
-  
-  <div id="show-prestige-shop" onclick="togglePrestigeShop()">Prestige Shop</div>
-  
-  <div id="upgrade-panel">
-    <div class="btn" id="upgrade-main" onclick="upgradeMain()">+1 Points Per Click<br>[-10 Points]</div>
-    <div class="btn" id="upgrade-upgrade" onclick="upgradeUpgrade()">+2 Points Per Click Per Upgrade<br>[-1000 Points]</div>
-    <div class="btn" id="interest-btn" onclick="interestBtnClick()">Unlock The Bank<br>(+0.5% Points/Second)<br>[-100000 Points]</div>
-    <div class="btn" id="prestige-btn" onclick="prestige()">Prestige<br>[-50,000,000 Points]</div>
-  </div>
-  
+    
+    <div id="settings">
+      <h2><u>Settings</u></h2>
+      <div>This is quite empty</div>
+    </div>
+
+    <img src="./Assets/images/settings.png" alt="Settings" id="show-settings" onclick="toggleSettings(), clickSound()" preload="">
+
+    <div id="stats">
+      <h2><u>Statistics</u></h2>
+      <div class="stat" id="interest-rate-stat">Interest Rate: +0.0%</div>
+      <div class="stat" id="ttl-time-stat">Total Time: 0 Seconds</div>
+      <div class="stat" id="highest-cps-stat">Highest Clicks/Second: 0</div>
+      <div class="stat" id="ttl-prestige-stat">Times Prestiged: 0</div>
+      <div class="stat" id="fastest-prestige-stat">Fastest Prestige: N/A</div>
+      <div class="stat" id="highest-points-stat">Highest Points: 0</div>
+      <div class="stat" id="highest-single-click-points-stat">Highest Points In One Click: 0</div>
+      <div class="stat">item 8</div>
+      <div class="stat">item 9</div>
+      <div class="stat">item 10</div>
+      <div class="stat">item 11</div>
+      <div class="stat">item 12</div>
+    </div>
+    
+    <div id="show-stats" onclick="toggleStats(), clickSound()">Other Stats</div>
+    
+    <div id="prestige-shop">
+      <div id="prestige-points">Power Points: 0</div>
+      <h3 id="shop-label"><u>Prestige Shop</u></h3>
+      <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints(), clickSound()">Unlock Starting Points<br>[0/8 Complete]<br>[-2 Super Points]</div>
+      <div class="btn" id="unlock-crit" onclick="buyCrit(), clickSound()">Unlock Critical Clicks<br>[0/2 Complete]<br>[-3 Super Points]</div>
+      <div class="btn" id="unlock-double" onclick="buyDoub(), clickSound()">Unlock Double Clicks<br>[0/2 Complete]<br>[-12 Super Points]</div> 
+      <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce(), clickSound()">Unlock Cost Reduction<br>[0/10 Complete]<br>[-13 Super Points]</div>
+      <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble(), clickSound()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[-20 Super Points]</div>
+      <div class="btn" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints(), clickSound()">Unlock More Super Points<br>[0/15 Complete]<br>[-5 Super Points]</div>
+      <div class="btn">Unlock Upgrade Upgrade Upgrade [-5]</div>
+      <div class="btn">item 8</div>
+      <div class="btn">item 9</div>
+      <div class="btn">item 10</div>
+      <div class="btn">item 11</div>
+      <div class="btn">item 12</div>
+    </div>
+    
+    <div id="prestige-shop-info">
+      <div id="prestige-info-label"><u>Prestige Info</u></div>
+      <div id="description-box">
+        <p>Hover over a shop item to see more details here.</p>
+      </div>
+    </div>
+    
+    <div id="show-prestige-shop" onclick="togglePrestigeShop(), clickSound()">Prestige Shop</div>
+    
+    <div id="upgrade-panel">
+      <div class="btn" id="upgrade-main" onclick="upgradeMain(), clickSound()">+1 Points Per Click<br>[-10 Points]</div>
+      <div class="btn" id="upgrade-upgrade" onclick="upgradeUpgrade(), clickSound()">+2 Points Per Click Per Upgrade<br>[-1K Points]</div>
+      <div class="btn" id="interest-btn" onclick="upgradeInterest(), clickSound()">Unlock The Bank<br>(+0.5% Points/Second)<br>[-100K Points]</div>
+      <div class="btn" id="prestige-btn" onclick="prestige(), clickSound()">Prestige<br>[-50M Points]</div>
+    </div>
 </body>
 
 </html>

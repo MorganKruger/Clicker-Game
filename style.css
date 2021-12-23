@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  color: green;
+  color: rgb(0, 128, 0);
   user-select: none;
   background-color: khaki;
   font-family: Helvetica, Verdana, sans-serif;
@@ -17,16 +17,17 @@ html, body {
   color: gold;
   border-radius: 7px;
   position: relative;
+  transition-duration: .1s;
   
   padding: 2.5%;
 }
 
-#main-click:hover, #show-stats:hover, #show-prestige-shop:hover, .btn:hover {
-  box-shadow: 0rem 0rem .25rem .1rem rgb(51, 78, 38);
+#show-settings:hover, #main-click:hover, #show-stats:hover, #show-prestige-shop:hover, .btn:hover {
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
 }
 
-#main-click:active, #show-stats:active, #show-prestige-shop:active, .btn:active {
-  box-shadow: 0rem 0rem .25rem rgb(51, 78, 38);
+#show-settings:active, #main-click:active, #show-stats:active, #show-prestige-shop:active, .btn:active {
+  box-shadow: 0 0 .25rem rgb(51, 78, 38);
 }
 
 .stat {
@@ -41,7 +42,37 @@ html, body {
   width: 12%;
   height: 10%;
   position: relative;
-  margin: .5rem;
+  margin: .5%;
+}
+
+#show-settings {
+  position: absolute;
+  background-color: green;
+  border-radius: 7px;
+  margin: 1%;
+  top: 0%;
+  right: 5%;
+  transform: translateX(-100%);
+  width: 3%;
+  padding: .5%;
+  transition-duration: .1s;
+}
+
+#settings {
+  position: absolute;
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  left: 50%;
+  top: 50%;
+  margin: 1%;
+  gap: 1.5%;
+  padding: 1%;
+  width: 30%;
+  height: 75%;
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
+  transform: translate(200%,-50%);
+  transition-duration: .5s;
 }
 
 #clock {
@@ -57,8 +88,8 @@ html, body {
   position: absolute;
   left: 50%;
   top: 0%;
-  transform: translate(-50%, 0%);
-  margin: .5rem;
+  transform: translateX(-50%);
+  margin: 1%;
 }
 
 #main-click {
@@ -75,13 +106,13 @@ html, body {
   transform: translate(-50%,-50%);
   left: 50%;
   top: 50%;
-  clip-path: circle(2 at 50% 50%);
+  transition-duration: .1s;
 }
 
 #upgrade-panel {
   display: grid;
-  padding: 1rem;
-  gap: 1rem;
+  padding: 1%;
+  gap: 2%;
   
   background-color: rgb(60, 165, 60);
   color: gold;
@@ -90,17 +121,17 @@ html, body {
   height: 80%;
   position: absolute;
   right: 0%;
-  top: 10%;
-  margin: .5rem;
-  box-shadow: 0rem 0rem .25rem .1rem rgb(51, 78, 38);
+  top: 50%;
+  margin: .75%;
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
   
   transition-duration: .5s;
-  transform: translateX(110%);
+  transform: translate(110%, -50%);
 }
 
 #shop-label {
   position: absolute;
-  top: 1.4rem;
+  top: 3%;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
@@ -109,7 +140,7 @@ html, body {
 
 #prestige-points {
   position: absolute;
-  margin: 1rem;
+  margin: 2%;
 }
 
 #hover-menu-upgrades {
@@ -122,11 +153,11 @@ html, body {
   width: 7%;
   background: green;
   color: gold;
-  padding: 1rem;
+  padding: 1%;
 }
 
 #hover-menu-upgrades:hover ~ #upgrade-panel, #upgrade-panel:hover {
-  transform: translateX(0%);
+  transform: translate(0%,-50%);
 }
 
 #show-prestige-shop {
@@ -134,20 +165,22 @@ html, body {
   align-items: center;
   justify-items: center;
   position: absolute;
-  margin: .5rem;
+  margin: .75%;
   bottom: 0%;
   height: 10%;
   width: 10%;
   background-color: green;
   color: gold;
   border-radius: 7px;
+  transition-duration: .1s;
+
 }
 
 #prestige-shop {
   display: none;
-  padding: 1rem;
-  padding-top: 5rem;
-  gap: 1rem;
+  padding: 1%;
+  padding-top: 6%;
+  gap: 1.5%;
   
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(3, 1fr);
@@ -159,8 +192,8 @@ html, body {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin: .5rem;
-  box-shadow: 0rem 0rem .25rem .1rem rgb(51, 78, 38);
+  margin: 1%;
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
 
   transition-duration: .5s;
   transform: translate(-200%,-50%);
@@ -177,12 +210,12 @@ html, body {
   height: 70%;
   position: absolute;
   right: 0%;
-  top: 15%;
-  box-shadow: 0rem 0rem .25rem .1rem rgb(51, 78, 38);
+  top: 50%;
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
   margin-right: 1%;
   
   transition-duration: .5s;
-  transform: translateX(110%);
+  transform: translate(110%,-50%);
 }
 
 #prestige-info-label {
@@ -202,14 +235,15 @@ html, body {
   left: 50%;
   top: 10%;
   transform: translateX(-50%);
-  box-shadow: 0rem 0rem .125rem rgb(51, 78, 38);
+  box-shadow: 0 0 .125rem rgb(51, 78, 38);
   padding: 5%;
+  transition-duration: .1s;
 }
 
 #stats {
   display: grid;
-  padding: 1rem;
-  gap: 1rem;
+  padding: 1%;
+  gap: 3%;
 
   overflow: hidden;
   background-color: rgb(60, 165, 60);
@@ -220,8 +254,7 @@ html, body {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin: .5rem;
-  box-shadow: 0rem 0rem .25rem .1rem rgb(51, 78, 38);
+  box-shadow: 0 0 .25rem .1rem rgb(51, 78, 38);
 
   transition-duration: .5s;
   transform: translate(-50%,-200%);
@@ -238,5 +271,6 @@ html, body {
   width: 10%;
   height: 10%;
   position: relative;
-  margin: .5rem;
+  margin: .5%;
+  transition-duration: .1s;
 }
