@@ -1,3 +1,7 @@
+## Jacoby (4) : v0.3.2
+- Refactored a bit of code
+- Click off poppup menu to close menu
+
 ## Morgan (4) : v0.3.1
 - Reorganized JS files
 - Applied number-formating to everywhere it was needed

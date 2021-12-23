@@ -1,6 +1,6 @@
 const closeGuis = () => {
   if (statsOpen) toggleStats();
-  if (shopOpen) togglePrestigeShop();
+  if (prestigeShopOpen) togglePrestigeShop();
   if (settingsOpen) toggleSettings();
   // if (themesOpen) toggleThemes;
 }
@@ -34,12 +34,12 @@ const toggleStats = () => {
 }
 
 const togglePrestigeShop = () => {
-  if (shopOpen) {
+  if (prestigeShopOpen) {
     gid("show-prestige-shop").style.backgroundColor = ("green");
     gid("prestige-shop").style.transform = ("translate(-200%,-50%)");
     gid("prestige-shop-info").style.transform = ("translate(110%, -50%)")
     gid("upgrade-panel").style.display = ("grid");
-    shopOpen = false;
+    prestigeShopOpen = false;
   }
   else {
     closeGuis();
@@ -47,7 +47,7 @@ const togglePrestigeShop = () => {
     gid("prestige-shop").style.transform = ("translate(-50%,-50%)");
     gid("prestige-shop-info").style.transform = ("translate(0%, -50%)");
     gid("upgrade-panel").style.display = ("none");
-    shopOpen = true;
+    prestigeShopOpen = true;
   }
 }
 
@@ -103,4 +103,9 @@ const textUpdate = (...keys) => {
     else if (run || k == "highest-points-stat") gid("highest-points-stat").innerText = ("Highest Points: " + highestPoints + " Points");
     else if (run || k == "prestige-btn") gid("prestige-btn").innerText = ("Prestige: [-" + format_num(prestigeCost) + " Points]");
   }
+}
+
+document.body.onclick = function(e) {
+  if (e.target !== this) return;
+  closeGuis();
 }

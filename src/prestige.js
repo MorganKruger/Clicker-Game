@@ -1,5 +1,5 @@
 const buyStartingPoints = () => {
-  if (startingPointsMaxed || prestigePoints < buyStartingPointsCost || !shopOpen) return;
+  if (startingPointsMaxed || prestigePoints < buyStartingPointsCost || !prestigeShopOpen) return;
   startingPointsLvl += 1;
   prestigePoints -= buyStartingPointsCost;
   startingPoints = 500 * 2 ** startingPointsLvl; // scales 1k, 2k, 4k, etc.
@@ -13,7 +13,7 @@ const buyStartingPoints = () => {
 }
 
 const buyCrit = () => {
-  if (supCritUnlocked || prestigePoints < buyCritCost || !shopOpen) return;
+  if (supCritUnlocked || prestigePoints < buyCritCost || !prestigeShopOpen) return;
   if (critUnlocked) {
       supCritUnlocked = true;
       prestigePoints -= buyCritCost;
@@ -29,7 +29,7 @@ const buyCrit = () => {
 }
 
 const buyDoub = () => {
-  if (quadUnlocked || prestigePoints < buyDoubCost || !shopOpen) return;
+  if (quadUnlocked || prestigePoints < buyDoubCost || !prestigeShopOpen) return;
   if (doubUnlocked) {
     quadUnlocked = true;
     prestigePoints -= buyDoubCost;
@@ -45,7 +45,7 @@ const buyDoub = () => {
 }
 
 const buyCostReduce = () => {
-  if (costReduceMaxed || prestigePoints < buyCostReduceCost || !shopOpen) return;
+  if (costReduceMaxed || prestigePoints < buyCostReduceCost || !prestigeShopOpen) return;
   costReduceLvl += 1;
   prestigePoints -= buyCostReduceCost;
   costReduceRate = .95 ** costReduceLvl;  
@@ -59,7 +59,7 @@ const buyCostReduce = () => {
 }
 
 const buyMorePrestigePoints = () => {
-  if (morePrestigePointsMaxed || prestigePoints < buyMorePrestigePointsCost || !shopOpen) return;
+  if (morePrestigePointsMaxed || prestigePoints < buyMorePrestigePointsCost || !prestigeShopOpen) return;
   morePrestigePointsLvl += 1;
   prestigePoints -= buyMorePrestigePointsCost;
   prestigePointsGain += 1;
@@ -72,7 +72,7 @@ const buyMorePrestigePoints = () => {
 }
 
 const buyThemeDouble = () => {
-  if (themeDoubleUnlocked || prestigePoints < buyThemeDoubleCost || !shopOpen) return;
+  if (themeDoubleUnlocked || prestigePoints < buyThemeDoubleCost || !prestigeShopOpen) return;
   gid("unlock-theme-double").style.backgroundColor = "gold";
   gid("unlock-theme-double").style.color = "green";
   prestigePoints -= buyThemeDoubleCost;

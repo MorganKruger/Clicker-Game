@@ -6,6 +6,7 @@ html, body {
   background-color: khaki;
   font-family: Helvetica, Verdana, sans-serif;
   overflow: hidden;
+  font-weight: bold;
 }
 
 .btn {
@@ -136,6 +137,7 @@ html, body {
   transform: translateX(-50%);
   margin: 0;
   font-size: 2rem;
+  text-decoration: underline;
 }
 
 #prestige-points {
