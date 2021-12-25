@@ -5,12 +5,13 @@ let gain = 1;
 let tempGain = 1;
 let highestTempGain = 0;
 let highestPoints = 0;
-let buyStartingPointsCost = 2;
-let buyCritCost = 3;
-let buyDoubCost = 12;
-let buyCostReduceCost = 13;
+let buyStartingPointsCost = 1;
+let buyCritCost = 2;
+let buyDoubCost = 3;
+let buyCostReduceCost = 3;
 let buyThemeDoubleCost = 20;
-let buyMorePrestigePointsCost = 5;
+let buyMorePrestigePointsCost = 3;
+let buyTertiaryUpgradeCost = 3;
 let critUnlocked = false;
 let supCritUnlocked = false;
 let doubUnlocked = false;
@@ -19,19 +20,21 @@ let startingPointsMaxed = false;
 let themeDoubleUnlocked = false; 
 let costReduceMaxed = false;
 let morePrestigePointsMaxed = false;
+let tertiaryUpgradeMaxed = false;
 let startingPointsLvl = 0;
 let morePrestigePointsLvl = 0;
 let costReduceLvl = 0;
+let tertiaryUpgradeLvl = 0;
 let startingPoints = 0;
 let mainUpAmt = 1;
 let mainUpAmtCost = 10;
-let upgradeUpAmt = 2;
-let upgradeUpAmtCost = 1000;
+let secondaryUpAmtCost = 250;
+let secondaryUpAmt = 2;
 let time = 0;
 let ttlTime = 0;
 let interestUnlocked = false;
 let interest = .0;
-let upgradeInterestCost = 500000;
+let upgradeInterestCost = 250000;
 let clicks = 0;
 let highestCps = 0;
 let settingsOpen = false;
@@ -40,10 +43,12 @@ let statsOpen = false;
 let themesOpen = false;
 let ttlPrestiges = 0;
 let fastestPrestige = 999999999999; //this is like 4000 years of seconds
-let prestigePoints = 0; // 0
-let prestigePointsGain = 550;
+let prestigePoints = 195; // 0
+let prestigePointsGain = 5; //5
 let costReduceRate = 1;
 let prestigeCost = 50000000; //50 mil
+let sfxVolume = 50;
+let musicVolume = 50;
 
 const interestUnlockCost = 100000;
 
@@ -57,7 +62,6 @@ setInterval(() => {
 }, 1000);
 
 const gainPoints = () => {
-  clickSound();
   clicks ++;
   tempGain = gain;
   ///////CLICK MODIFIERS\\\\\\\
@@ -93,10 +97,10 @@ const upgradeMain = () => {
 };
 
 const upgradeUpgrade = () => {
-  if (points < upgradeUpAmtCost) return;
-  points -= upgradeUpAmtCost;
-  mainUpAmt += upgradeUpAmt;
-  upgradeUpAmtCost = Math.round(upgradeUpAmtCost * (1 + .05 * costReduceRate));
+  if (points < secondaryUpAmtCost) return;
+  points -= secondaryUpAmtCost;
+  mainUpAmt += secondaryUpAmt;
+  secondaryUpAmtCost = Math.round(secondaryUpAmtCost * (1 + .05 * costReduceRate));
   textUpdate("upgrade-main", "upgrade-upgrade", "points");
 }
 
@@ -118,10 +122,6 @@ const upgradeInterest = () => {
 
 const compoundInterest = () => {
   points += Math.round(points * interest);
-  textUpdate("points");
-}
-
-const clickSound = () => {
-  gid("click-sound").currentTime = 0.03;
-  gid("click-sound").play();
+  highestPoints = points;
+  textUpdate("points","highest-points-stat");
 }

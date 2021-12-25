@@ -1,3 +1,12 @@
+## Morgan (5) : v0.4.0
+- Added more sounds
+- Balanced prestige shop item costs
+- Changed upgrade panel labeling/Removed "-" from costs
+- Inluded "mousetrapLib" for hotkeys (wasd/^<>v menu toggles + e/tab/bckspc/del/esc close menus)
+- Added "Themes" menu
+- Reorganized prestige shop + added an item
+- Added SFX volume setting slider
+
 ## Jacoby (4) : v0.3.2
 - Refactored a bit of code
 - Click off poppup menu to close menu

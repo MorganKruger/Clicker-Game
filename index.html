@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script defer src="./src/mousetrapLib.js"></script>
     <script defer src="./src/gui.js"></script>
     <script defer src="./src/prestige.js"></script>
     <script defer src="./src/main.js"></script>
+    <script defer src="./src/sfx.js"></script>
 
-    <audio src="./Assets/sound effects/clickSound.wav" preload="metadata" id="click-sound"></audio>
+    <audio src="./Assets/sound effects/clickSound.wav" preload="metadata" id="click-sound" volume=".3"></audio>
+    <audio src="./Assets/sound effects/popSound.mp3" preload="metadata" id="pop-sound"></audio>
+    <audio src="./Assets/sound effects/longPopSound.mp3" preload="metadata" id="long-pop-sound"></audio>
+
     <link rel="stylesheet" href="./style.css">
     <title>Literally My College Final</title>
   </head>
   
   <body>
-    <!-- <img src="./Assets/sound effects/ " alt="Settings" id="settings"> -->
     <div class="stat" id="points">Points: 0</div>
     <div class="stat" id="cps">Clicks/Second: 0</div> 
     
     <div id="clock">Seconds: 0</div>
     
-    <div id="main-click" onclick="gainPoints()">Click This: +1</div>
+    <div id="main-click" onclick="gainPoints(), clickSound()">Click This: +1 Points</div>
     
     <div id="hover-menu-upgrades">
       <h1>H<br>O<br>V<br>E<br>R</h1>
@@ -25,11 +29,22 @@
     
     <div id="settings">
       <h2><u>Settings</u></h2>
+      <div>Sound Effects</div>
+      <input type="range" min="1" max="100" value="50" id="sfx-slider" oninput="setSfxVolume()" onmouseup="clickSound()">
+      <!-- <div>Music (doesn't exist yet)</div>
+      <input type="range" min="1" max="100" value="50" id="music-slider" oninput="musicSfxVolume()" onmouseup="chime()"> -->
+
+    </div>
+
+    <img draggable="false" src="./Assets/images/settings.png" alt="Settings" id="show-settings" onclick="toggleSettings()">
+
+    <div id="themes">
+      <h2><u>Themes</u></h2>
       <div>This is quite empty</div>
     </div>
 
-    <img src="./Assets/images/settings.png" alt="Settings" id="show-settings" onclick="toggleSettings(), clickSound()" preload="">
-
+    <img draggable="false" src="./Assets/images/paletteIcon.svg.png" alt="Themes" id="show-themes" onclick="toggleThemes()"> 
+    
     <div id="stats">
       <h2><u>Statistics</u></h2>
       <div class="stat" id="interest-rate-stat">Interest Rate: +0.0%</div>
@@ -46,39 +61,39 @@
       <div class="stat">item 12</div>
     </div>
     
-    <div id="show-stats" onclick="toggleStats(), clickSound()">Other Stats</div>
+    <div id="show-stats" onclick="toggleStats()">Other Stats</div>
     
     <div id="prestige-shop">
       <div id="prestige-points">Power Points: 0</div>
       <h3 id="shop-label">Prestige Shop</h3>
-      <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints(), clickSound()">Unlock Starting Points<br>[0/8 Complete]<br>[-2 Super Points]</div>
-      <div class="btn" id="unlock-crit" onclick="buyCrit(), clickSound()">Unlock Critical Clicks<br>[0/2 Complete]<br>[-3 Super Points]</div>
-      <div class="btn" id="unlock-double" onclick="buyDoub(), clickSound()">Unlock Double Clicks<br>[0/2 Complete]<br>[-12 Super Points]</div> 
-      <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce(), clickSound()">Unlock Cost Reduction<br>[0/10 Complete]<br>[-13 Super Points]</div>
-      <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble(), clickSound()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[-20 Super Points]</div>
-      <div class="btn" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints(), clickSound()">Unlock More Super Points<br>[0/15 Complete]<br>[-5 Super Points]</div>
-      <div class="btn">Unlock Upgrade Upgrade Upgrade [-5]</div>
+      <div class="btn" id="unlock-starting-points" onclick="buyStartingPoints(), longPopSound()">Unlock Starting Points<br>[0/8 Complete]<br>[1 Super Points]</div>
+      <div class="btn" id="unlock-crit" onclick="buyCrit(), longPopSound()">Unlock Critical Clicks<br>[0/2 Complete]<br>[2 Super Points]</div>
+      <div class="btn" id="unlock-double" onclick="buyDoub(), longPopSound()">Unlock Double Clicks<br>[0/2 Complete]<br>[3 Super Points]</div> 
+      <div class="btn" id="unlock-cost-reduce" onclick="buyCostReduce(), longPopSound()">Unlock Cost Reduction<br>[0/10 Complete]<br>[3 Super Points]</div>
+      <div class="btn" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints(), longPopSound()">Unlock More Super Points<br>[0/15 Complete]<br>[3 Super Points]</div>
+      <div class="btn" id="unlock-tertiary-upgrade" onclick="buyTertiaryUpgrade(), longPopSound()">Unlock Tertiary Upgrade<br>[0/7 Complete]<br>[3 Super Points]</div>
       <div class="btn">item 8</div>
       <div class="btn">item 9</div>
       <div class="btn">item 10</div>
+      <div class="btn" id="unlock-theme-double" onclick="buyThemeDouble(), longPopSound()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[20 Super Points]</div>
       <div class="btn">item 11</div>
       <div class="btn">item 12</div>
     </div>
     
     <div id="prestige-shop-info">
-      <div id="prestige-info-label"><u>Prestige Info</u></div>
+      <div id="prestige-info-label">Prestige Info</div>
       <div id="description-box">
         <p>Hover over a shop item to see more details here.</p>
       </div>
     </div>
     
-    <div id="show-prestige-shop" onclick="togglePrestigeShop(), clickSound()">Prestige Shop</div>
+    <div id="show-prestige-shop" onclick="togglePrestigeShop()">Prestige Shop</div>
     
     <div id="upgrade-panel">
-      <div class="btn" id="upgrade-main" onclick="upgradeMain(), clickSound()">+1 Points Per Click<br>[-10 Points]</div>
-      <div class="btn" id="upgrade-upgrade" onclick="upgradeUpgrade(), clickSound()">+2 Points Per Click Per Upgrade<br>[-1K Points]</div>
-      <div class="btn" id="interest-btn" onclick="upgradeInterest(), clickSound()">Unlock The Bank<br>(+0.5% Points/Second)<br>[-100K Points]</div>
-      <div class="btn" id="prestige-btn" onclick="prestige(), clickSound()">Prestige<br>[-50M Points]</div>
+      <div class="btn" id="upgrade-main" onclick="upgradeMain(), longPopSound()">Primary Upgrade<br>(+1 Points/Click)<br>[10 Points]</div>
+      <div class="btn" id="upgrade-upgrade" onclick="upgradeUpgrade(), longPopSound()">Secondary Upgrade<br>(+2 Points/Click/Upgrade)<br>[250 Points]</div>
+      <div class="btn" id="interest-btn" onclick="upgradeInterest(), longPopSound()">Unlock Interest<br>(+0.5% Points/Second)<br>[100K Points]</div>
+      <div class="btn" id="prestige-btn" onclick="prestige(), longPopSound()">Prestige<br>[50M Points]</div>
     </div>
 </body>
 
