@@ -90,7 +90,7 @@ const buyTertiaryUpgrade = () => {
     gid("unlock-tertiary-upgrade").style.backgroundColor = "gold";
     gid("unlock-tertiary-upgrade").style.color = "green";
   }
-  textUpdate("unlock-tertiary-upgrade", "prestige-points", "upgrade-upgrade");
+  textUpdate("unlock-tertiary-upgrade", "prestige-points", "secondary-upgrade");
 }
 
 const prestige = () => {
@@ -101,8 +101,8 @@ const prestige = () => {
   gain = 1;
   mainUpAmt = 1;
   mainUpAmtCost = 10;
-  upgradeUpAmt = 2; // 2 * that one prestige upgrade's level
-  upgradeUpAmtCost = 250;
+  secondaryUpAmt = 2 + 2 * tertiaryUpgradeLvl; // 2 * that one prestige upgrade's level
+  secondaryUpAmtCost = 250;
   time = 0;
   interestUnlocked = false;
   interest = 0;
@@ -112,7 +112,7 @@ const prestige = () => {
   prestigePoints += prestigePointsGain;
   prestigeCost += Math.ceil(prestigeCost * costReduceRate);
   points += startingPoints;
-  textUpdate("prestige-points", "interest-btn", "main-click", "upgrade-main", "upgrade-upgrade", "interest-rate-stat", "points", "interest-btn", "ttl-prestige-stat", "fastest-prestige-stat", "prestige-btn");
+  textUpdate("prestige-points", "interest-btn", "main-click", "upgrade-main", "secondary-upgrade", "interest-rate-stat", "points", "interest-btn", "ttl-prestige-stat", "fastest-prestige-stat", "prestige-btn");
   gid("show-prestige-shop").style.display = ("grid");
   gid("prestige-shop").style.display = ("grid");
   gid("show-themes").style.display = ("grid");
@@ -120,7 +120,7 @@ const prestige = () => {
 }
 
 const tool_tips = [
-  "Information: restart after each prestige with points to spend\r\n\r\nEquation: starting points = 500 * 2 ^ level of completion\r\n\r\n*prestige upgrades remain after even prestige*",
+  "Information: restart after each prestige with points to spend\r\n\r\nEquation: starting points = 500 * 2 ^ level of completion\r\n\r\n*prestige upgrades remain even after prestige*",
   "Information: each click rolls for a chance to critical click. Successful critical clicks will then roll for super critical if it is unlocked\r\n\r\nCritical Equation: 1/5 chance to recieve X2 points from a click\r\n\r\nSuper Critical Equation: 1/4 chance to recieve X10 points from a click\r\n\r\n*click effects stack*",
   "Information: each click rolls for a chance to double click. Successful double clicks will then roll for a quad click if it is unlocked\r\n\r\nDouble Equation: 1/3 chance to recieve X2 points from a click\r\n\r\nQuadruple Equation: 1/3 chance to recieve X2 points from a click\r\n\r\n*click effects stack*",
   "Information: reduce the amount that costs increase for regular upgrades(including prestige and interest)\r\n\r\nEquation: new cost = original cost * original cost increase * (0.95 ^ level of completion)\r\n\r\n*peaks at about 40% reduction*",

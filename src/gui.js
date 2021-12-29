@@ -2,14 +2,17 @@ const toggleSettings = () => {
   if (settingsOpen) {
     gid("show-settings").style.backgroundColor = ("green");
     gid("settings").style.transform = ("translate(200%,-50%)");
+    hoverMenuOn = true;
     settingsOpen = false;
   }
   else {
     closeGuis();
     gid("show-settings").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("settings").style.transform = ("translate(-50%,-50%)");
+    hoverMenuOn = false;
     settingsOpen = true;
   }
+  toggleHoverMenu();
   popSound();
 }
 
@@ -17,14 +20,17 @@ const toggleStats = () => {
   if (statsOpen) {
     gid("show-stats").style.backgroundColor = ("green");
     gid("stats").style.transform = ("translate(-50%,-200%)");
+    hoverMenuOn = true;
     statsOpen = false;
   }
   else { // They are opening it
     closeGuis();
     gid("show-stats").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("stats").style.transform = ("translate(-50%,-50%)");
+    hoverMenuOn = false;
     statsOpen = true;
   }
+  toggleHoverMenu();
   popSound();
 }
 
@@ -34,7 +40,7 @@ const togglePrestigeShop = () => {
     gid("show-prestige-shop").style.backgroundColor = ("green");
     gid("prestige-shop").style.transform = ("translate(-200%,-50%)");
     gid("prestige-shop-info").style.transform = ("translate(110%, -50%)")
-    gid("upgrade-panel").style.display = ("grid");
+    hoverMenuOn = true;
     prestigeShopOpen = false;
   }
   else {
@@ -42,9 +48,10 @@ const togglePrestigeShop = () => {
     gid("show-prestige-shop").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("prestige-shop").style.transform = ("translate(-50%,-50%)");
     gid("prestige-shop-info").style.transform = ("translate(0%, -50%)");
-    gid("upgrade-panel").style.display = ("none");
+    hoverMenuOn = false;
     prestigeShopOpen = true;
   }
+  toggleHoverMenu();
   popSound();
 }
 
@@ -53,16 +60,17 @@ const toggleThemes = () => {
   if (themesOpen) {
     gid("show-themes").style.backgroundColor = ("green");
     gid("themes").style.transform = ("translate(-50%, 200%)");
-    gid("upgrade-panel").style.display = ("grid");
+    hoverMenuOn = true;
     themesOpen = false;
   }
   else {
     closeGuis();
     gid("show-themes").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("themes").style.transform = ("translate(-50%,-50%)");
-    gid("upgrade-panel").style.display = ("none");
+    hoverMenuOn = false;
     themesOpen = true;
   }
+  toggleHoverMenu();
   popSound();
 }
 
@@ -73,13 +81,24 @@ const closeGuis = () => {
   if (themesOpen) toggleThemes();
 }
 
-Mousetrap.bind('w', function (e) { toggleStats() });
+const toggleHoverMenu = () => {
+  if (hoverMenuOn) {
+    gid("upgrade-panel").style.display = ("grid");
+    gid("hover-menu-upgrades").style.backgroundColor = ("green");
+  }
+  else {
+    gid("upgrade-panel").style.display = ("none");
+    gid("hover-menu-upgrades").style.backgroundColor = ("rgb(65, 90, 65)");
+  }
+}
 
 Mousetrap.bind('d', function (e) { toggleSettings() });
 
 Mousetrap.bind('a', function (e) { togglePrestigeShop() });
 
 Mousetrap.bind('s', function (e) { toggleThemes() });
+
+Mousetrap.bind('w', function (e) { toggleStats() });
 
 Mousetrap.bind('tab', function (e) { closeGuis() });
 Mousetrap.bind('e', function (e) { closeGuis() });
@@ -111,7 +130,7 @@ const textUpdate = (...keys) => {
     if (run || k == "points") gid("points").innerText = ("Points: " + format_num(points));
     else if (run || k == "main-click") gid("main-click").innerText = ("Click This: +" + format_num(gain) + " Points");
     else if (run || k == "upgrade-main") gid("upgrade-main").innerText = ("+" + mainUpAmt + " Points Per Click\r\n[" + format_num(mainUpAmtCost) + " Points]");
-    else if (run || k == "upgrade-upgrade") gid("upgrade-upgrade").innerText = ("+2 Points Per Click Per Upgrade\r\n[" + format_num(upgradeUpAmtCost) + " Points]");
+    else if (run || k == "secondary-upgrade") gid("secondary-upgrade").innerText = ("+" + secondaryUpAmt + " Points Per Click Per Upgrade\r\n[" + format_num(secondaryUpAmtCost) + " Points]");
     else if (run || k == "interest-rate-stat") gid("interest-rate-stat").innerText = ("Interest Rate: +" + (interest * 100).toFixed(1) + "%");
     else if (run || k == "interest-btn" && interestUnlocked) gid("interest-btn").innerText = ("Upgrade Interest\r\n(+0.1%/Second)\r\n[" + format_num(upgradeInterestCost) + " Points]"); //don't mess up the order of these 2 interest-btn things
     else if (run || k == "interest-btn") gid("interest-btn").innerText = ("Unlock Interest\r\n(+0.5% Points/Second)\r\n[100K Points]"); // the \r\n things start new lines 

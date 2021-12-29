@@ -1,3 +1,6 @@
+## Morgan (6) : v0.4.1
+- Modified hover menu styling
+
 ## Morgan (5) : v0.4.0
 - Added more sounds
 - Balanced prestige shop item costs

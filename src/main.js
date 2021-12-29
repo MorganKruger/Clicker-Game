@@ -41,6 +41,7 @@ let settingsOpen = false;
 let prestigeShopOpen = false;
 let statsOpen = false;
 let themesOpen = false;
+let hoverMenuOn = true;
 let ttlPrestiges = 0;
 let fastestPrestige = 999999999999; //this is like 4000 years of seconds
 let prestigePoints = 195; // 0
@@ -96,12 +97,12 @@ const upgradeMain = () => {
   textUpdate("points", "upgrade-main", "main-click");
 };
 
-const upgradeUpgrade = () => {
+const secondaryUpgrade = () => {
   if (points < secondaryUpAmtCost) return;
   points -= secondaryUpAmtCost;
   mainUpAmt += secondaryUpAmt;
   secondaryUpAmtCost = Math.round(secondaryUpAmtCost * (1 + .05 * costReduceRate));
-  textUpdate("upgrade-main", "upgrade-upgrade", "points");
+  textUpdate("upgrade-main", "secondary-upgrade", "points");
 }
 
 const upgradeInterest = () => {
@@ -122,6 +123,6 @@ const upgradeInterest = () => {
 
 const compoundInterest = () => {
   points += Math.round(points * interest);
-  highestPoints = points;
+  if (highestPoints < points) highestPoints = points;
   textUpdate("points","highest-points-stat");
 }
