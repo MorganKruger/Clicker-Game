@@ -1,8 +1,8 @@
 const gid = (id)=> document.getElementById(id);
 
+
 let points = 50000000; // 0
 let gain = 1;
-let tempGain = 1;
 let highestTempGain = 0;
 let highestPoints = 0;
 let buyStartingPointsCost = 1;
@@ -12,6 +12,7 @@ let buyCostReduceCost = 3;
 let buyThemeDoubleCost = 20;
 let buyMorePrestigePointsCost = 3;
 let buyTertiaryUpgradeCost = 3;
+
 let critUnlocked = false;
 let supCritUnlocked = false;
 let doubUnlocked = false;
@@ -21,6 +22,7 @@ let themeDoubleUnlocked = false;
 let costReduceMaxed = false;
 let morePrestigePointsMaxed = false;
 let tertiaryUpgradeMaxed = false;
+
 let startingPointsLvl = 0;
 let morePrestigePointsLvl = 0;
 let costReduceLvl = 0;
@@ -43,7 +45,7 @@ let statsOpen = false;
 let themesOpen = false;
 let hoverMenuOn = true;
 let ttlPrestiges = 0;
-let fastestPrestige = 999999999999; //this is like 4000 years of seconds
+let fastestPrestige = Infinity; //this is like 4000 years of seconds
 let prestigePoints = 195; // 0
 let prestigePointsGain = 5; //5
 let costReduceRate = 1;
@@ -64,7 +66,7 @@ setInterval(() => {
 
 const gainPoints = () => {
   clicks ++;
-  tempGain = gain;
+  let tempGain = gain;
   ///////CLICK MODIFIERS\\\\\\\
   if (critUnlocked && critClick()){
     tempGain *= 2;

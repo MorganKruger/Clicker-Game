@@ -1,5 +1,6 @@
 const toggleSettings = () => {
   if (settingsOpen) {
+    gid("sfx-slider").style.pointerEvents = ("none");
     gid("show-settings").style.backgroundColor = ("green");
     gid("settings").style.transform = ("translate(200%,-50%)");
     hoverMenuOn = true;
@@ -7,13 +8,14 @@ const toggleSettings = () => {
   }
   else {
     closeGuis();
+    gid("sfx-slider").style.pointerEvents = ("all");
     gid("show-settings").style.backgroundColor = ("rgb(235, 101, 92)");
     gid("settings").style.transform = ("translate(-50%,-50%)");
+
     hoverMenuOn = false;
     settingsOpen = true;
   }
-  toggleHoverMenu();
-  popSound();
+  toggleHoverMenu(), menuToggleSound();
 }
 
 const toggleStats = () => {
@@ -30,8 +32,7 @@ const toggleStats = () => {
     hoverMenuOn = false;
     statsOpen = true;
   }
-  toggleHoverMenu();
-  popSound();
+  toggleHoverMenu(), menuToggleSound();
 }
 
 const togglePrestigeShop = () => {
@@ -51,8 +52,7 @@ const togglePrestigeShop = () => {
     hoverMenuOn = false;
     prestigeShopOpen = true;
   }
-  toggleHoverMenu();
-  popSound();
+  toggleHoverMenu(), menuToggleSound();
 }
 
 const toggleThemes = () => {
@@ -70,8 +70,7 @@ const toggleThemes = () => {
     hoverMenuOn = false;
     themesOpen = true;
   }
-  toggleHoverMenu();
-  popSound();
+  toggleHoverMenu(), menuToggleSound();
 }
 
 const closeGuis = () => {

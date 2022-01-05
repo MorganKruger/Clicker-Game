@@ -116,7 +116,7 @@ const prestige = () => {
   gid("show-prestige-shop").style.display = ("grid");
   gid("prestige-shop").style.display = ("grid");
   gid("show-themes").style.display = ("grid");
-  gid("themes").style.display = ("grid");
+  gid("themes").style.display = ("block");
 }
 
 const tool_tips = [

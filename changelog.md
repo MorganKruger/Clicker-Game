@@ -1,3 +1,11 @@
+## Morgan (7) : v0.4.2
+- Styled sfx settings slider
+- Made stats menu scrollable
+- Added "pointer" cursor for hovering over executables
+- Basic setup for themes in backend
+- Bug Fixes
+- Began to populate the theme menu
+
 ## Morgan (6) : v0.4.1
 - Modified hover menu styling
 
