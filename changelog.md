@@ -1,3 +1,8 @@
+## Morgan (8) : v0.4.3
+- Made "HOVER" text disapear while a gui is open
+- Bug fixes
+- Tweaked theme menu(WIP)
+
 ## Morgan (7) : v0.4.2
 - Styled sfx settings slider
 - Made stats menu scrollable

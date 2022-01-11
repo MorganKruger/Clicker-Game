@@ -95,13 +95,12 @@ const buyTertiaryUpgrade = () => {
 
 const prestige = () => {
   if (points < prestigeCost) return;
-  // are you sure? This will reset your score and non-permemant upgrades
+  // are you sure? This will reset your score and non-permenant upgrades
   if (time <= fastestPrestige) fastestPrestige = time;
   points = 0;
   gain = 1;
   mainUpAmt = 1;
   mainUpAmtCost = 10;
-  secondaryUpAmt = 2 + 2 * tertiaryUpgradeLvl; // 2 * that one prestige upgrade's level
   secondaryUpAmtCost = 250;
   time = 0;
   interestUnlocked = false;

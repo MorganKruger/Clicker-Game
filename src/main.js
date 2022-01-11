@@ -95,7 +95,7 @@ const upgradeMain = () => {
   if (points < mainUpAmtCost) return;
   points -= mainUpAmtCost;
   gain += mainUpAmt;
-  mainUpAmtCost = Math.round(mainUpAmtCost * (1 + .1 * costReduceRate));
+  mainUpAmtCost = Math.round(mainUpAmtCost * (1 + (.1 * costReduceRate)));
   textUpdate("points", "upgrade-main", "main-click");
 };
 
@@ -103,7 +103,7 @@ const secondaryUpgrade = () => {
   if (points < secondaryUpAmtCost) return;
   points -= secondaryUpAmtCost;
   mainUpAmt += secondaryUpAmt;
-  secondaryUpAmtCost = Math.round(secondaryUpAmtCost * (1 + .05 * costReduceRate));
+  secondaryUpAmtCost = Math.round(secondaryUpAmtCost * (1 + (.05 * costReduceRate)));
   textUpdate("upgrade-main", "secondary-upgrade", "points");
 }
 

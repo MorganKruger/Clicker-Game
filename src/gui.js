@@ -84,10 +84,12 @@ const toggleHoverMenu = () => {
   if (hoverMenuOn) {
     gid("upgrade-panel").style.display = ("grid");
     gid("hover-menu-upgrades").style.backgroundColor = ("green");
+    gid("hover-menu-upgrades").innerText = ("H\r\nO\r\nV\r\nE\r\nR");
   }
   else {
     gid("upgrade-panel").style.display = ("none");
     gid("hover-menu-upgrades").style.backgroundColor = ("rgb(65, 90, 65)");
+    gid("hover-menu-upgrades").innerText = ("");
   }
 }
 

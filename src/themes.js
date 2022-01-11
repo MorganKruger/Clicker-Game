@@ -5,6 +5,15 @@
 // let themedText = "default";
 
 // const setTheme = () => {
+//   customTheme.colorScheme.functionalColor = themes.default.colorscheme[0];
+//   customTheme.colorScheme.displayFieldColor = themes.default.colorscheme[0];
+//   customTheme.colorScheme.text1Color = themes.default.colorscheme[0];
+//   customTheme.colorScheme.text2Color = themes.default.colorscheme[0];
+//   customTheme.colorScheme.activeColor = themes.default.colorscheme[0];
+//   customTheme.colorScheme.falseColor = themes.default.colorscheme[0];
+//   customTheme.colorScheme.bgColor = themes.default.colorscheme[0];
+//   customTheme.colorScheme.completedColor = themes.default.colorscheme[0];
+
 //   gid("functional-color-sample").style.backgroundColor = (customTheme.colorScheme.functionalColor);
 //   gid("display-field-color-sample").style.backgroundColor = (customTheme.colorScheme.displayFieldColor);
 //   gid("text1-color-sample").style.backgroundColor = (customTheme.colorScheme.text1Color);

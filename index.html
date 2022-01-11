@@ -25,7 +25,7 @@
     <div id="main-click" onclick="gainPoints(), clickSound()">Click This: +1 Points</div>
     
     <div id="hover-menu-upgrades">
-      <h1>H<br>O<br>V<br>E<br>R</h1>
+      H<br>O<br>V<br>E<br>R
     </div>
     
     <div id="settings">
@@ -33,8 +33,6 @@
       <div class="display">
         <div>Sound Effects</div>
         <input type="range" min="1" max="100" value="50" id="sfx-slider" oninput="setSfxVolume()" onmouseup="clickSound()" tabindex="-1">
-        <!-- <div>Music (doesn't exist yet)</div>
-        <input type="range" min="1" max="100" value="50" id="music-slider" oninput="musicSfxVolume()"> -->
       </div>
     </div>
 
@@ -46,20 +44,38 @@
       <div id="custom-theme-area">
         <div id="custom-theme-area-label">Customize Your Theme</div>
         <div class="display" id="custom-theme-area-display">
+
           <div class="btn" id="color-scheme-selector">
-            <div id="color-scheme-selector-label">Color Scheme: Default</div>
-            <div id="functional-color-sample">c1</div>
-            <div id="display-field-color-sample">c2</div>
-            <div id="text1-sample">c3</div>
-            <div id="text2-sample">c4</div>
-            <div id="active-color-sample">c5</div>
-            <div id="false-color-sample">c6</div>
-            <div id="bg-color-sample">c7</div>
-            <div id="completed-color-sample">c8</div>
+            <div> <!-- Left Main Column -->
+              <div id="color-scheme-selector-label">Color Scheme: Default</div>
+            </div>
+            <div id="color-scheme-selector-sample-display"> <!-- Right Main Column -->
+              <div>
+                <div id="functional-color-sample">c1 </div> <!-- Top Part -->
+                <div id="secondary-functional-color-sample"> <!-- Bottom Part -->
+                  <div id="active-color-sample">c5</div> <!-- Secondary Joe Momma -->
+                  <div id="false-color-sample">c6</div> <!-- Secondary Joe Momma -->
+                </div> 
+              </div>
+              <div>
+                <div id="display-field-color-sample">c2</div> <!-- Top Part -->
+                <div id="secondary-display-field-color-sample"> <!-- Bottom Part -->
+                  <div id="bg-color-sample">c7</div> <!-- Secondary Joe Momma -->
+                  <div id="completed-color-sample">c8</div> <!-- Secondary Joe Momma -->
+                </div> 
+              </div>
+              <div>
+                <div id="text1-color-sample">c3</div> <!-- Top Part -->
+                <div id="secondary-text-color-sample"> <!-- Bottom Part -->
+                  <div id="text2-color-sample">c4</div> <!-- Secondary Joe Momma -->
+                </div> 
+              </div>
+            </div>
           </div>
+
           <div class="btn" id="sound-effect-selector">Sound Effects</div>
           <div class="btn" id="themed-text-selector">Themed Text</div>
-        </div>
+        </div> 
       </div>
       <div id="theme-list-area">All Your Themes
         <!--  -->
