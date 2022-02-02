@@ -1,0 +1,428 @@
+
+/* #region | Main Stuffs */
+html, body {
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  background-color: #f0e68c;
+  font-family: Helvetica, Verdana, sans-serif;
+  font-size: 1.3vw;
+  overflow: hidden;
+  font-weight: bold;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+/* #endregion */
+
+/* #region | Blanket CSS */
+.btn {
+  display: grid;
+  align-items: center;
+
+  text-align: center;
+  background-color: green;
+  color: gold;
+  border-radius: 7px;
+  position: relative;
+  transition-duration: .1s;
+  font-size: 1.3vw;
+  padding: 2.5%;
+}
+
+.label {
+  position: absolute;
+  top: 2.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 2.5vw;
+  text-decoration: underline;
+}
+
+.display {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 85%;
+  overflow: hidden;
+}
+#show-settings:hover, #show-themes:hover, #main-click:hover, #show-stats:hover, #show-prestige-shop:hover, .btn:hover {
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+  cursor: pointer;
+}
+#show-settings:active, #show-themes:active, #main-click:active, #show-stats:active, #show-prestige-shop:active, .btn:active {
+  box-shadow: 0 0 .25rem rgb(65, 90, 65);
+}
+
+#points,#cps,#clock { 
+  background-color: rgb(60, 165, 60);
+}
+/* #endregion */
+
+/* #region | Media */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  input[type='range'] {
+    margin-top: 2%;
+    border-radius: 7px;
+    overflow: hidden;
+    width: 80%;
+    -webkit-appearance: none;
+    background-color: rgb(65, 90, 65);
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 30px;
+    -webkit-appearance: none;
+    color: gold;
+    margin-top: -1px;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    border-radius: 7px;
+    width: 10%;
+    -webkit-appearance: none;
+    height: 100%;
+    cursor: ew-resize;
+    background: green;
+    box-shadow: -1000px 0 0 997.5px green;
+  }
+
+}
+/* #endregion */
+
+/* #region | Main GUI */
+#main-click {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  
+  background-color: green;
+  color: gold;
+  border-radius: 7px;
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+  transition-duration: .1s;
+}
+/* #endregion */
+
+/* #region | Theme */
+.theme-item span {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+#show-themes {
+  display: none;
+  position: absolute;
+  background-color: green;
+  border-radius: 7px;
+  margin: 1%;
+  bottom: 0%;
+  right: 5%;
+  transform: translateX(-100%);
+  width: 3%;
+  padding: .5%;
+  transition-duration: .1s;
+}
+
+.theme-item {
+  display: block;
+  position: relative;
+  background-color: rgb(60, 165, 60);
+  /* height: 18%; */
+  /* width: 100%; */
+  margin: 5% 3%;
+  padding:  5% 2.5% 5% 2.5%;
+  text-align: center;
+  font-size: 1.5vw;
+  border-radius: 7px;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+
+}
+.theme-item-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+.theme-sfx {
+  background-color: green;
+  border-radius: 7px;
+  height: 2rem;
+  width: 2rem;
+}
+.theme-color {
+  background-color: green;
+  border-radius: 7px;
+  height: 2rem;
+  width: 2rem;
+}
+.theme-txt {
+  background-color: green;
+  border-radius: 7px;
+  height: 2rem;
+  width: 2rem;
+}
+
+#theme-wrapper {
+  display: block;
+  position: absolute;
+  transform: translateY(200%);
+  right: 1%;
+  bottom: 4%;
+  width: 17%;
+  height: 92%;
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  transition-duration: .5s;
+  box-shadow: 0 0 .25rem rgb(65, 90, 65);
+}
+#theme-scroll {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* #endregion */
+
+/* #region | Stats */
+.stat {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  
+  min-width: max-content;
+  color: gold;
+  border-radius: 7px;
+  width: 12%;
+  height: 10%;
+  position: relative;
+  margin: .5%;
+  font-size: 1.3vw;
+}
+#stats {
+  position: absolute;
+  display: grid;
+  padding: 1%;
+
+  overflow: hidden;
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  width: 40%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+
+  transition-duration: .5s;
+  transform: translate(-50%,-200%);
+}
+#stat-list {
+  position: absolute;
+  display: grid;
+  padding-left: 3%;
+  gap: 3%;
+  width: 100%;
+  height: 80%;
+  overflow-x: hidden;
+  overflow-y: auto; 
+  top: 14%;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+#show-stats {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  background-color: green;
+  color: gold;
+  border-radius: 7px;
+  width: 10%;
+  height: 10%;
+  position: relative;
+  margin: .5%;
+  transition-duration: .1s;
+}
+/* #endregion */
+
+/* #region | Settings */
+#settings {
+  position: absolute;
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  left: 50%;
+  top: 50%;
+  margin: 1%;
+  gap: 1.5%;
+  padding: 1%;
+  width: 30%;
+  height: 75%;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+  transform: translate(200%,-50%);
+  transition-duration: .5s;
+}
+#show-settings {
+  position: absolute;
+  background-color: green;
+  border-radius: 7px;
+  margin: 1%;
+  top: 0%;
+  right: 5%;
+  transform: translateX(-100%);
+  width: 3%;
+  padding: .5%;
+  transition-duration: .1s;
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: green; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: rgb(65, 90, 65);
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: green; 
+}
+input[type="range"]::-ms-fill-upper {  
+  background-color: rgb(65, 90, 65);
+
+}
+/* #endregion */
+
+/* #region | Prestige */
+#prestige-points {
+  position: absolute;
+  margin: 2%;
+}
+#show-prestige-shop {
+  display: none;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  margin: .75%;
+  bottom: 0%;
+  height: 10%;
+  width: 10%;
+  background-color: green;
+  color: gold;
+  border-radius: 7px;
+  transition-duration: .1s;
+}
+
+#prestige-shop {
+  display: none;
+  padding: 1%;
+  padding-top: 6%;
+  gap: 1.5%;
+  
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  width: 60%;
+  height: 70%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 1%;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+
+  transition-duration: .5s;
+  transform: translate(-200%,-50%);
+}
+
+#prestige-shop-info {
+  display: grid;
+  padding: 1%;
+  
+  background-color: rgb(60, 165, 60);
+  color: gold;
+  border-radius: 7px;
+  width: 13%;
+  height: 70%;
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+  margin-right: 1%;
+  font-weight: normal;
+  
+  transition-duration: .5s;
+  transform: translate(110%,-50%);
+}
+
+#prestige-info-label {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+#description-box {
+  position: absolute;
+  border-radius: 7px;
+  height: 83%;
+  width: 80%;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 .125rem rgb(65, 90, 65);
+  padding: 5%;
+  transition-duration: .1s;
+}
+/* #endregion */
+
+/* #region | Hover Menu / Panel */
+#hover-menu-upgrades {
+  display: grid;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 7%;
+  font-size: 3vw;
+  background: #008000;
+  color: gold;
+  text-align: center;
+  padding: 1%;
+}
+#upgrade-panel {
+  display: grid;
+  padding: 1%;
+  gap: 2%;
+  
+  background-color: #3ca53c;
+  color: #ffd700;
+  border-radius: 7px;
+  width: 20%;
+  height: 75%;
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  margin: .75%;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+  
+  transition-duration: .5s;
+  transform: translate(110%, -50%);
+}
+#hover-menu-upgrades:hover ~ #upgrade-panel, #upgrade-panel:hover {
+  transform: translateY(-50%);
+}
+/* #endregion */

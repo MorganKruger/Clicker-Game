@@ -1,3 +1,11 @@
+## Morgan (9) : v0.5.0
+- Remodeled backend to modular approach
+- Organized code(fold philosophy - Jacoby)
+- Shrank upgrade panel height
+- Redesigned Theme Menu
+- Broke prestige info menu
+
+
 ## Morgan (8) : v0.4.3
 - Made "HOVER" text disapear while a gui is open
 - Bug fixes

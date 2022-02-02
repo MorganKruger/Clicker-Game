@@ -1,23 +1,34 @@
-const clickSound = () => {
-  if (sfxVolume <= 1) { return }
-  gid("sfx-slider").blur();
-  gid("click-sound").volume = sfxVolume / 100;
-  gid("click-sound").currentTime = 0.03;
-  gid("click-sound").play();
-}
+const sfxSlider = $("#sfx-slider");
+const clickSound = $("#click-sound");
+const popSound = $("#pop-sound");
+const longPopSound = $("#long-pop-sound");
 
-const menuToggleSound = () => {
-  gid("pop-sound").volume = sfxVolume / 100;
-  gid("pop-sound").currentTime = 0.12;
-  gid("pop-sound").play();
-}
+const btns = $all(".btn");
+btns.forEach(e => e.onmouseup = ()=> self.purchase());
 
-const purchaseSound = () => {
-  gid("long-pop-sound").volume = sfxVolume / 100;
-  gid("long-pop-sound").currentTime = 0.012;
-  gid("long-pop-sound").play();
-}
+const self = {
+  sfxVolume: 50,
 
-const setSfxVolume = () => {
-  sfxVolume = gid("sfx-slider").value;
-}
+  click() {
+    if (this.sfxVolume <= 1) { return }
+    sfxSlider.blur();
+    clickSound.volume = this.sfxVolume / 100;
+    clickSound.currentTime = 0.03;
+    clickSound.play();
+  },
+  menuToggle() {
+    popSound.volume = this.sfxVolume / 100;
+    popSound.currentTime = 0.12;
+    popSound.play();
+  },
+  purchase() {
+    longPopSound.volume = this.sfxVolume / 100;
+    longPopSound.currentTime = 0.012;
+    longPopSound.play();
+  },
+  setSfxVolume() {
+    this.sfxVolume = sfxSlider.value;
+  }
+};
+
+export default self;

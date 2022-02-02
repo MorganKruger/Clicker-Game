@@ -1,123 +1,315 @@
-const buyStartingPoints = () => {
-  if (startingPointsMaxed || prestigePoints < buyStartingPointsCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  startingPointsLvl += 1;
-  prestigePoints -= buyStartingPointsCost;
-  startingPoints = 500 * 2 ** startingPointsLvl; // scales 1k, 2k, 4k, etc.
-  buyStartingPointsCost += 1;
-  if (startingPointsLvl >= 8) {
-    startingPointsMaxed = true;
-    gid("unlock-starting-points").style.backgroundColor = "gold";
-    gid("unlock-starting-points").style.color = "green";
-  } 
-  textUpdate("unlock-starting-points", "prestige-points");
-}
+import primary from "./primary.js";
+import stats from "./stats.js";
+import sfx from "./sfx.js";
 
-const buyCrit = () => {
-  if (supCritUnlocked || prestigePoints < buyCritCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  if (critUnlocked) {
-      supCritUnlocked = true;
-      prestigePoints -= buyCritCost;
-      gid("unlock-crit").style.backgroundColor = "gold";
-      gid("unlock-crit").style.color = "green";
-      textUpdate("unlock-crit", "prestige-points")
-      return;
+const unlockStartingPoints = $("#unlock-starting-points");
+const unlockCrit = $("#unlock-crit");
+const unlockDoub = $("#unlock-double");
+const unlockCostReduce = $("#unlock-cost-reduce");
+const unlockMorePrestigePoints = $("#unlock-more-prestige-points");
+const unlockThemeDouble = $("#unlock-theme-double");
+const unlockTertiaryUpgrade = $("#unlock-tertiary-upgrade");
+
+const prestShop = $("#prestige-shop");
+const prestPointsTxt = $("#prestige-points");
+const prestShopInfo = $("#prestige-shop-info");
+const showPrestShopBtn = $("#show-prestige-shop");
+
+const prestigeBtn = $("#prestige-btn");
+
+prestigeBtn.onclick = ()=> self.do_prestige();
+
+showPrestShopBtn.onclick = ()=> self.toggleMenu();
+
+const maxedAndCost = upgr => (upgr.maxed == true || self.points < upgr.cost || !self.open ||  stats.totalPrestiges < 1);
+
+const self = {
+  open: false,
+
+  cost: 50000000, // 50M
+  points: 190, // prestige points
+  gain: 5,
+
+  startingPoints: {
+    maxed: false,
+    cost: 2,
+    lvl: 0,
+  },
+  crit: {
+    unlocked: false,
+    maxed: false,
+    cost: 2, //2 then 4 or something
+  },
+  doub: {
+    unlocked: false,
+    maxed: false,
+    cost: 3, //3 then 69 or something
+  },
+  costReduce: {
+    rate: 1,
+    unlocked: false,
+    maxed: false,
+    lvl: 0,
+    cost: 1,
+  },
+  morePoints: { 
+    lvl: 0,
+    unlocked: false,
+    maxed: false,
+    cost: 1,
+  },
+  themeDouble: { 
+    maxed: false,
+    cost: 20,
+  },  
+  tertUp: { 
+    maxed: false,
+    cost: 1,
+    lvl: 0,
+  },
+
+
+  // Functions
+  toggleMenu() {
+    const isOpen = this.open;
+    closeAllMenus();
+		isOpen ? this.closeMenu() : this.openMenu();
+	},
+
+	openMenu() {
+    showPrestShopBtn.style.backgroundColor = ("rgb(235, 101, 92)");
+    prestShop.style.transform = ("translate(-50%,-50%)");
+    prestShopInfo.style.transform = ("translate(0%, -50%)");
+    primary.hoverMenuOn = false;
+    self.open = true;
+		primary.toggleHoverMenu();
+		sfx.menuToggle();
+	},
+
+	closeMenu() {
+		showPrestShopBtn.style.backgroundColor = ("green");
+    prestShop.style.transform = ("translate(-200%,-50%)");
+    prestShopInfo.style.transform = ("translate(110%, -50%)");
+    primary.hoverMenuOn = true;
+    self.open = false;
+		primary.toggleHoverMenu();
+		sfx.menuToggle();
+	},
+  
+  buyStartingPoints() {
+    if (maxedAndCost(this.startingPoints)) return;
+    this.startingPoints.lvl += 1;
+    this.points -= this.startingPoints.cost;
+    this.startingPoints.cost += 1;
+    if (this.startingPoints.lvl >= 8) {
+      this.startingPoints.maxed = true;
+      unlockStartingPoints.style.backgroundColor = "gold";
+      unlockStartingPoints.style.color = "green";
+    } 
+    this.$unlockStartingPoints.$prestigePoints;
+  },
+  buyCrit() {
+    if (maxedAndCost(this.crit)) return;
+    if (this.crit.unlocked) {
+      this.crit.maxed = true;
+      this.points -= this.crit.cost;
+      unlockCrit.style.backgroundColor = "gold";
+      unlockCrit.style.color = "green";
+      this.$unlockCrit.$prestigePoints;
+    } else {
+      this.points -= this.crit.cost;
+      this.crit.unlocked = true;
+      this.crit.cost += 3; // this next used to buy supCrit
+      this.$unlockCrit.$prestigePoints;
     }
-  prestigePoints -= buyCritCost;
-  critUnlocked = true;
-  buyCritCost += 4; // this next used to buy supCrit
-  textUpdate("unlock-crit", "prestige-points")
-}
+  },
+  buyDoub() {
+    if (maxedAndCost(this.doub)) return;
+    if (this.doub.unlocked) {
+      this.doub.maxed = true;
+      this.points -= this.doub.cost;
+      unlockDoub.style.backgroundColor = "gold";
+      unlockDoub.style.color = "green";
+      this.$unlockDoub.$prestigePoints;
+    } else {
+      this.points -= this.doub.cost;
+      this.doub.unlocked = true;
+      this.doub.cost += 2; //this is next used to buy quad.
+      this.$unlockDoub.$prestigePoints;
+    }
+  },
+  buyCostReduce() {
+    if (maxedAndCost(this.costReduce)) return;
+    this.costReduce.lvl += 1;
+    this.points -= this.costReduce.cost;
+    this.costReduce.rate = .95 ** this.costReduce.lvl;  
+    if (this.costReduce.lvl >= 10) {
+      this.costReduce.maxed = true;
+      unlockCostReduce.style.backgroundColor = "gold";
+      unlockCostReduce.style.color = "green";
+    }
+    this.$unlockCostReduce.$prestigePoints;
+  },
+  buyMorePrestigePoints() {
+    if (maxedAndCost(this.morePoints)) return;
+    this.morePoints.lvl += 1;
+    this.points -= this.morePoints.cost;
+    this.gain += 1;
+    if (this.morePoints.lvl >= 15) {
+      this.morePoints.maxed = true;
+      unlockMorePrestigePoints.style.backgroundColor = "gold";
+      unlockMorePrestigePoints.style.color = "green";
+    }
+    this.$unlockMorePrestigePoints.$prestigePoints;
+  },
+  buyThemeDouble() {
+    if (maxedAndCost(this.themeDouble)) return;
+    unlockThemeDouble.style.backgroundColor = "gold";
+    unlockThemeDouble.style.color = "green";
+    this.points -= this.themeDouble.cost;
+    this.themeDouble.maxed = true;
+    this.$unlockThemeDouble.$prestigePoints;
+  },
+  buyTertiaryUpgrade() {
+    if (maxedAndCost(this.tertUp)) return;
+    this.tertUp.lvl += 1;
+    this.points -= this.tertUp.cost;
+    this.tertUp.cost += 1;
+    primary.secondUp.amount *= 2;
+    if (this.tertUp.lvl >= 10) {
+      this.tertUp.maxed = true;
+      unlockTertiaryUpgrade.style.backgroundColor = "gold";
+      unlockTertiaryUpgrade.style.color = "green";
+    }
+    this.$unlockTertiaryUpgrade.$prestigePoints;
+    primary.$secondryUpgrade;
+  },
 
-const buyDoub = () => {
-  if (quadUnlocked || prestigePoints < buyDoubCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  if (doubUnlocked) {
-    quadUnlocked = true;
-    prestigePoints -= buyDoubCost;
-    gid("unlock-double").style.backgroundColor = "gold";
-    gid("unlock-double").style.color = "green";
-    textUpdate("unlock-double", "prestige-points");
-    return;
+  // Getters
+  get $all() {
+		for (const k in this) {
+			if (!Object.hasOwnProperty.call(this, k)) return;
+			if (k == "$all" || k[0] != "$") continue;
+			this[k];
+		}
+		return this;
+	},
+
+  get $prestigeBtn() {
+    prestigeBtn.innerText = `Prestige\n[${formatNum(this.cost)} Points]`;
+    return this;
+  },
+  get $unlockStartingPoints() {
+    if (this.startingPoints.maxed) {
+      unlockStartingPoints.innerText = `Starting Points Maximized\n[${this.startingPoints.lvl}/8 Complete]`;
+    } else {
+      unlockStartingPoints.innerText = `Double Starting Points\n[${this.startingPoints.lvl}/8 Complete]\n[${this.startingPoints.cost} Super Points]`;
+    }
+    return this;
+  },
+  get $prestigePoints() {
+    prestPointsTxt.innerText = `Super Points: ${this.points}`;
+    return this;
+  },
+  get $unlockCrit() {
+    if (this.crit.maxed) {
+      unlockCrit.innerText = `Critical Clicks Maximized\n[2/2 Complete]`;
+    } 
+    else if (this.crit.unlocked) {
+      unlockCrit.innerText = `Unlock Super Critcial Clicks\n[1/2 Complete]\n[${this.crit.cost} Super Points]`;
+    } 
+    else {
+      unlockCrit.innerText = `Unlock Critical Clicks\n[0/2 Complete]\n[${this.crit.cost} Super Points]`;
+    }
+    return this;
+  },
+  get $unlockDoub() {
+    if (this.doub.maxed) {
+      unlockDoub.innerText = `Multi-Clicks Maximized\n[2/2 Complete]`;
+    } 
+    else if (this.doub.unlocked) {
+      unlockDoub.innerText = `Unlock Quadruple Clicks\n[1/2 Complete]\n[${this.doub.cost} Super Points]`;
+    }
+    else {
+      unlockDoub.innerText = `Unlock Double Clicks\n[0/2 Complete]\n[${this.doub.cost} Super Points]`
+    }
+    return this;
+  },
+  get $unlockCostReduce() {
+    if (this.costReduce.maxed) {
+      unlockCostReduce.innerText = `Cost Reduction Maximized\n[${this.costReduce.lvl}/10 Complete]`;
+    } else {
+      unlockCostReduce.innerText = `Increase Cost Reduction\n[${this.costReduce.lvl}/10 Complete]\n[${this.costReduce.cost} Super Points]`;
+    }
+    return this;
+  },
+  get $unlockMorePrestigePoints() {
+    if (this.morePoints.maxed) {
+      unlockMorePrestigePoints.innerText = `Starting Points Maximized\n[${this.morePoints.lvl}/15 Complete]`;
+    } else {
+      unlockMorePrestigePoints.innerText = `Double Starting Points\n[${this.morePoints.lvl}/15 Complete]\n[${this.morePoints.cost} Super Points]`;
+    }
+    return this;
+  },
+  get $unlockThemeDouble() {
+    if (this.themeDouble.maxed) {
+      unlockThemeDouble.innerText = `Theme Double Maximized\n[1/1 Complete]`;
+      return this;
+    }
+  },
+  get $unlockTertiaryUpgrade() {
+    if (this.tertUp.maxed)
+      unlockTertiaryUpgrade.innerText = `Tertiary Upgrade Maximized\n[${this.tertUp.lvl}/10 Complete]`;
+    else 
+      unlockTertiaryUpgrade.innerText = `Increase Tertiary Upgrade\n[${this.tertUp.lvl}/10 Complete]\n[${this.tertUp.cost} Super Points]`;
+    return this;
+  },
+
+  // Do Prestige
+  do_prestige() {
+    if (primary.points < self.cost) return;
+    // are you sure? This will reset your score and non-permenant upgrades
+    if (stats.time < stats.fastestPrestige) stats.fastestPrestige = stats.time;
+    primary.points = ((this.startingPoints.lvl <= 0)? 0 : (500 * 2 ** this.startingPoints.lvl));
+    primary.gain = 1;
+    primary.primUp.amount = 1;
+    primary.primUp.cost = 10;
+    primary.secondUp.cost = 250;
+    stats.time = 0;
+    primary.interest.unlocked = false;
+    primary.interest.rate = 0;
+    primary.interest.cost = 250000 * this.costReduce.rate; 
+    stats.totalPrestiges += 1;
+    this.points += this.gain; 
+    this.cost += Math.ceil(this.cost * this.costReduce.rate);
+    
+    this.$prestigePoints;
+    this.$prestigeBtn;
+    
+    this.$prestigePoints.$prestigeBtn;
+    primary.$all; 
+    stats.$all;
+    
+    $("#show-prestige-shop").style.display = ("grid");
+    $("#prestige-shop").style.display = ("grid");
+    $("#show-themes").style.display = ("grid");
+    // $("#themes").style.display = ("block");
   }
-  prestigePoints -= buyDoubCost;
-  doubUnlocked = true;
-  buyDoubCost += 2; //this is next used to buy quad.
-  textUpdate("unlock-double", "prestige-points");
-}
+};
 
-const buyCostReduce = () => {
-  if (costReduceMaxed || prestigePoints < buyCostReduceCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  costReduceLvl += 1;
-  prestigePoints -= buyCostReduceCost;
-  costReduceRate = .95 ** costReduceLvl;  
-  if (costReduceLvl >= 10) {
-    costReduceMaxed = true;
-    gid("unlock-cost-reduce").style.backgroundColor = "gold";
-    gid("unlock-cost-reduce").style.color = "green";
-  }
-  textUpdate("unlock-cost-reduce", "prestige-points");
-}
+unlockStartingPoints.onclick = ()=> self.buyStartingPoints();
+unlockCrit.onclick = ()=> self.buyCrit();
+unlockDoub.onclick = ()=> self.buyDoub();
+unlockCostReduce.onclick = ()=> self.buyCostReduce();
+unlockMorePrestigePoints.onclick = ()=> self.buyMorePrestigePoints();
+unlockThemeDouble.onclick = ()=> self.buyThemeDouble();
+unlockTertiaryUpgrade.onclick = ()=> self.buyTertiaryUpgrade();
 
-const buyMorePrestigePoints = () => {
-  if (morePrestigePointsMaxed || prestigePoints < buyMorePrestigePointsCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  morePrestigePointsLvl += 1;
-  prestigePoints -= buyMorePrestigePointsCost;
-  prestigePointsGain += 1;
-  if (morePrestigePointsLvl >= 15) {
-    morePrestigePointsMaxed = true;
-    gid("unlock-more-prestige-points").style.backgroundColor = "gold";
-    gid("unlock-more-prestige-points").style.color = "green";
-  }
-  textUpdate("unlock-more-prestige-points", "prestige-points");
-}
+self.$all;
 
-const buyThemeDouble = () => {
-  if (themeDoubleUnlocked || prestigePoints < buyThemeDoubleCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  gid("unlock-theme-double").style.backgroundColor = "gold";
-  gid("unlock-theme-double").style.color = "green";
-  prestigePoints -= buyThemeDoubleCost;
-  themeDoubleUnlocked = true;
-  textUpdate("unlock-theme-double", "prestige-points");
-}
+export default self;
 
-const buyTertiaryUpgrade = () => {
-  if (tertiaryUpgradeMaxed || prestigePoints < buyTertiaryUpgradeCost || !prestigeShopOpen || ttlPrestiges < 1) return;
-  tertiaryUpgradeLvl += 1;
-  prestigePoints -= buyTertiaryUpgradeCost;
-  buyTertiaryUpgradeCost += 1;
-  secondaryUpAmt *= 2;
-  if (tertiaryUpgradeLvl >= 7) {
-    tertiaryUpgradeMaxed = true;
-    gid("unlock-tertiary-upgrade").style.backgroundColor = "gold";
-    gid("unlock-tertiary-upgrade").style.color = "green";
-  }
-  textUpdate("unlock-tertiary-upgrade", "prestige-points", "secondary-upgrade");
-}
-
-const prestige = () => {
-  if (points < prestigeCost) return;
-  // are you sure? This will reset your score and non-permenant upgrades
-  if (time <= fastestPrestige) fastestPrestige = time;
-  points = 0;
-  gain = 1;
-  mainUpAmt = 1;
-  mainUpAmtCost = 10;
-  secondaryUpAmtCost = 250;
-  time = 0;
-  interestUnlocked = false;
-  interest = 0;
-  upgradeInterestCost = 250000;
-  clicks = 0;
-  ttlPrestiges += 1;
-  prestigePoints += prestigePointsGain;
-  prestigeCost += Math.ceil(prestigeCost * costReduceRate);
-  points += startingPoints;
-  textUpdate("prestige-points", "interest-btn", "main-click", "upgrade-main", "secondary-upgrade", "interest-rate-stat", "points", "interest-btn", "ttl-prestige-stat", "fastest-prestige-stat", "prestige-btn");
-  gid("show-prestige-shop").style.display = ("grid");
-  gid("prestige-shop").style.display = ("grid");
-  gid("show-themes").style.display = ("grid");
-  gid("themes").style.display = ("block");
-}
-
+/* 
 const tool_tips = [
   "Information: restart after each prestige with points to spend\r\n\r\nEquation: starting points = 500 * 2 ^ level of completion\r\n\r\n*prestige upgrades remain even after prestige*",
   "Information: each click rolls for a chance to critical click. Successful critical clicks will then roll for super critical if it is unlocked\r\n\r\nCritical Equation: 1/5 chance to recieve X2 points from a click\r\n\r\nSuper Critical Equation: 1/4 chance to recieve X10 points from a click\r\n\r\n*click effects stack*",
@@ -156,3 +348,4 @@ const set_hover_tip = (i)=>{
     }
   }
 })();
+*/

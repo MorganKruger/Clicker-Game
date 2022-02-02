@@ -1,10 +1,50 @@
-const gid = (id)=> document.getElementById(id);
+import primary from "./primary.js";
+import prestige from "./prestige.js";
+import stats from "./stats.js";
+import settings from "./settings.js";
+import themes from "./themes.js";
 
+primary.initOnClicks();
 
+closeAllMenus = ()=>{
+  stats.closeMenu();
+  prestige.closeMenu();
+  settings.closeMenu();
+  themes.closeMenu();
+}
+
+/*
+Mousetrap.bind('d', function (e) { toggleSettings() });
+
+Mousetrap.bind('a', function (e) { togglePrestigeShop() });
+
+Mousetrap.bind('s', function (e) { toggleThemes() });
+
+Mousetrap.bind('w', function (e) { toggleStats() });
+
+Mousetrap.bind('tab', function (e) { closeGuis() });
+Mousetrap.bind('e', function (e) { closeGuis() });
+Mousetrap.bind('backspace', function (e) { closeGuis() });
+Mousetrap.bind('del', function (e) { closeGuis() });
+Mousetrap.bind('esc', function (e) { closeGuis() });
+Mousetrap.bind('i', function (e) { closeGuis() });
+
+document.body.onclick = function(e) {
+  if (e.target !== this) return;
+  closeGuis();
+}
+*/
+
+  ///////////////////////////
+ ///// v Crappy Code v /////
+///////////////////////////
+
+/* 
 let points = 50000000; // 0
 let gain = 1;
 let highestTempGain = 0;
 let highestPoints = 0;
+
 let buyStartingPointsCost = 1;
 let buyCritCost = 2;
 let buyDoubCost = 3;
@@ -46,7 +86,7 @@ let themesOpen = false;
 let hoverMenuOn = true;
 let ttlPrestiges = 0;
 let fastestPrestige = Infinity; //this is like 4000 years of seconds
-let prestigePoints = 195; // 0
+let prestigePoints = 250; // 0
 let prestigePointsGain = 5; //5
 let costReduceRate = 1;
 let prestigeCost = 50000000; //50 mil
@@ -85,7 +125,7 @@ const gainPoints = () => {
 
 const critClick = () => (Math.random() < (1/5)) ? true : false; //1:5 chance
 
-const supCritClick = () => (Math.random() < (1/4)) ? true : false; //1:4 chance
+const supCritClick = () => (Math.random() < (1/4)) ?00000000 true : false; //1:4 chance
 
 const doubClick = () => (Math.random() < (1/3)) ? true : false; //1:3 chance
 
@@ -128,3 +168,4 @@ const compoundInterest = () => {
   if (highestPoints < points) highestPoints = points;
   textUpdate("points","highest-points-stat");
 }
+*/
