@@ -3,29 +3,29 @@
 <head>
   <!-- JavaScript -->
   <!-- Libraries -->
-  <script defer src="../lib/mousetrapLib.js"></script>
+  <script defer src="./lib/mousetrapLib.js"></script>
   
   <!-- Source -->
-  <script src="../src/global.js"></script>
-  <script defer type="module" src="../src/clock.js"></script>
-  <script defer type="module" src="../src/cps.js"></script>
-  <script defer type="module" src="../src/settings.js"></script>
-  <script defer type="module" src="../src/gui.js"></script>
-  <script defer type="module" src="../src/prestige.js"></script>
-  <script defer type="module" src="../src/sfx.js"></script>
-  <script defer type="module" src="../src/themes.js"></script>
-  <script defer type="module" src="../src/primary.js"></script>
-  <script defer type="module" src="../src/stats.js"></script>
+  <script src="./src/global.js"></script>
+  <script defer type="module" src="./src/clock.js"></script>
+  <script defer type="module" src="./src/cps.js"></script>
+  <script defer type="module" src="./src/settings.js"></script>
+  <script defer type="module" src="./src/gui.js"></script>
+  <script defer type="module" src="./src/prestige.js"></script>
+  <script defer type="module" src="./src/sfx.js"></script>
+  <script defer type="module" src="./src/themes.js"></script>
+  <script defer type="module" src="./src/primary.js"></script>
+  <script defer type="module" src="./src/stats.js"></script>
 
-  <script defer type="module" src="../src/main.js"></script>
+  <script defer type="module" src="./src/main.js"></script>
 
   <!-- Audio -->
-  <audio src="/assets/sounds/clickSound.wav" preload="metadata" id="click-sound"></audio>
-  <audio src="/assets/sounds/popSound.mp3" preload="metadata" id="pop-sound"></audio>
-  <audio src="/assets/sounds/longpopSound.mp3" preload="metadata" id="long-pop-sound"></audio>
+  <audio src="./assets/sounds/clickSound.wav" preload="metadata" id="click-sound"></audio>
+  <audio src="./assets/sounds/popSound.mp3" preload="metadata" id="pop-sound"></audio>
+  <audio src="./assets/sounds/longpopSound.mp3" preload="metadata" id="long-pop-sound"></audio>
 
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel="stylesheet" href="/stylesheets/themes.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <link rel="stylesheet" href="./stylesheets/themes.css">
   <title>Literally My College Final</title>
 </head>
 
@@ -52,25 +52,25 @@
       <input type="range" min="1" max="100" value="50" id="sfx-slider" class="--default -display" oninput="setSfxVolume()" onmouseup="click()" tabindex="-1">
       
       <div id="links">
-        <a href="../pages/contact.html" class="--default -link" tabindex="-1">Contact</a>
-        <a href="../pages/credit.html" class="--default -link" tabindex="-1">Credits</a>
-        <a href="../pages/thanks.html" class="--default -link" tabindex="-1">Special Thanks</a>
-        <a href="../pages/design.html" class="--default -link" tabindex="-1">Design Process</a>
+        <a href="./pages/contact.html" class="--default -link" tabindex="-1">Contact</a>
+        <a href="./pages/credit.html" class="--default -link" tabindex="-1">Credits</a>
+        <a href="./pages/thanks.html" class="--default -link" tabindex="-1">Special Thanks</a>
+        <a href="./pages/design.html" class="--default -link" tabindex="-1">Design Process</a>
       </div>
     </div>
   </div>
-  <img src="/assets/images/settings.png" alt="Settings" id="show-settings" class="--default -functional" draggable="false">
+  <img src="./assets/images/settings.png" alt="Settings" id="show-settings" class="--default -functional" draggable="false">
   <!-- #endregion -->
 
   <!-- #region | Theme -->
-  <img src="/assets/images/paletteIcon.svg.png" alt="Themes" id="show-themes" class="--default -functional" onclick="toggleThemes()" draggable="false"> 
+  <img src="./assets/images/paletteIcon.svg.png" alt="Themes" id="show-themes" class="--default -functional" onclick="toggleThemes()" draggable="false"> 
   <div id="theme-wrapper">
     <div id="loot-wrapper" class="--default -display">
       <div id="loot-label-wrapper">
         <div>Theme Points: 0</div>
         <div>I don't know </div>
       </div>
-      <div id="loot-btn" class="--default -functional">Roll For Theme Part<br />[5 Theme Points]</div>
+      <div id="loot-btn" class="--default -functional">Get Theme Part<br />[5 Theme Points]</div>
     </div>
     <div id="list-wrapper" class="--default -display">
       <div class="label">Themes</div>
