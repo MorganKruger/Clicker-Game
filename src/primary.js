@@ -96,13 +96,15 @@ const self = {
 	hoverMenuOn: true,
 	toggleHoverMenu() {
 		if (this.hoverMenuOn) {
+			const cList = hoverMenuUpgrades.classList;
+			cList.toggle("-functional", !cList.toggle("-false", false));
 			upgradePanel.style.display = ("grid");
-			hoverMenuUpgrades.style.backgroundColor = ("green");
 			hoverMenuUpgrades.innerText = ("H\r\nO\r\nV\r\nE\r\nR");
 		}
 		else {
+			const cList = hoverMenuUpgrades.classList;
+			cList.toggle("-false", !cList.toggle("-functional", false));
 			upgradePanel.style.display = ("none");
-			hoverMenuUpgrades.style.backgroundColor = ("rgb(65, 90, 65)");
 			hoverMenuUpgrades.innerText = ("");
 		}
 	},
@@ -126,11 +128,11 @@ const self = {
     return this;
   },
 	get $primaryUpgrade() {
-		primaryUpgrade.innerText = `Primary Upgrade\n(+${this.primUp.amount} Points/Click)\n[${formatNum(this.primUp.cost)} Points]`;
+		primaryUpgrade.innerText = `Primary Upgrade\n(+${formatNum(this.primUp.amount)} Points/Click)\n[${formatNum(this.primUp.cost)} Points]`;
 		return this;
 	},
 	get $secondryUpgrade() {
-		secondaryUpgrade.innerText = `Secondary Upgrade\n(+${this.secondUp.amount} Points Per Click Per Upgrade)\n[${formatNum(this.secondUp.cost)} Points]`;
+		secondaryUpgrade.innerText = `Secondary Upgrade\n(+${formatNum(this.secondUp.amount)} Points Per Click Per Upgrade)\n[${formatNum(this.secondUp.cost)} Points]`;
 		return this;
 	},
   get $interestBtn () {
@@ -139,7 +141,6 @@ const self = {
     return this;
   }
 };
-// self.$points.$mainClick.$primaryUpgrade.$secondryUpgrade;
 self.$all;
 
 clock.run(()=>{

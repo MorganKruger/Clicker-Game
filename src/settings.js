@@ -23,7 +23,8 @@ const self = {
   
 	openMenu() {
     sfxSlider.style.pointerEvents = ("all"); 
-    showSettings.style.backgroundColor = ("rgb(235, 101, 92)");
+		const cList = showSettings.classList;
+		cList.toggle("-active", !cList.toggle("-functional", false));
     settings.style.transform = ("translate(-50%,-50%)");
     primary.hoverMenuOn = false;
     self.open = true;
@@ -33,7 +34,8 @@ const self = {
   
 	closeMenu() {
     sfxSlider.style.pointerEvents = ("none"); //prevent focusing the bar(with 'tab') while it's off the screen.
-    showSettings.style.backgroundColor = ("green");
+		const cList = showSettings.classList;
+		cList.toggle("-functional", !cList.toggle("-active", false));
     settings.style.transform = ("translate(200%,-50%)");
     primary.hoverMenuOn = true;
     self.open = false;

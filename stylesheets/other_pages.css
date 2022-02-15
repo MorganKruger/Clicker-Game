@@ -1,0 +1,58 @@
+
+#wrapper {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  width: 75%;
+  height: 75%;
+}
+#wrapper nav {
+  display: grid;
+  position: relative;
+  float: left;
+  margin: 1%;
+  padding: 1%;
+  gap: 4%;
+  align-content: center;
+  height: 40%;
+  border-radius: 7px;
+  grid-template-rows: repeat(4, max-content);
+}
+
+main {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 80%;
+  height: 90%;
+}
+section p, dl {
+  margin: 1rem ;
+  padding: 2%;
+  border-radius: 7px;
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+}
+dl {
+  width: max-content;
+}
+dt {
+  margin-bottom: .5rem;
+}
+
+input {
+  border: none;
+  font-weight: bold;
+  margin-right: 1rem;
+  border-radius: 7px;
+  background-color: #dcdcdc;
+}
+input[type="submit"] {
+  padding: .5rem;
+  font-size: 1rem;
+}
+form {
+  box-shadow: 0 0 .25rem .1rem rgb(65, 90, 65);
+  padding: 1%;
+  margin: 1rem;
+  border-radius: 7px;
+}

@@ -1,18 +1,70 @@
-Hacker shows(mr.Robot and The It Crowd)
+add character count to name averager
+
+
+fix hover menu coloring
+
+finish messing with colors from the style.css "media" region + anywhere box
+shadow gets used + input menu
+
+make the "--default"'s in themes.js > themeScroll.insertAdjacentHTML() change to
+whatever the player has chosen for their color scheme
+
+remove 'onclick's from HTML
+
+design.html for design process
+
+jamf, flutter(mobile app dev)
 
 Large Numbers: illion, decillion, vigintillion, trigintillion, quadrigintillion, 
 quinquagintillion, sexagintillion, septuagintillion, octogintillion, nonagintillion,
-centillion(303)
+centillion(303 digits)
+
+add theme points
+add theme crates[-5 theme points]
+duplicates give theme points
+
+convert seconds to minutes
+
+can sound files be combined and extracted like image sprites?
+
+prestiges info label
+
+on startup, check if the database has a saved prefered theme setup. if not, set all 
+default (the initial prefered theme should be all default)
+
+on startup, set all 'let' variables to their saved values and updateText()
+
+make a cursor for each theme
+
+add prestige sound
+
+chinese theme says "Bing Chilling" on prestige
+
+put speaker icon on sound effect slider thumb
+
+make prestige shop items colored as that darker grayed out green so that you can tell
+when you can't afford them becuase of the visuals. Also then turn off the interactibility.
+
+sounds have a delay sometimes
+
+possible 'date started' stat
+
+each theme has 8 colors - interactive(green), active(red), text1(gold), text2(green),
+background(khaki), display field(light green), false(greenish-gray), completed(gold)	
+
+can't download 'Audacity' on this laptop because of the administrator settings :(
+
+prestige shop reset-purchases btn
+
+set underline in css for stats and settings menu labels 
+
+chance to get super points from loot crates
+
+favicon thingy in for the image in the corner of the tab label(.ico file type)
 
 make theme double do something
 
-pres shop info panel:label,description,values(ttlBonus,addedBonus,level(n/x))not cost
-
-balance prestige shop cost
-
 other stats scroll bar
-
-make number notations work for all number labels
 
 Make all the buttons more sensible to read so first-time users know what's going on
 
@@ -29,25 +81,35 @@ for completed theme sets.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||SETTINGS|||||
 toggle number displays (scientific notation/standard notation(commas/periods)/lettered)
-toggle sound effects(maybe a slide bar instead)
-toggle music(if there is music)
+
+music slider(if there is music)
+
+link to 4 other pages(special thanks(beta testers/dev help), asset sources for 
+copyright/thanks, my dev page, credits)
+
+reset progress
+
+hotkey settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||NEWS BAR|||||(Theme Dependent(lots of thinking))
+|||||NEWS BAR|||||	(Theme Dependent(lots of brainstorming))
 ~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||ACHIEVEMENTS|||||	
-	reach x points(x = 100^n (until 21 digits) then x = 1000^n, googleplex(END))
+|||||ACHIEVEMENTS|||||	(n = achievement level)
+	reach x points(x = 100^n (until 21 digits) then x = 1000^n, centillion(inf.)(END))
 	click x times(x = 10^n(achievement level),1mil(~40hrs:7cps)(END)			
 	complete x themes(1, 3, 5, 10, 15, 20, 30, 50, all(END))
 	prestige x times({x += n} (1,3,6,10,15,21,28,36,45,55,66,78,91,105(END)))
 	reach level x on minigame ~~~
 	reach x interest(5%,13%,25%,45%,70%,100%,200%(END))
+	playtime x seconds (60(1min),600(10min),6000(100min),18000(5hr)(END))
+	*need a super cheap achievment(there is like 200 of them; they're easy to get)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||STAT MENU|||||
 	prestige bonus		completed-theme	bonus	points/second	
 	click bonus chances	current theme		total clicks
-	chance for theme 	rythm game highscore	
+	chance for theme pt	rythm game highscore	
 	total progression((x/12PresShop)+(x/(~60)Themes)+(x/(~30)missions)~~x/115Items)
+	least clicks in one prestige
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||THEME IDEAS|||||
 	goopy/slime	retro(70s)	circuit board		old black and white
@@ -68,39 +130,34 @@ toggle music(if there is music)
 	cotton candy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||THINGS THAT CHANGE WITH THEMES|||||
-	parts of themes
 	TEXT(ie. currency, main-click text prompt, interest unlock/upgrade, 
-	COLOR SCHEME(ie. background, text, and borders)
-	SFX(ie. main click, prestige, main upgrade, upgrade upgrade, upgrade interest)
+	COLOR SCHEME(ie. bg, text1, text2, locked, interactable, display-field, active)
+	SFX(ie. main-click, purchase, fail, menu-toggle)
+	IMAGES(ie. cursor, bg image, 1-time clickable)
+
 	MUSIC(!this is a lot of work!)(Deprecated)
 	PARTICLES(if any)(Deprecated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||PERK SHOP IDEAS|||||
-	Bonus click effects(quad click + combo bonus(fast clicks=multiplier(this 
-	incentivises AC so maybe not)) They all stack on eachother)
+	Unlock cps counter?(Deprecated)
 
-	increase power points gain(prestigePointsGain += 1) [-5 power points] 
-	x/10 levels, price += 5
-	
-	reduce cost-increase(main upgrade, upgrade upgrade, and interest upgrade)
-	Unlock cps counter?(ABSOLUTELY NOT)
+	unlock 1-time clickables. random location. there's only 1. display is 
+	toggled[none:all], becomes visible upon unlock and 1-5 minutes after it is 
+	clicked. reward: score *= prestigeAmt or Click value*100*prestige amt
+	might look like smaller version of the main click button. [-7 super points]
 
-	unlock 1-time clickables. 1% spawn chance each second? (random/set 
-	location? Click value*100*prestige amt?). 
+	theme bonus becomes compounding instead of additive [-10 super points]
 
-	double theme items from boxes
-
-	theme bonus becomes compounding instead of linear
-
-	upgradeable chance for "theme points" 0/5 to open a box
+	upgradeable chance for "theme points" from main click 0/5 to open a box
 
 	further the crit and super crit by allowing to upgrade them individually
+
+	gain x% income based on total prestige points 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||PRESTIGE IDEAS|||||
 	increase effectiveness of the mainUpgrade, upgradeUpgrade, and maybe of the interest upgrade
-	2 new tabs(prestige shop, themes)
-	each prestige gives 5 prestige points(second currency for permenant upgrades)
 	flat permenant bonus(+5% income)
+
 	unlocks minigame
 		aim trainer**
 		rythm game*** (this is a good idea)
@@ -112,7 +169,13 @@ toggle music(if there is music)
 		slime eat:grow thingy
 		top-down stationary shooter
 
-	unlocks themes
-	collect different colored prestige trophies(0/6)
+	collect different colored prestige trophies(0/6) (Deprecated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+|||||ASSETS|||||
+https://game-icons.net/1x1/lorc/cog.html#download - settingsIcon
+https://mixkit.co/free-sound-effects/pop/ - hard pop click
+https://commons.wikimedia.org/wiki/File:Paint_palette_icon_from_the_Noun_Project.svg - paletteIcon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+

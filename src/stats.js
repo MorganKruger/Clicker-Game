@@ -33,7 +33,8 @@ const self = {
 	},
 
 	openMenu() {
-		showStatsBtn.style.backgroundColor = ("rgb(235, 101, 92)");
+		const cList = showStatsBtn.classList;
+		cList.toggle("-active", !cList.toggle("-functional", false));
 		statsWrapper.style.transform = ("translate(-50%,-50%)");
 		primary.hoverMenuOn = false;
 		this.open = true;
@@ -42,7 +43,8 @@ const self = {
 	},
 
 	closeMenu() {
-		showStatsBtn.style.backgroundColor = ("green");
+		const cList = showStatsBtn.classList;
+		cList.toggle("-functional", !cList.toggle("-active", false));
 		statsWrapper.style.transform = ("translate(-50%,-200%)");
 		primary.hoverMenuOn = true;
 		this.open = false;

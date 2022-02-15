@@ -1,10 +1,14 @@
+## Morgan (10) : v0.6.0
+- Added links to 4 other pages in the settings menu(for assignment criteria) 
+- Turned in the assignment 
+- Created color schemes for themes + theme changing functionality
+
 ## Morgan (9) : v0.5.0
 - Remodeled backend to modular approach
 - Organized code(fold philosophy - Jacoby)
 - Shrank upgrade panel height
 - Redesigned Theme Menu
 - Broke prestige info menu
-
 
 ## Morgan (8) : v0.4.3
 - Made "HOVER" text disapear while a gui is open

@@ -27,7 +27,7 @@ const self = {
   open: false,
 
   cost: 50000000, // 50M
-  points: 190, // prestige points
+  points: 999, // prestige points
   gain: 5,
 
   startingPoints: {
@@ -56,7 +56,7 @@ const self = {
     lvl: 0,
     unlocked: false,
     maxed: false,
-    cost: 1,
+    cost: 2,
   },
   themeDouble: { 
     maxed: false,
@@ -77,7 +77,8 @@ const self = {
 	},
 
 	openMenu() {
-    showPrestShopBtn.style.backgroundColor = ("rgb(235, 101, 92)");
+		const cList = showPrestShopBtn.classList;
+		cList.toggle("-active", !cList.toggle("-functional", false));
     prestShop.style.transform = ("translate(-50%,-50%)");
     prestShopInfo.style.transform = ("translate(0%, -50%)");
     primary.hoverMenuOn = false;
@@ -87,8 +88,8 @@ const self = {
 	},
 
 	closeMenu() {
-		showPrestShopBtn.style.backgroundColor = ("green");
-    prestShop.style.transform = ("translate(-200%,-50%)");
+		const cList = showPrestShopBtn.classList;
+		cList.toggle("-functional", !cList.toggle("-active", false));    prestShop.style.transform = ("translate(-200%,-50%)");
     prestShopInfo.style.transform = ("translate(110%, -50%)");
     primary.hoverMenuOn = true;
     self.open = false;
@@ -102,34 +103,34 @@ const self = {
     this.points -= this.startingPoints.cost;
     this.startingPoints.cost += 1;
     if (this.startingPoints.lvl >= 8) {
+      const cList = unlockStartingPoints.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.startingPoints.maxed = true;
-      unlockStartingPoints.style.backgroundColor = "gold";
-      unlockStartingPoints.style.color = "green";
     } 
     this.$unlockStartingPoints.$prestigePoints;
   },
   buyCrit() {
     if (maxedAndCost(this.crit)) return;
     if (this.crit.unlocked) {
+      const cList = unlockCrit.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.crit.maxed = true;
       this.points -= this.crit.cost;
-      unlockCrit.style.backgroundColor = "gold";
-      unlockCrit.style.color = "green";
       this.$unlockCrit.$prestigePoints;
     } else {
       this.points -= this.crit.cost;
       this.crit.unlocked = true;
-      this.crit.cost += 3; // this next used to buy supCrit
+      this.crit.cost += 3; // supCrit cost
       this.$unlockCrit.$prestigePoints;
     }
   },
   buyDoub() {
     if (maxedAndCost(this.doub)) return;
     if (this.doub.unlocked) {
+      const cList = unlockDoub.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.doub.maxed = true;
       this.points -= this.doub.cost;
-      unlockDoub.style.backgroundColor = "gold";
-      unlockDoub.style.color = "green";
       this.$unlockDoub.$prestigePoints;
     } else {
       this.points -= this.doub.cost;
@@ -144,9 +145,9 @@ const self = {
     this.points -= this.costReduce.cost;
     this.costReduce.rate = .95 ** this.costReduce.lvl;  
     if (this.costReduce.lvl >= 10) {
+      const cList = unlockCostReduce.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.costReduce.maxed = true;
-      unlockCostReduce.style.backgroundColor = "gold";
-      unlockCostReduce.style.color = "green";
     }
     this.$unlockCostReduce.$prestigePoints;
   },
@@ -156,18 +157,18 @@ const self = {
     this.points -= this.morePoints.cost;
     this.gain += 1;
     if (this.morePoints.lvl >= 15) {
+      const cList = unlockMorePrestigePoints.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.morePoints.maxed = true;
-      unlockMorePrestigePoints.style.backgroundColor = "gold";
-      unlockMorePrestigePoints.style.color = "green";
     }
     this.$unlockMorePrestigePoints.$prestigePoints;
   },
   buyThemeDouble() {
     if (maxedAndCost(this.themeDouble)) return;
-    unlockThemeDouble.style.backgroundColor = "gold";
-    unlockThemeDouble.style.color = "green";
-    this.points -= this.themeDouble.cost;
+    const cList = unlockThemeDouble.classList;
+    cList.toggle("-full", !cList.toggle("-functional", false));
     this.themeDouble.maxed = true;
+    this.points -= this.themeDouble.cost;
     this.$unlockThemeDouble.$prestigePoints;
   },
   buyTertiaryUpgrade() {
@@ -176,10 +177,10 @@ const self = {
     this.points -= this.tertUp.cost;
     this.tertUp.cost += 1;
     primary.secondUp.amount *= 2;
-    if (this.tertUp.lvl >= 10) {
+    if (this.tertUp.lvl >= 20) {
+      const cList = unlockTertiaryUpgrade.classList;
+      cList.toggle("-full", !cList.toggle("-functional", false));
       this.tertUp.maxed = true;
-      unlockTertiaryUpgrade.style.backgroundColor = "gold";
-      unlockTertiaryUpgrade.style.color = "green";
     }
     this.$unlockTertiaryUpgrade.$prestigePoints;
     primary.$secondryUpgrade;
@@ -245,9 +246,9 @@ const self = {
   },
   get $unlockMorePrestigePoints() {
     if (this.morePoints.maxed) {
-      unlockMorePrestigePoints.innerText = `Starting Points Maximized\n[${this.morePoints.lvl}/15 Complete]`;
+      unlockMorePrestigePoints.innerText = `Prestige Points Maximized\n[${this.morePoints.lvl}/15 Complete]`;
     } else {
-      unlockMorePrestigePoints.innerText = `Double Starting Points\n[${this.morePoints.lvl}/15 Complete]\n[${this.morePoints.cost} Super Points]`;
+      unlockMorePrestigePoints.innerText = `Increase Prestige Point Gain\n[${this.morePoints.lvl}/15 Complete]\n[${this.morePoints.cost} Super Points]`;
     }
     return this;
   },
@@ -259,9 +260,9 @@ const self = {
   },
   get $unlockTertiaryUpgrade() {
     if (this.tertUp.maxed)
-      unlockTertiaryUpgrade.innerText = `Tertiary Upgrade Maximized\n[${this.tertUp.lvl}/10 Complete]`;
+      unlockTertiaryUpgrade.innerText = `Tertiary Upgrade Maximized\n[${this.tertUp.lvl}/20 Complete]`;
     else 
-      unlockTertiaryUpgrade.innerText = `Increase Tertiary Upgrade\n[${this.tertUp.lvl}/10 Complete]\n[${this.tertUp.cost} Super Points]`;
+      unlockTertiaryUpgrade.innerText = `Increase Tertiary Upgrade\n[${this.tertUp.lvl}/20 Complete]\n[${this.tertUp.cost} Super Points]`;
     return this;
   },
 

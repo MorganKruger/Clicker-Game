@@ -18,7 +18,7 @@ const self = {
   },
   menuToggle() {
     popSound.volume = this.sfxVolume / 100;
-    popSound.currentTime = 0.12;
+    popSound.currentTime = 0.125;
     popSound.play();
   },
   purchase() {
