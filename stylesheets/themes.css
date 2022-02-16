@@ -517,26 +517,26 @@
 
 
 .--spring.-link:link, .--spring.-link:visited, .--spring.-link:hover {
-  color: #2d0238;
+  color: #e2c9e9;
 }
 .--spring.-functional, .--spring.-link {
-  background: linear-gradient(180deg, #c22894 0%, #a31d7b 10% 90%, #861464 100%);
-  color: #2d0238;
+  background: linear-gradient(180deg, #c22894 0%, #861464 100%);
+  color: #e2c9e9;
 }
 .--spring.-display, .--spring.-functional:active, .--spring.-link:active {
-  background: linear-gradient(180deg, #d754db 0%, #c146c5 20% 80%, #ad35b1 100%);
+  background: linear-gradient(180deg, #b940bd 0%, #a54da8 100%);
 }
 .--spring.-active {
   background: linear-gradient(180deg, #16c016 0%, #0da80d 10% 90%, #089408 100%);
 }
 .--spring.-false {
-  background: linear-gradient(135deg, #8436a8 0%, #2ca52c 100%);
+  background: linear-gradient(135deg, #c372e9 0%, #daadd6 100%);
 }
 .--spring.-full {
   background: radial-gradient(circle, #e2b4ee 60%, #d376eb 100%);
 }
 .--spring.-body {
-  background: linear-gradient(5deg, #549735 0% 30%, #cea49d 31% , #7d578d 100%);
+  background: linear-gradient(5deg, #33631d 0%, #5cbe2e 30%, #cea49d 31% , #7d578d 100%);
   color: #2d0238;
 }
 
@@ -563,4 +563,29 @@
 .--summer.-body {
   background: linear-gradient(5deg, #2a6d0b 0% 30%, #66a5da 31% , #657eac 100%);
   color: #2d0238;
+}
+
+
+.--fall.-link:link, .--fall.-link:visited, .--fall.-link:hover {
+  color: #2d0238;
+}
+.--fall.-functional, .--fall.-link {
+  background: linear-gradient(180deg, #da791e 0%, #ca6b13 100%);
+  color: #2d0238;
+}
+.--fall.-display, .--fall.-functional:active, .--fall.-link:active {
+  background: linear-gradient(180deg, #be2e0a 0%, #b64e08 100%);
+}
+.--fall.-active {
+  background: linear-gradient(180deg, #be9e11 0%, #e2b900 100%);
+}
+.--fall.-false {
+  background: linear-gradient(135deg, #442e0e 0%, #57290b 100%);
+}
+.--fall.-full {
+  background: linear-gradient(#9e300e 0%, #a71907 50%);
+}
+.--fall.-body {
+  background: linear-gradient(5deg, #9e650e 0%,#4a5a1f 30%, #7eb3df 31% , #5d7db9 100%);
+  color: #2c1904;
 }

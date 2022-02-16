@@ -1,5 +1,6 @@
 ## Morgan (11) : v0.6.1
 - Found out index.html must be outside of the pages folder + some files still need relative paths
+- Added 1 theme
 
 ## Morgan (10) : v0.6.0
 - Added links to 4 other pages in the settings menu(for assignment criteria) 

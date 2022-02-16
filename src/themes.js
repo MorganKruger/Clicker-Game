@@ -278,6 +278,16 @@ const self = {
         pts: "", //+ a few more things
       },
     },
+    fall: {  
+      sfx: {
+        click: "",
+        purchase: "",
+        menuToggle: "",
+      },
+      txt: {
+        pts: "", //+ a few more things
+      },
+    },
   },
 };
 
