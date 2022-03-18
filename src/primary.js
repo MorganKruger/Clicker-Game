@@ -28,13 +28,13 @@ const initOnClicks = ()=>{
 		self.points += tempGain;
 		self.$points;
 
-		sfx.click();
-
+		
 		if (stats.highestPointsOneClick < tempGain) stats.highestPointsOneClick = tempGain;
 		if (stats.highestPoints < self.points) stats.highestPoints = self.points;
-
 		stats.clicks++;
-		stats.$clicks.$highestPoints.$highestPointsOneClick;		
+		stats.$clicks.$highestPoints.$highestPointsOneClick;
+
+		sfx.click();
 	};
 
 	primaryUpgrade.onclick = ()=>{
@@ -73,8 +73,9 @@ const initOnClicks = ()=>{
 };
 
 const self = {
-	points: 100000000, // 0
+	points: 0, // 0
 	gain: 1,
+
   primUp: {
 		cost: 10,
     amount: 1
@@ -87,7 +88,7 @@ const self = {
 		unlocked: false,
 		unlockCost: 100000, // 100k
     cost: 250000, // 250k
-		rate: 0,
+		rate: 0, // rate of gain per second
     amount: .001,
 	},
 
@@ -124,7 +125,7 @@ const self = {
 		return this;
 	},
   get $mainClick() {
-    mainClick.innerText = `Click This: +${formatNum(self.gain)} Points`
+    mainClick.innerText = `Click This: +${formatNum(self.gain)} Points`;
     return this;
   },
 	get $primaryUpgrade() {
@@ -146,9 +147,8 @@ self.$all;
 clock.run(()=>{
 	self.points *= 1 + self.interest.rate;
 	self.$points;
-
-	if (stats.highestPoints < self.points) stats.highestPoints = self.points;
-	stats.$highestPoints;
+	if (stats.highestPoints < self.points) stats.highestPoints = self.points; stats.$highestPoints;
+	if (self.points >= Infinity) console.log("not infinity you're good to go")
 }); 
 
 export default self;

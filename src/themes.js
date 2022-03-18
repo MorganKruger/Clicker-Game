@@ -1,41 +1,51 @@
-// import self from "./clock.js";
 import primary from "./primary.js";
+import prestige from "./prestige.js";
 import sfx from "./sfx.js";
 
 const showThemes = $("#show-themes");
 const wrapper = $("#theme-wrapper");
+const buyThemeBtn = $("#buy-theme-btn");
+const themeResultLabel = $("#theme-result-label");
 /** @type {HTMLElement} */
 const themeScroll = $("#theme-scroll");
+
+buyThemeBtn.onclick = ()=> {if (prestige.points.$ >= 5) self.buyTheme();}
 
 showThemes.onclick = ()=> self.toggleMenu();
 
 const createThemeDivs = ()=> Object.keys(self.themes).forEach(entry => {
-  
-  themeScroll.insertAdjacentHTML("beforeend", 
-  `<div class="theme-item --default -display"><span>${entry}</span>
-    <div class="theme-item-buttons">
-      <div class="theme-color --default -functional">&#128396</div>
-      <div class="theme-sfx --default -functional">&#9834</div>
-      <div class="theme-txt --default -functional">&#119983</div>
-    </div>
-  </div>`
-  );
+  themeScroll.insertAdjacentHTML("beforeend", `<div id="${entry}-theme" class="theme-item --default -false"><span>${entry}</span></div>`);
   const colorBtn = themeScroll.children[themeScroll.children.length - 1];
-  colorBtn.onclick = ()=>{
-    const newClass = `--${entry}`;
-    const currentClass = `--${self.currentTheme}`
-    const elems = $all("." + currentClass);
-    [].slice.call(elems).forEach(element => { 
-      element.classList.remove(currentClass);
-      element.classList.add(newClass);
-    });
-    self.currentTheme = entry;
+  $("#default-theme").classList.remove("-false"); // make sure the default theme has an -active class
+  $("#default-theme").classList.add("-active");
+
+  colorBtn.onclick = ()=>{ 
+    if (colorBtn.classList.contains("-functional")) {
+      const cList = $(`#${self.currentTheme}-theme`).classList;
+      cList.toggle("-functional", !cList.toggle("-active", false)); //set class of old theme's button to -functional
+
+      const newCList = $(`#${entry}-theme`).classList;
+      newCList.toggle("-active", !newCList.toggle("-functional", false)); //set class of new theme's button to -active
+
+      const newClass = `--${entry}`;
+      const currentClass = `--${self.currentTheme}`;
+      const elems = $all("." + currentClass); //give all elements the new class
+
+      [].slice.call(elems).forEach(element => { 
+        element.classList.remove(currentClass);
+        element.classList.add(newClass);
+      });
+      self.currentTheme = entry;
+      sfx.purchase();
+    }
   }
 });
 
 const self = {
   open: false,
-
+  newThemeName: "default",
+  newThemeName2: "default",
+  
   // Functions
   toggleMenu() {
     const isOpen = this.open;
@@ -52,7 +62,7 @@ const self = {
 		sfx.menuToggle();
 	},
 	closeMenu() {
-		const cList = showThemes.classList;
+    const cList = showThemes.classList;
 		cList.toggle("-functional", !cList.toggle("-active", false));
     wrapper.style.transform = ("translateY(200%)");
     primary.hoverMenuOn = true;
@@ -61,297 +71,80 @@ const self = {
 		sfx.menuToggle();
 	},
   
+  buyTheme() {
+    prestige.points.update(v => v - 5);
+    this.newThemeName = Object.keys(this.themes)[Math.floor(Object.keys(this.themes).length * Math.random())];
+    let newThemeBtn = $(`#${this.newThemeName}-theme`)
+    if (newThemeBtn.classList.contains("-false")) {
+      newThemeBtn.classList.remove("-false");
+      newThemeBtn.classList.add("-functional");
+      this.themeBonus += .05;
+    } else {
+      prestige.moreThemeReturns.maxed ? prestige.points.update(v => v + 3) : prestige.points.update(v => v + 2);
+    }
+    if (prestige.themeDouble.maxed) {
+      this.newThemeName2 = Object.keys(this.themes)[Math.floor(Object.keys(this.themes).length * Math.random())];
+      let newThemeBtn = $(`#${this.newThemeName2}-theme`)
+      if (newThemeBtn.classList.contains("-false")) {
+        newThemeBtn.classList.remove("-false");
+        newThemeBtn.classList.add("-functional"); 
+        this.themeBonus += .05;
+      } else {
+        prestige.moreThemeReturns.maxed ? prestige.points.update(v => v + 3) : prestige.points.update(v => v + 2);
+      }
+    }
+    this.$themeResultLabel;
+    prestige.$prestigePoints;
+    sfx.purchase();
+  },
+  
   // Themes
   currentTheme: "default",
   themes: {
-    default: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    red: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "",
-        // thing: "",
-        // thing: "",
-        // thing: "",
-        // thing: "",
-      },
-    },
-    orange: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    yellow: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    green: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    blue: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    purple: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    pink: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    brown: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    gray: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    retro: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    goopy: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    candy: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    royal: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    modern: { 
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    toxic: {  //like my ex
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    bubbly: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    merica: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    winter: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    spring: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    summer: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
-    fall: {  
-      sfx: {
-        click: "",
-        purchase: "",
-        menuToggle: "",
-      },
-      txt: {
-        pts: "", //+ a few more things
-      },
-    },
+    default: {},
+    red: {},
+    orange: {},
+    yellow: {},
+    green: {},
+    blue: {},
+    purple: {},
+    pink: {},
+    brown: {},
+    gray: {},
+    white: {},
+    black: {},
+    empty: {},
+    clear: {},
+    retro: {},
+    goopy: {},
+    candy: {},
+    royal: {},
+    modern: {},
+    toxic: {},
+    bubbly: {},
+    merica: {},
+    winter: {},
+    spring: {},
+    summer: {},
+    fall: {},
   },
+
+  // Getters
+	get $all() {
+		for (const k in this) {
+			if (!Object.hasOwnProperty.call(this, k)) return;
+			if (k == "$all" || k[0] != "$") continue;
+			this[k];
+		}
+		return this;
+	},
+
+  get $themeResultLabel() {
+    prestige.themeDouble.maxed ? themeResultLabel.innerText = `You Got The "${this.newThemeName}" And "${this.newThemeName2}" Themes` : themeResultLabel.innerText = `You Got The "` + this.newThemeName + `" Theme`;
+		return this;
+	},
 };
 
 createThemeDivs();
 
 export default self;
-
-
-
-// window.onload = setTheme();
-
-// const setTheme = () => {
-  //   customTheme.colorScheme.functionalColor = .default.colorscheme[0];
-  //   customTheme.colorScheme.displayFieldColor = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.text1Color = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.text2Color = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.activeColor = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.falseColor = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.bgColor = themes.default.colorscheme[0];
-  //   customTheme.colorScheme.completedColor = themes.default.colorscheme[0];
-
-//   gid("functional-color-sample").style.backgroundColor = (customTheme.colorScheme.functionalColor);
-//   gid("display-field-color-sample").style.backgroundColor = (customTheme.colorScheme.displayFieldColor);
-//   gid("text1-color-sample").style.backgroundColor = (customTheme.colorScheme.text1Color);
-//   gid("text2-color-sample").style.backgroundColor = (customTheme.colorScheme.text2Color);
-//   gid("active-color-sample").style.backgroundColor = (customTheme.colorScheme.activeColor);
-//   gid("false-color-sample").style.backgroundColor = (customTheme.colorScheme.falseColor);
-//   gid("bg-color-sample").style.backgroundColor = (customTheme.colorScheme.bgColor);
-//   gid("completed-color-sample").style.backgroundColor = (customTheme.colorScheme.completedColor);
-
-  //then sound effect samples
-
-  //then text sample(new name for score)
-// }
-
-/* 
-customTheme = {
-  colorScheme: {
-    functionalColor: "",
-    displayFieldColor: "", 
-    text1Color: "",
-    text2Color: "",
-    activeColor: "",
-    falseColor: "",
-    bgColor: "",
-    completedColor: ""
-  },
-  
-  soundEffects: {
-    clickSound: "",
-    menuToggleSound: "",
-    purchaseSound: "",
-    prestigeSound: "" // Doesn't exist
-  },
-  
-  themedText: {
-    scoreName: "",
-    up1Name: "",
-    up2Name:"",
-    up3Name:"",
-    interestName:"",
-    presName: "",
-    mainClickText: "",
-    otherStatsText: ""
-  }
-}
-*/

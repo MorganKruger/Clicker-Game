@@ -1,3 +1,13 @@
+## Morgan (12) : v0.7.0
+- Revamped + Created Themes
+- Themes only include colors
+- Themes are bought for super points
+- Added prestige shop items
+- Added some stats
+- Fixed prestige shop item descriptions
+- Changed icons for settings and themes
+- Added 'debug mode' for development
+
 ## Morgan (11) : v0.6.1
 - Found out index.html must be outside of the pages folder + some files still need relative paths
 - Added 1 theme

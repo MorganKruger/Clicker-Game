@@ -9,7 +9,6 @@ const statElems = $all("#stats .stat");
 
 showStatsBtn.onclick = ()=> self.toggleMenu();
 
-
 const self = {
 	open: false,
 	
@@ -20,10 +19,11 @@ const self = {
 	fastestPrestige: Infinity, // 4
 	highestPoints: 0,          // 5
 	highestPointsOneClick: 0,  // 6
+	highestPointsUberClick: 0,  // 7
 	
 	time: 0,
 	clicks: 0,
-	prestigeAmt: 0,
+	// prestigeAmt: 0,
 	
 	// Functions
 	toggleMenu() {
@@ -74,12 +74,11 @@ const self = {
 		statElems[2].innerText = `Highest Clicks/Second: ${this.highestCps}`;
 		return this;
 	},
-	get $totalPrestiges() {
-		// statElems[3].innerText = `Times Prestiged: ${this.totalPrestiges}`;
+	get $startDate() {
+		statElems[3].innerText = `Starting Date: ${new Date().toDateString()}`;
 		return this;
 	},
 	get $fastestPrestige() {
-		// if inifinity set text to something else
 		statElems[4].innerText = `Fastest Prestige: ${(!isFinite(this.fastestPrestige))? "N/A" : `${this.fastestPrestige} seconds`}`;
 		return this;
 	},
@@ -91,13 +90,20 @@ const self = {
 		statElems[6].innerText = `Highest Points In One Click: ${formatNum(this.highestPointsOneClick)}`;
 		return this;
 	},
-	
-	get $clicks() {
-		statElems[7].innerText = `Total Clicks: ${formatNum(this.clicks)}`
+	get $highestPointsUberClick() {
+		statElems[7].innerText = `Highest Points From Uber Click: ${formatNum(this.highestPointsUberClick)}`;
 		return this;
 	},
-	get $prestigeAmt() {
-		statElems[8].innerText = `Total Prestiges: ${formatNum(this.totalPrestiges)}`
+	get $clicks() {
+		statElems[8].innerText = `Total Clicks: ${formatNum(this.clicks)}`
+		return this;
+	},
+	get $totalPrestiges() {
+		statElems[9].innerText = `Total Prestiges: ${formatNum(this.totalPrestiges)}`
+		return this;
+	},
+	get $uberClickValue() {
+		statElems[10].innerText = `Uber Click Value: X${formatNum(Math.round(50 * 1.175 ** this.totalPrestiges))}`
 		return this;
 	},
 	get $time() {

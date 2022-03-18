@@ -18,3 +18,32 @@ const formatNum = (num, i=0, past_thresh=false)=>{
 
 let closeAllMenus = ()=>{
 }
+
+class Reactive {
+  constructor(val) {
+      this.$ = val;
+      /** @type Function[] */
+      this.subs = [];
+  }
+  set(val) {
+      this.$ = val;
+      this.react();
+  }
+  update(func) {
+      this.$ = func(this.$);
+      this.react();
+  }
+  sub(func) {
+      func(this.$);
+      this.subs.push(func);
+      return ()=>{
+          this.subs.splice(this.subs.indexOf(func), 1);
+      }
+  }
+  react() {
+      for (let i = 0; i < this.subs.length; i++) {
+          const func = this.subs[i];
+          func(this.$);
+      }
+  }
+}

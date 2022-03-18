@@ -13,6 +13,12 @@ closeAllMenus = ()=>{
   themes.closeMenu();
 }
 
+if (window.location.hostname === "127.0.0.1") {
+  prestige.points.set(1234);
+  primary.points = 123456789;
+  primary.$points;
+}
+
 /*
 Mousetrap.bind('d', function (e) { toggleSettings() });
 

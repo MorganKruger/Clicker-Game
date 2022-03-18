@@ -35,7 +35,7 @@
   <div class="stat --default -display" id="clock">Seconds: 0</div>
   <div class="stat --default -display" id="cps">Clicks/Second: 0</div> 
   
-  <div id="main-click" class="--default -functional" onclick="gainPoints(), clickSound()">Click This: +1 Points</div>
+  <div id="main-click" class="--default -functional">Click This: +1 Points</div>
   <!-- #endregion -->
   
   <!-- #region | Hover Menu -->
@@ -59,18 +59,19 @@
       </div>
     </div>
   </div>
-  <img src="./assets/images/settings.png" alt="Settings" id="show-settings" class="--default -functional" draggable="false">
+  <div id="show-settings" class="--default -functional">&#9187;</div>
   <!-- #endregion -->
 
   <!-- #region | Theme -->
-  <img src="./assets/images/paletteIcon.svg.png" alt="Themes" id="show-themes" class="--default -functional" onclick="toggleThemes()" draggable="false"> 
+  <div id="show-themes" class="--default -functional">&#128396;</div>
   <div id="theme-wrapper">
-    <div id="loot-wrapper" class="--default -display">
-      <div id="loot-label-wrapper">
-        <div>Theme Points: 0</div>
-        <div>I don't know </div>
+    <div id="buy-theme-wrapper" class="--default -display">
+      <div id="themes-super-point-count">Theme Points: 0</div>
+      <div id="new-theme-wrapper">
+        <div id="buy-theme-btn" class="--default -functional">Get Random Theme<br>[5 Theme Points]</div>
+        <div id="theme-result-label"></div>
+        <sub>*you regain some points for duplicates*</sub>
       </div>
-      <div id="loot-btn" class="--default -functional">Get Theme Part<br />[5 Theme Points]</div>
     </div>
     <div id="list-wrapper" class="--default -display">
       <div class="label">Themes</div>
@@ -83,17 +84,17 @@
   <div id="stats" class="--default -display">
     <div class="label">Statistics</div>
     <div id="stat-list" class="display">
-      <div class="stat" id="interest-rate-stat">Interest Rate: +0.0%</div>
-      <div class="stat" id="ttl-time-stat">Total Time: 0 Seconds</div>
-      <div class="stat" id="highest-cps-stat">Highest Clicks/Second: 0</div>
-      <div class="stat" id="ttl-prestige-stat">item 4</div>
-      <div class="stat" id="fastest-prestige-stat">Fastest Prestige: N/A</div>
-      <div class="stat" id="highest-points-stat">Highest Points: 0</div>
-      <div class="stat" id="highest-single-click-points-stat">Highest Points In One Click: 0</div>
-      <div class="stat">item 8</div>
-      <div class="stat">item 9</div>
-      <div class="stat">item 10</div>
-      <div class="stat">item 11</div>
+      <div class="stat">Interest Rate: +0.0%</div>
+      <div class="stat">Total Time: 0 Seconds</div>
+      <div class="stat">Highest Clicks/Second: 0</div>
+      <div class="stat">Date Started: N/A</div>
+      <div class="stat">Fastest Prestige: N/A</div>
+      <div class="stat">Highest Points: 0</div>
+      <div class="stat">Highest Points In One Click: 0</div>
+      <div class="stat">Highest Points From Uber Click: 0</div>
+      <div class="stat">Total Clicks: 0</div>
+      <div class="stat">Total Prestiges: 0</div>
+      <div class="stat">Uber Click Value: N/A</div>
       <div class="stat">item 12</div>
     </div>
   </div>
@@ -105,16 +106,16 @@
   <div id="prestige-shop" class="--default -display">
     <div id="prestige-points">Siuuuuuu Points: 0</div>
     <div class="label">Prestige Shop</div>
-    <div class="btn --default -functional" id="unlock-starting-points" onclick="buyStartingPoints()">Unlock Starting Points<br>[0/8 Complete]<br>[2 Super Points]</div>
-    <div class="btn --default -functional" id="unlock-crit" onclick="buyCrit()">Unlock Critical Clicks<br>[0/2 Complete]<br>[2 Super Points]</div>
-    <div class="btn --default -functional" id="unlock-double" onclick="buyDoub()">Unlock Double Clicks<br>[0/2 Complete]<br>[3 Super Points]</div> 
-    <div class="btn --default -functional" id="unlock-cost-reduce" onclick="buyCostReduce()">Unlock Cost Reduction<br>[0/10 Complete]<br>[3 Super Points]</div>
-    <div class="btn --default -functional" id="unlock-more-prestige-points" onclick="buyMorePrestigePoints()">Unlock More Super Points<br>[0/15 Complete]<br>[3 Super Points]</div>
-    <div class="btn --default -functional" id="unlock-tertiary-upgrade" onclick="buyTertiaryUpgrade()">Unlock Tertiary Upgrade<br>[0/20 Complete]<br>[1 Super Points]</div>
-    <div class="btn --default -functional">item 8</div>
-    <div class="btn --default -functional">item 9</div>
+    <div class="btn --default -functional" id="unlock-starting-points">Unlock Starting Points<br>[0/8 Complete]<br>[2 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-crit">Unlock Critical Clicks<br>[0/2 Complete]<br>[2 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-double">Unlock Double Clicks<br>[0/2 Complete]<br>[3 Super Points]</div> 
+    <div class="btn --default -functional" id="unlock-cost-reduce">Unlock Cost Reduction<br>[0/10 Complete]<br>[3 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-more-prestige-points">Unlock More Super Points<br>[0/15 Complete]<br>[3 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-tertiary-upgrade">Unlock Tertiary Upgrade<br>[0/20 Complete]<br>[1 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-uber-btn">Unlock Uber Clicks<br>[0/1 Complete]<br>[10 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-more-duplicate-theme-returns">Unlock More Duplicate-Theme Returns<br>[0/1 Complete]<br>[100 Super Points]</div>
     <div class="btn --default -functional">item 10</div>
-    <div class="btn --default -functional" id="unlock-theme-double" onclick="buyThemeDouble()">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[20 Super Points]</div>
+    <div class="btn --default -functional" id="unlock-theme-double">Unlock Double Theme Rewards<br>[0/1 Complete]<br>[20 Super Points]</div>
     <div class="btn --default -functional">item 11</div>
     <div class="btn --default -functional">item 12</div>
   </div>
@@ -122,8 +123,7 @@
   <div id="prestige-shop-info" class="--default -display">
     <div id="prestige-info-label">Prestige Info</div>
     <div id="description-box">
-      <!-- <p>Hover over a shop item to see more details here.</p> -->
-      <p>This info menu is broken right now so just guess what the upgrades do.</p>
+      <p>Hover over a shop item to see more details here.</p>
     </div>
   </div>
   
@@ -138,6 +138,7 @@
     <div class="btn  --default -functional" id="prestige-btn" onclick="prestige()">Prestige<br>[50M Points]</div>
   </div>
   <!-- #endregion -->
+  <div id="uber-btn" class="--default -full">&#10026;</div>
 </body>
 
 </html>
