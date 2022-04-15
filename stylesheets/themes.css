@@ -14,7 +14,7 @@
   margin: 0 0.25rem;
   color: black;
 }
-.-functional, .-link, .-display, .-full, .-active {
+.-functional, .-link, .-display, .-full, .-active, .-false {
   border-radius: 7px;
 }
 
@@ -330,6 +330,223 @@ background-color: #800000;
 }
 
 
+.--neon.-link:link, .--neon.-link:visited, .--neon.-link:hover {
+  color: #00ff00;
+}
+.--neon.-functional, .--neon.-link, .--neon.-full:active {
+  background-color: #000000;
+  border: solid 1px #00ff00;
+  color: #00ff00;
+  text-shadow: 0 0 1rem #00ff00;
+}
+.--neon.-display, .--neon.-functional:active, .--neon.-active:active, .--neon.-link:active {
+  background-color: #000000;
+  border: solid 1px #fffb00;
+  color: #fffb00;
+  text-shadow: 0 0 1rem #fffb00;
+}
+.--neon.-false {
+  background-color: #000000;
+  border: solid 1px #ff0000;
+  color: #ff0000;
+  text-shadow: 0 0 1rem #ff0000;
+}
+.--neon.-full, .--neon.-false:active {
+  background-color: #000000;
+  border: solid 1px #d400ff;
+  color: #d400ff;
+  text-shadow: 0 0 1rem #d400ff;
+}
+.--neon.-active {
+  background-color: #000000;
+  border: solid 1px #00ffff;
+  color: #00ffff;
+  text-shadow: 0 0 1rem #00ffff;
+}
+.--neon.-body {
+  background-color: #000;
+  color: #fff;
+}
+.--neon.-functional:hover, .--neon.-link:hover, .--neon.-full:hover {
+  box-shadow: 0 0 .25rem .1rem #fff4;
+}
+
+
+.--rgb.-link:link, .--rgb.-link:visited, .--rgb.-link:hover {
+  color: #00ff00;
+}
+.--rgb.-functional, .--rgb.-link, .--rgb.-full:active {
+  background-color: #005a00;
+  border: solid 1px #00ff00;
+  color: #00ff00;
+  text-shadow: 0 0 1rem #00ff00;
+}
+.--rgb.-display, .--rgb.-functional:active, .--rgb.-active:active, .--rgb.-link:active {
+  background-color: #001233;
+  border: solid 1px #0059ff;
+  color: #0059ff;
+  text-shadow: 0 0 1rem #0059ff;
+}
+.--rgb.-false {
+  background-color: #570000;
+  border: solid 1px #ff0000;
+  color: #ff0000;
+  text-shadow: 0 0 1rem #ff0000;
+}
+.--rgb.-full, .--rgb.-false:active {
+  background-color: #001233;
+  border: solid 1px #0059ff;
+  color: #0059ff;
+  text-shadow: 0 0 1rem #0059ff;
+}
+.--rgb.-active {
+  background-color: #570000;
+  border: solid 1px #ff0000;
+  color: #ff0000;
+  text-shadow: 0 0 1rem #ff0000;
+}
+.--rgb.-body {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.--rgb.-functional:hover, .--rgb.-link:hover, .--rgb.-full:hover {
+  box-shadow: 0 0 .25rem .1rem #fff4;
+}
+
+
+.--cmyk.-link:link, .--cmyk.-link:visited, .--cmyk.-link:hover {
+  color: #00ffff;
+}
+.--cmyk.-functional, .--cmyk.-link, .--cmyk.-full:active {
+  background-color: #005050;
+  border: solid 1px #00ffff;
+  color: #00ffff;
+  text-shadow: 0 0 1rem #00ffff;
+}
+.--cmyk.-display, .--cmyk.-functional:active, .--cmyk.-active:active, .--cmyk.-link:active {
+  background-color: #474700;
+  border: solid 1px #ffff00;
+  color: #ffff00;
+  text-shadow: 0 0 1rem #ffff00;
+}
+.--cmyk.-false {
+  background-color: #474700;
+  border: solid 1px #ffff00;
+  color: #ffff00;
+  text-shadow: 0 0 1rem #ffff00;
+}
+.--cmyk.-full, .--cmyk.-false:active {
+  background-color: #460046;
+  border: solid 1px #ff00ff;
+  color: #ff00ff;
+  text-shadow: 0 0 1rem #ff00ff;
+}
+.--cmyk.-active {
+  background-color: #460046;
+  border: solid 1px #ff00ff;
+  color: #ff00ff;
+  text-shadow: 0 0 1rem #ff00ff;
+}
+.--cmyk.-body {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.--cmyk.-functional:hover, .--cmyk.-link:hover, .--cmyk.-full:hover {
+  box-shadow: 0 0 .25rem .1rem #fff4;
+}
+
+
+.--pureen.-link:link, .--pureen.-link:visited, .--pureen.-link:hover {
+  color: #054d4d;
+}
+.--pureen.-functional, .--pureen.-link, .--pureen.-active:active {
+  background-color: #a03030;
+  border: solid 2px #a75858;
+  color: #054d4d;
+  border-radius: 0;
+}
+.--pureen.-display, .--pureen.-link:active {
+  background-color: #284c81;
+  border: solid 2px #4c6994;
+  color: #cc813a;
+  border-radius: 1rem;
+}
+.--pureen.-false, .--pureen.-full:active {
+  background-color: #4c6994;
+  border: solid 2px #153970;
+  color: #b38254;
+  border-radius: 1rem;
+}
+.--pureen.-full, .--pureen.-false:active {
+  background-color: #284c81;
+  border: solid 2px #4c6994;
+  color: #cc813a;
+  border-radius: 1rem;
+}
+.--pureen.-active, .--pureen.-functional:active {
+  background-color: #a75858;
+  border: solid 2px #a03030;
+  color: #054d4d;
+  border-radius: 0;
+}
+.--pureen.-body {
+  background-color: #d1af8e;
+  color: #fff;
+}
+.--pureen.-functional:hover, .--pureen.-link:hover, .--pureen.-full:hover {
+  box-shadow: 0 0 .25rem .1rem #fff4;
+}
+
+
+.--soft.-link:link, .--soft.-link:visited, .--soft.-link:hover {
+  color: #474747;
+}
+.--soft.-functional, .--soft.-link {
+  background-color: #E8FBE1;
+}
+.--soft.-display, .--soft.-functional:active, .--soft.-link:active {
+  background-color: #ECE3FC;
+}
+.--soft.-active {
+  background-color: #FCEBF6;
+}
+.--soft.-false {
+  background-color: #DEE0E4;
+}
+.--soft.-full {
+  background-color: #FAF8DF;
+}
+.--soft.-body {
+  background-color: #DDF2FD;
+  color: #474747;
+}
+
+
+.--pastel.-link:link, .--pastel.-link:visited, .--pastel.-link:hover {
+  color: #474747;
+}
+.--pastel.-functional, .--pastel.-link {
+  background-color: #8dd7e0;
+}
+.--pastel.-display, .--pastel.-functional:active, .--pastel.-link:active {
+  background-color: #a2e5a6;
+}
+.--pastel.-active {
+  background-color: #d4aad4;
+}
+.--pastel.-false {
+  background-color: #ffd1d1;
+}
+.--pastel.-full {
+  background-color: #feffb9;
+  color: #474747;
+}
+.--pastel.-body {
+  background-color: #5d5586;
+  color: #474747;
+}
+
+
 .--clear.-functional:active ~ #main-click {
   color: #00000033;
 }
@@ -366,16 +583,16 @@ background-color: #800000;
   background: #2b0d77;
   background: linear-gradient(180deg, #ffbb00 0%, #e8513c 36%, #f15cab 93%);}
 .--retro.-display, .--retro.-functional:active, .--retro.-link:active {
-  background: rgb(255,210,5);
+  background: #ffd205;
   background: linear-gradient(180deg, #ffd205 4%, #ff7700 100%);
 }
 .--retro.-active {
-  background: rgb(0,250,255);
+  background: #00faff;
   background: linear-gradient(180deg, #00faff 0%, #0097ff 100%);
 }
 .--retro.-false {
   background-color: #362b5c;
-  color: #f56080;
+  color: #b1455c;
 }
 .--retro.-full {
   background: #fb3661;

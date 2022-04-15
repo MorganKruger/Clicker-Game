@@ -1,3 +1,5 @@
+window.console.log = ()=>{};
+
 const $ = (q)=> document.querySelector(q);
 const $all = (q)=> document.querySelectorAll(q);
 
@@ -47,3 +49,15 @@ class Reactive {
       }
   }
 }
+
+const is_nullish = (val)=> (val == null || val == undefined)
+
+const loaded_data = is_nullish(localStorage.clickerGame) ? {} : JSON.parse(localStorage.clickerGame);
+const load_keys = [];
+const get_or = (k, v)=>{
+    load_keys.push(k);
+    if (loaded_data[k] == undefined) return v;
+    return loaded_data[k];
+}
+
+// prestige.points = new Reactive(get_or("prestige.points", 0))

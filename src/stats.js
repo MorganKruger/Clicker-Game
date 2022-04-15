@@ -1,6 +1,7 @@
 import clock from "./clock.js";
-import primary from "./primary.js"
+import primary from "./primary.js";
 import sfx from "./sfx.js";
+import prestige from "./prestige.js";
 
 const timer = $("#clock");
 const showStatsBtn = $("#show-stats");
@@ -12,44 +13,42 @@ showStatsBtn.onclick = ()=> self.toggleMenu();
 const self = {
 	open: false,
 	
-	// interestRate: 0,           // 0
-	totalTime: 0,              // 1
-	highestCps: 0,             // 2
-	totalPrestiges: 0,         // 3
-	fastestPrestige: Infinity, // 4
-	highestPoints: 0,          // 5
-	highestPointsOneClick: 0,  // 6
-	highestPointsUberClick: 0,  // 7
+	totalTime: get_or("totalTime", 0),
+	highestCps: get_or("highestCps", 0),
+	totalPrestiges: get_or("totalPrestiges", 0),
+	fastestPrestige: get_or("fastestPrestige", Number.MAX_SAFE_INTEGER),
+	highestPoints: get_or("highestPoints", 0),
+	highestPointsOneClick: get_or("highestPointsOneClick", 0),
+	highestPointsUberClick: get_or("highestPointsUberClick", 0),
 	
-	time: 0,
-	clicks: 0,
-	// prestigeAmt: 0,
+	time: get_or("time", 0),
+	clicks: get_or("clicks", 0),
 	
 	// Functions
-	toggleMenu() {
+	toggleMenu(hotkeyed) {
 		const isOpen = this.open;
-		closeAllMenus();
-		isOpen ? this.closeMenu() : this.openMenu();
+		closeAllMenus(hotkeyed);
+		isOpen ? this.closeMenu(hotkeyed) : this.openMenu(hotkeyed);
 	},
 
-	openMenu() {
+	openMenu(hotkeyed) {
 		const cList = showStatsBtn.classList;
 		cList.toggle("-active", !cList.toggle("-functional", false));
 		statsWrapper.style.transform = ("translate(-50%,-50%)");
 		primary.hoverMenuOn = false;
 		this.open = true;
 		primary.toggleHoverMenu();
-		sfx.menuToggle();
+		if (!hotkeyed) sfx.menuToggle();
 	},
 
-	closeMenu() {
+	closeMenu(hotkeyed) {
 		const cList = showStatsBtn.classList;
 		cList.toggle("-functional", !cList.toggle("-active", false));
 		statsWrapper.style.transform = ("translate(-50%,-200%)");
 		primary.hoverMenuOn = true;
 		this.open = false;
 		primary.toggleHoverMenu();
-		sfx.menuToggle();
+		if (!hotkeyed) sfx.menuToggle();
 	},
 
 	// Getters
@@ -79,7 +78,7 @@ const self = {
 		return this;
 	},
 	get $fastestPrestige() {
-		statElems[4].innerText = `Fastest Prestige: ${(!isFinite(this.fastestPrestige))? "N/A" : `${this.fastestPrestige} seconds`}`;
+		statElems[4].innerText = `Fastest Prestige: ${(this.fastestPrestige >= Number.MAX_SAFE_INTEGER)? "N/A" : `${this.fastestPrestige} seconds`}`;
 		return this;
 	},
 	get $highestPoints() {
@@ -104,6 +103,10 @@ const self = {
 	},
 	get $uberClickValue() {
 		statElems[10].innerText = `Uber Click Value: X${formatNum(Math.round(50 * 1.175 ** this.totalPrestiges))}`
+		return this;
+	},
+	get $superPointBonus() {
+		statElems[11].innerText = `Super Point Bonus: +${prestige.points.$/10}% Points Gain`
 		return this;
 	},
 	get $time() {

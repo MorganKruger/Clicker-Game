@@ -5,7 +5,7 @@ const showSettings = $("#show-settings");
 const sfxSlider = $("#sfx-slider");
 const settings = $("#settings");
 
-showSettings.onclick = ()=> self.toggleMenu();
+showSettings.onclick = ()=> self.toggleMenu(false);
 
 sfxSlider.oninput = ()=> sfx.setSfxVolume();
 
@@ -15,13 +15,13 @@ const self = {
   open: false,
   
   // Functions
-  toggleMenu() {
+  toggleMenu(hotkeyed) {
     const isOpen = this.open;
-    closeAllMenus();
-		isOpen ? this.closeMenu() : this.openMenu();
+    closeAllMenus(hotkeyed);
+		isOpen ? this.closeMenu(hotkeyed) : this.openMenu(hotkeyed);
 	},
   
-	openMenu() {
+	openMenu(hotkeyed) {
     sfxSlider.style.pointerEvents = ("all"); 
 		const cList = showSettings.classList;
 		cList.toggle("-active", !cList.toggle("-functional", false));
@@ -29,10 +29,10 @@ const self = {
     primary.hoverMenuOn = false;
     self.open = true;
 		primary.toggleHoverMenu();
-		sfx.menuToggle();
+		if (!hotkeyed) sfx.menuToggle();
 	},
   
-	closeMenu() {
+	closeMenu(hotkeyed) {
     sfxSlider.style.pointerEvents = ("none"); //prevent focusing the bar(with 'tab') while it's off the screen.
 		const cList = showSettings.classList;
 		cList.toggle("-functional", !cList.toggle("-active", false));
@@ -40,7 +40,7 @@ const self = {
     primary.hoverMenuOn = true;
     self.open = false;
 		primary.toggleHoverMenu();
-		sfx.menuToggle();
+		if (!hotkeyed) sfx.menuToggle();
 	},
 };
 

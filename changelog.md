@@ -1,3 +1,12 @@
+## Morgan (13) : v1.0.0
+- Added final prestige upgrades
+- Added themes
+- Fixed hotkeyes
+- Removed icons in favor of text labels
+- Some visual fixes
+- Added local storage saving (Through Jacoby's remedies)
+- Added favicons
+
 ## Morgan (12) : v0.7.0
 - Revamped + Created Themes
 - Themes only include colors

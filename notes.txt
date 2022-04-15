@@ -1,17 +1,29 @@
 add character count to name averager
 
 
-fix hover menu coloring
+buy-theme says "[5 Theme Points]", make it say something else when all themes are 
+bought and when those 2 corresponding prestige upgrades are bought.
 
-finish messing with colors from the style.css "media" region + anywhere box
-shadow gets used + input menu
+force prestige at infinite money, and nerf interest
+
+reorganize prestige shop
+ - move "more prestige points" upgrade closer to the front/top
+
+
+sfx icon: headphones(dec:127911), bell(dec:128718)
+loudness icon: speaker icons(dec:128264-128266)
+
+click off menus + hotkeys
+
+faded overflow border for a more gradual cut-off(need webkit or something)
+
+give the "back to game" link the "--default-maxed" class or something to give it
+a golden bg and green text.
 
 make the "--default"'s in themes.js > themeScroll.insertAdjacentHTML() change to
 whatever the player has chosen for their color scheme
 
 remove 'onclick's from HTML
-
-design.html for design process
 
 jamf, flutter(mobile app dev)
 
@@ -29,16 +41,12 @@ can sound files be combined and extracted like image sprites?
 
 prestiges info label
 
-on startup, check if the database has a saved prefered theme setup. if not, set all 
+on startup, check if the database has a saved preferred theme setup. if not, set all 
 default (the initial prefered theme should be all default)
 
-on startup, set all 'let' variables to their saved values and updateText()
-
-make a cursor for each theme
+make a cursor for each theme(Deprecated)
 
 add prestige sound
-
-chinese theme says "Bing Chilling" on prestige
 
 put speaker icon on sound effect slider thumb
 
@@ -47,34 +55,15 @@ when you can't afford them becuase of the visuals. Also then turn off the intera
 
 sounds have a delay sometimes
 
-possible 'date started' stat
-
-each theme has 8 colors - interactive(green), active(red), text1(gold), text2(green),
-background(khaki), display field(light green), false(greenish-gray), completed(gold)	
-
-can't download 'Audacity' on this laptop because of the administrator settings :(
-
 prestige shop reset-purchases btn
-
-set underline in css for stats and settings menu labels 
 
 chance to get super points from loot crates
 
 favicon thingy in for the image in the corner of the tab label(.ico file type)
 
-make theme double do something
-
-other stats scroll bar
-
 Make all the buttons more sensible to read so first-time users know what's going on
 
-texturize buttons + background
-
 confirmation button on prestige
-
-prestige theme shop. Maybe through crates for random theme. 
-Theme rarity(common[gray], uncommon[green], rare[indigo], epic[royal-purple], 
-legendary[gold], mythic[rainbow]) ~ (50%,25%,15%,7.5%,2%,.5%)
 
 players collect parts of themes through opening crates and gain permenant bonuses
 for completed theme sets.
@@ -91,7 +80,7 @@ reset progress
 
 hotkey settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||NEWS BAR|||||	(Theme Dependent(lots of brainstorming))
+|||||NEWS BAR|||||	(Theme Dependent(lots of brainstorming))(Deprecated)
 ~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||ACHIEVEMENTS|||||	(n = achievement level)
@@ -99,44 +88,36 @@ hotkey settings
 	click x times(x = 10^n(achievement level),1mil(~40hrs:7cps)(END)			
 	complete x themes(1, 3, 5, 10, 15, 20, 30, 50, all(END))
 	prestige x times({x += n} (1,3,6,10,15,21,28,36,45,55,66,78,91,105(END)))
-	reach level x on minigame ~~~
+	reach level x on minigame ~~~ (Deprecated)
 	reach x interest(5%,13%,25%,45%,70%,100%,200%(END))
 	playtime x seconds (60(1min),600(10min),6000(100min),18000(5hr)(END))
 	*need a super cheap achievment(there is like 200 of them; they're easy to get)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||STAT MENU|||||
-	prestige bonus		completed-theme	bonus	points/second	
-	click bonus chances	current theme		total clicks
+	prestige bonus,		completed-theme	bonus,	points/second	,
+	click bonus chances,	current theme,		total clicks,
 	chance for theme pt	rythm game highscore	
 	total progression((x/12PresShop)+(x/(~60)Themes)+(x/(~30)missions)~~x/115Items)
 	least clicks in one prestige
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||THEME IDEAS|||||
-	goopy/slime	retro(70s)	circuit board		old black and white
-	vampires	birthday	holidays(every one)	money/gold
-	good		evil		future(future points)	Medievil
-	nature		prehistoric	winter			summer
-	fall		spring		breast cancer awareness ~~~~~
-	Pirate		royal		disco			zombie
-	electric	chicken		pets(feline/kanine)	candy
-	fire		junk food	America			ocean
-	steampunk	rennaisance	floral			blocky/modern art
-	picasso		toxic 		military		mystery
-	old/weathered/broken/cracked	magical			corrupted file
-	bubbly		sharp/spikey	R,O,Y,G,B,I,V		gamer(rgb)
-	Rainbow/unicorn/sparkles	light 			dark 
-	basic		highrise	fruity			space
-	wet		dry		musical			classical
-	cotton candy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|||||THINGS THAT CHANGE WITH THEMES|||||
-	TEXT(ie. currency, main-click text prompt, interest unlock/upgrade, 
-	COLOR SCHEME(ie. bg, text1, text2, locked, interactable, display-field, active)
-	SFX(ie. main-click, purchase, fail, menu-toggle)
-	IMAGES(ie. cursor, bg image, 1-time clickable)
-
-	MUSIC(!this is a lot of work!)(Deprecated)
-	PARTICLES(if any)(Deprecated)
+|||||THEME IDEAS||||| (=)idea, (~)no idea, (--)color done
+			=circuit board		
+	=vampires	=birthday	=holidays(every one)	=money/gold
+	=good		=evil		=future(future points)	=dark 
+	--winter	=summer		=dry			=wet
+	=fall		=spring		=fruity			=light 
+			=disco		=space			=floral			
+	=electric	=military	--modern
+	=fire		--America	=ocean			=blocky/modern art
+	=magical	--bubbly	=transparent		=rainbow
+	=clown		=basic		=gamer(rgb)
+	
+	~rennaisance	~mystery	~steampunk		~Medievil		
+	~weathered	~corrupted file	~zombie			~chicken
+	~sharp/spikey	--R,O,Y,G,B,I,V	~junk food		~Pirate
+	~unicorn	~nature		~classical		~musical
+	~highrise	~candy		~pets(feline/kanine)	--toxic
+	--retro(70s)	--goopy		--royal			--candy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||PERK SHOP IDEAS|||||
 	Unlock cps counter?(Deprecated)
@@ -148,9 +129,7 @@ hotkey settings
 
 	theme bonus becomes compounding instead of additive [-10 super points]
 
-	upgradeable chance for "theme points" from main click 0/5 to open a box
-
-	further the crit and super crit by allowing to upgrade them individually
+	upgradeable chance for "theme points" from main click (x/5 to open a box)
 
 	gain x% income based on total prestige points 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -158,13 +137,13 @@ hotkey settings
 	increase effectiveness of the mainUpgrade, upgradeUpgrade, and maybe of the interest upgrade
 	flat permenant bonus(+5% income)
 
-	unlocks minigame
+	unlocks minigame (Deprecated)
 		aim trainer**
-		rythm game*** (this is a good idea)
+		rhythm game*** (this is a good idea)
 		simple platformer(perhaps with moving objects to dodge)-(on like a 
 	pop-up gameboy or something)
 
-	unlocks a new gamemode
+	unlocks a new gamemode (Deprecated)
 		other clicker game(like one with passive income)
 		slime eat:grow thingy
 		top-down stationary shooter
@@ -172,9 +151,7 @@ hotkey settings
 	collect different colored prestige trophies(0/6) (Deprecated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 |||||ASSETS|||||
-https://game-icons.net/1x1/lorc/cog.html#download - settingsIcon
 https://mixkit.co/free-sound-effects/pop/ - hard pop click
-https://commons.wikimedia.org/wiki/File:Paint_palette_icon_from_the_Noun_Project.svg - paletteIcon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
